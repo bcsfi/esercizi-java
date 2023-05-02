@@ -10,18 +10,20 @@ public class Main {
             System.out.println("Dimensione array non corretta, deve essere >= 0. ");
         }
         int[] arrayZigZag = new int[dimensioneArray];
-        for(int i= 0; i < dimensioneArray; i++){
-            System.out.println("Inserisci i numeri nell'array: ");
-            arrayZigZag[i] = input.nextInt();
-        }
-        for (int i = 0; i < (dimensioneArray / 2); i++) {
-            System.out.println(arrayZigZag[i] + " " + arrayZigZag[(arrayZigZag.length - 1) - i]);
-        }
+        arrayZigZag = inserisciElementi(arrayZigZag, dimensioneArray);
+        stampaZigZag(arrayZigZag, dimensioneArray);
     }
-    private static void inserisciElementi(int[] array, int dimensione){
-        Scanner input = input.nextInt();
+    private static int[] inserisciElementi(int[] array, int dimensione){
+        Scanner input = new Scanner(System.in);
         for(int i = 0; i < dimensione; i++){
+            System.out.println("Inserisci l'elemento: ");
             array[i] = input.nextInt();
+        }
+        return array;
+    }
+    private static void stampaZigZag(int[] array, int dimensione){
+        for (int i =0; i < dimensione / 2; i++){
+            System.out.println(array[i] + " " + array[(array.length - 1) - i]);
         }
     }
 }

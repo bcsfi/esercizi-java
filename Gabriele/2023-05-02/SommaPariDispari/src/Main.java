@@ -9,12 +9,9 @@ public class Main {
         int[] arrayGlobale = new int[dimensioneArray];
         int sommaPari = 0, sommaDispari = 0;
         arrayGlobale = aggiungiElementiArray(arrayGlobale, dimensioneArray);
-        for(int i = 0; i < dimensioneArray; i += 2){
-            sommaPari += arrayGlobale[i];
-        }
-        for(int i = 1; i < dimensioneArray; i += 2){
-            sommaDispari += arrayGlobale[i];
-        }
+        sommaPari = sommaPari(arrayGlobale, dimensioneArray);
+        sommaDispari = sommaDispari(arrayGlobale, dimensioneArray);
+
         if(sommaPari == sommaDispari){
             System.out.println("Pari e dispari uguali");
         }
@@ -30,4 +27,19 @@ public class Main {
         }
         return array;
     }
+    private static int sommaPari(int[] array, int dimensioneArray){
+        int somma = 0;
+        for(int i = 0; i < dimensioneArray; i += 2){
+            somma += array[i];
+        }
+        return somma;
+    }
+    private static int sommaDispari(int[] array, int dimensioneArray){
+        int somma = 0;
+        for (int i = 1; i < dimensioneArray; i += 2) {
+            somma += array[i];
+        }
+        return somma;
+    }
+
 }
