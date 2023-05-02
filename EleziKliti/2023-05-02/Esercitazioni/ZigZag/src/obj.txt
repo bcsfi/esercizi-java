@@ -1,0 +1,40 @@
+
+
+Programma n.5:
+
+    StampaZigZag();
+
+    Array[10 numeri a piacere];
+
+    Ordine di StampaZigZag()
+    Il primo -> L'ultimo
+    Il secondo -> Il penultimo
+    Il Terzo -> Il terzultimo
+
+    Condizioni:
+        Array casuale di numero
+
+5) Scrivere un programma StampaZigZag che prevede un array di 10 numeri interi contenente valori a
+piacere (senza bisogno di chiederli all’utente) e ne stampa gli elementi secondo il seguente ordine: il primo,
+l’ultimo, il secondo, il penultimo, il terzo, il terz’ultimo, ecc... Il nome dell’array può essere scelto a piacere.
+Il programma deve essere scritto facendo finta di non sapere quali siano i valori inseriti nell’array. 
+
+
+Programma n.6:
+
+    SommaPariDispari()
+    Array[10 valori a piacere]
+
+    Ordine di SommaPerDispari()
+    Stampa pari se:
+        - somma dei numero in posizione pari dell'array è uguale alla somma dei numero in pos. dispari
+
+    Condizioni:
+        Array casuale di numeri.
+
+6) Scrivere un programma SommaPariDispari che prevede un array di 10 numeri interi contenente valori
+a piacere (senza bisogno di chiederli all’utente) e stampa Pari e dispari uguali se la somma dei numeri in
+posizioni pari dell’array è uguale alla somma dei numeri in posizioni dispari, altrimenti il programma stampa
+Pari e dispari diversi.
+Il programma deve essere scritto facendo finta di non sapere quali siano i valori inseriti nell’array. 
+
