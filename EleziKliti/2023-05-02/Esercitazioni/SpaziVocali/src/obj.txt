@@ -1,0 +1,18 @@
+
+
+
+Programma che conta le punteggiatura date in input dall'utente
+
+
+
+
+1) Scrivere un programma Punteggiatura che chiede all’utente di inserire una sequenza di
+ stringhe conclusa dalla stringa vuota e poi stampa il numero di caratteri di punteggiatura (.,;:!?) in esse contenuti.
+Per esempio, se si immettono le stringhe "Albero.", "foglia, radice, fiore", "tronco: cavo", "ramo!",
+"Frutto" (e poi "" per finire), il programma stampa 5 (punto, virgola, virgola, duePunti, puntoEsclamativo)
+
+Chiede una stringa e conta il numero dei spazi che sono seguiti da una vocale
+
+2) Scrivere un programma SpaziVocali che chiede all’utente di inserire una stringa e stampa
+il numero complessivo di spazi che sono immediatamente seguiti da una vocale.
+Per esempio, se si immette "A ogni uomo, ogni giorno, I suoi diritti", il programma stampa 4. 
