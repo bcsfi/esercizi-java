@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-28/2023-04-28.iml" filepath="$PROJECT_DIR$/Gino/2023-04-28/2023-04-28.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Angelo/Angelo.iml" filepath="$PROJECT_DIR$/Angelo/Angelo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_1/Fibonacci_es_1.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_1/Fibonacci_es_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_3/Fibonacci_es_3.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_3/Fibonacci_es_3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_4/Fibonacci_es_4.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_4/Fibonacci_es_4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_5/Fibonacci_es_5.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_5/Fibonacci_es_5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_6/Fibonacci_es_6.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_6/Fibonacci_es_6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/Overload/Overload.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/Overload/Overload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/Punteggiatura/Punteggiatura.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/Punteggiatura/Punteggiatura.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/Ripeti/Ripeti.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/Ripeti/Ripeti.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/SpaziVocali/SpaziVocali.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/SpaziVocali/SpaziVocali.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/TuttiUguali/TuttiUguali.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/TuttiUguali/TuttiUguali.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/ZigZag/ZigZag.iml" filepath="$PROJECT_DIR$/EleziKliti/2023-05-02/Esercitazioni/ZigZag/ZigZag.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-26/_042623_fibonacci/_042623_fibonacci.iml" filepath="$PROJECT_DIR$/Gino/2023-04-26/_042623_fibonacci/_042623_fibonacci.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-26/_042623_fibonacci_inline/_042623_fibonacci_inline.iml" filepath="$PROJECT_DIR$/Gino/2023-04-26/_042623_fibonacci_inline/_042623_fibonacci_inline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-27/_042723_ContinuaFino/_042723_ContinuaFino.iml" filepath="$PROJECT_DIR$/Gino/2023-04-27/_042723_ContinuaFino/_042723_ContinuaFino.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-27/_042723_Contrario/_042723_Contrario.iml" filepath="$PROJECT_DIR$/Gino/2023-04-27/_042723_Contrario/_042723_Contrario.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-27/_042723_Lunghezze/_042723_Lunghezze.iml" filepath="$PROJECT_DIR$/Gino/2023-04-27/_042723_Lunghezze/_042723_Lunghezze.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-27/_042723_PositivoNegativo/_042723_PositivoNegativo.iml" filepath="$PROJECT_DIR$/Gino/2023-04-27/_042723_PositivoNegativo/_042723_PositivoNegativo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gino/2023-04-27/_042723_fibonacci_separated_method/_042723_fibonacci_separated_method.iml" filepath="$PROJECT_DIR$/Gino/2023-04-27/_042723_fibonacci_separated_method/_042723_fibonacci_separated_method.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/esercizi-java.iml" filepath="$PROJECT_DIR$/.idea/esercizi-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lorenzo/lorenzo.iml" filepath="$PROJECT_DIR$/lorenzo/lorenzo.iml" />
+    </modules>
+  </component>
+</project>
