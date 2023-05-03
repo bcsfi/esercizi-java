@@ -2,18 +2,28 @@ import java.util.Scanner;
 
 public class PositivoNegativo {
     public static void main(String[] args) {
-        userInput();
+        long previousNumber = 0, actualNumber = 0, nextNumber = 0;
+        Scanner input = new Scanner(System.in);
 
+        do{
+            previousNumber = actualNumber;
+            actualNumber = nextNumber;
+            nextNumber = userInput();
+        }
+        while(nextNumber != 0);
+
+        if (previousNumber > 0 && actualNumber <0){
+            System.out.println("OK");
+        }
+        else{
+            System.out.println("NO");
+        }
     }
 
-    private static void userInput() {
-        System.out.print("Inserisci numeri: ");
-
+    private static long userInput() {
+        System.out.print("Inserisci numero: ");
         Scanner scanner = new Scanner(System.in);
-
-        String list = scanner.nextLine();
-
-
+        long Input = scanner.nextLong();
+        return Input;
     }
-
 }
