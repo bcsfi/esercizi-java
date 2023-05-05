@@ -17,9 +17,9 @@ public enum WeekDay {
             this.stringDay = stringDay;
         }
 
-        public int getIdWithName(WeekDay name)
-        {
-            return name.indices;
+
+        public String getIdWithName(String name){
+            
         }
 
 
