@@ -1,22 +1,26 @@
+import com.sun.source.doctree.SinceTree;
 
-class Member {
+import java.util.Scanner;
 
-    private int id;
-    private String name;
-    private int age;
+class Main {
 
-    public int getId(){ return id;}
-    public String getName(){ return  name;}
-    public int getAge(){return  age;}
+    public static void main(String[] args) {
 
-    public void setId(int id){ this.id=id;}
-    public void setName(String name){ this.name = name;}
-    public void setAge(int age){ this.age = age;}
+        try {
 
-    public Member(int id, String name, int age){
-        this.id = id;
-        this.name = name;
-        this.age = age;
+            Scanner scan = new Scanner(System.in);
+            System.out.print("What day of the week do you want the number? \n");
+            String choiceDey = scan.nextLine();
+            System.out.print(choiceDey);
+
+
+        } catch (Exception IllegalArgumentException){
+            System.out.print("Error, this value not exist in main enum.");
+        }
+
     }
 
+
 }
+
+
