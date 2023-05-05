@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Double lunghezza = 25.0;
         Double larghezza = 40.0;
-        Rettangolo rettangolo = new Rettangolo(lunghezza, larghezza);
+        Shape rettangolo = new Rettangolo(lunghezza, larghezza);
 
         System.out.println(rettangolo.calculateArea());
     }
