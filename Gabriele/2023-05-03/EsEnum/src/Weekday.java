@@ -1,17 +1,17 @@
 public enum Weekday {
-    LUNEDI, MARTEDI, MERCOLEDI, GIOVEDI, VENERDI, SABATO, DOMENICA;
+    LUNEDI(1),
+    MARTEDI(2),
+    MERCOLEDI(3),
+    GIOVEDI(4),
+    VENERDI(5),
+    SABATO(6),
+    DOMENICA(7);
+    final int numberOfDay;
 
-    public int restituisceNumero(Weekday giorno){
-        return switch (giorno) {
-            case LUNEDI -> 1;
-            case MARTEDI -> 2;
-            case MERCOLEDI -> 3;
-            case GIOVEDI -> 4;
-            case VENERDI -> 5;
-            case SABATO -> 6;
-            case DOMENICA -> 7;
-        };
+    Weekday (int numberOfDay){
+        this.numberOfDay = numberOfDay;
     }
+
     public String giornoDopo(Weekday giorno){
         return switch (giorno) {
             case LUNEDI -> "Martedi";
