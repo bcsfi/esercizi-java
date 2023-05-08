@@ -5,9 +5,7 @@ public class ConsoleGame extends VideoGame {
     private String piattaforma;
 
     public ConsoleGame(String titolo, Double prezzo, int annoRilascio, String piattaforma){
-        setTitolo(titolo);
-        setPrezzo(prezzo);
-        setAnnoRilascio(annoRilascio);
+        super(titolo, prezzo, annoRilascio);
         setPiattaforma(piattaforma);
     }
     public String getPiattaforma(){

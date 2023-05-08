@@ -2,11 +2,8 @@ package net.bcsoft.GameStore;
 
 public class PCGame extends VideoGame{
     private String specificheSistema;
-
     public  PCGame(String titolo, Double prezzo, int annoRilascio, String specificheSistema ){
-        setTitolo(titolo);
-        setPrezzo(prezzo);
-        setAnnoRilascio(annoRilascio);
+        super(titolo, prezzo, annoRilascio);
         setSpecificheSistema(specificheSistema);
     }
 

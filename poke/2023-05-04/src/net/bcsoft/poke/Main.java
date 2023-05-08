@@ -1,4 +1,5 @@
 package net.bcsoft.poke;
+
 import java.lang.reflect.Array;
 
 public class Main {
@@ -23,7 +24,7 @@ public class Main {
         Ingrediente ponzu = new Ingrediente("Salsa Ponzu", "Salsa fatta in casa", GruppoIngredienteEnum.MARINATURA);
 
         Ingrediente[] listaIngredienti = {
-                insalata, gamberetto, cipollaFritta, noci, teryaki, tartareSalmone, cipollaFritta
+                risoSushi, mandorle, cipollaFritta, noci, teryaki, tartareSalmone, salmone
         };
         verificaPoke(listaIngredienti);
 

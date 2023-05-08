@@ -9,5 +9,6 @@ public class Main {
         Shape rettangolo = new Rettangolo(lunghezza, larghezza);
 
         System.out.println(rettangolo.calculateArea());
+        System.out.println(rettangolo.calculatePerimeter());
     }
 }
