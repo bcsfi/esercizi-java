@@ -1,6 +1,11 @@
 package net.bcsoft.GameStore;
 
-public abstract class VideoGame {
+public class VideoGame {
+    public VideoGame(String titolo, Double prezzo, int annoRilascio){
+        setTitolo(titolo);
+        setPrezzo(prezzo);
+        setAnnoRilascio(annoRilascio);
+    }
     private String titolo = null;
     private Double prezzo = 0.0;
     private int annoRilascio;
