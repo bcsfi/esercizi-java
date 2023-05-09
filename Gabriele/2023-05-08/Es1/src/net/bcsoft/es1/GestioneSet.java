@@ -6,12 +6,12 @@ import java.util.Set;
 public class GestioneSet {
     private Set<Integer> set = new HashSet<>();
 
-    public GestioneSet(Set set){
+    public GestioneSet(Set <Integer> set){
         this.set = set;
     }
 
-    public void stampaSet(Set set){
-        for (Object integer : set) {
+    public void stampaSet(Set <Integer> set){
+        for (Integer integer : set) {
             System.out.println(integer);
         }
     }
