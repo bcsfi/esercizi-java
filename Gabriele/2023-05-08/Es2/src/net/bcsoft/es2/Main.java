@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int dimensione1, dimensione2;
-        String sceltaTipo;
+        String sceltaTipo1, sceltaTipo2;
         Object obj;
         int conteggio = 0;
         Scanner input = new Scanner(System.in);
@@ -20,14 +20,15 @@ public class Main {
                 "Premi d se vuoi double; \n" +
                 "Premi f se vuoi float \n");
 
-        sceltaTipo = input.next();
-        sceltaTipo.toLowerCase();
-        switch (sceltaTipo) {
+        sceltaTipo1 = input.next();
+        sceltaTipo1.toLowerCase();
+        System.out.println("CREAZIONE PRIMA LISTA DI COPPIE \n");
+        System.out.println("Quante coppie vuoi inserire? ");
+        dimensione1 = input.nextInt();
+        switch (sceltaTipo1) {
             case "i" -> {
                 int x, y;
-                System.out.println("CREAZIONE PRIMA LISTA DI COPPIE \n");
-                System.out.println("Quante coppie vuoi inserire? ");
-                dimensione1 = input.nextInt();
+
                 for (int i = 0; i < dimensione1; i++) {
                     System.out.println("Inserisci il primo elemento della coppia: ");
                     x = input.nextInt();
@@ -39,8 +40,6 @@ public class Main {
             }
             case "d" -> {
                 double a, b;
-                System.out.println("CREAZIONE PRIMA LISTA DI COPPIE \n");
-                System.out.println("Quante coppie vuoi inserire? ");
                 dimensione1 = input.nextInt();
                 for (int i = 0; i < dimensione1; i++) {
                     System.out.println("Inserisci il primo elemento della coppia: ");
@@ -53,8 +52,6 @@ public class Main {
             }
             case "f" -> {
                 float c, d;
-                System.out.println("CREAZIONE PRIMA LISTA DI COPPIE \n");
-                System.out.println("Quante coppie vuoi inserire? ");
                 dimensione1 = input.nextInt();
                 for (int i = 0; i < dimensione1; i++) {
                     System.out.println("Inserisci il primo elemento della coppia: ");
@@ -72,14 +69,16 @@ public class Main {
                 "Premi d se vuoi double; \n" +
                 "Premi f se vuoi float \n");
 
-        sceltaTipo = input.next();
-        sceltaTipo.toLowerCase();
-        switch (sceltaTipo) {
+        sceltaTipo2 = input.next();
+        sceltaTipo2.toLowerCase();
+
+        System.out.println("CREAZIONE SECONDA LISTA DI COPPIE \n");
+        System.out.println("Quante coppie vuoi inserire? ");
+        dimensione2 = input.nextInt();
+
+        switch (sceltaTipo2) {
             case "i" -> {
                 int x, y;
-                System.out.println("CREAZIONE SECONDA LISTA DI COPPIE \n");
-                System.out.println("Quante coppie vuoi inserire? ");
-                dimensione2 = input.nextInt();
                 for (int i = 0; i < dimensione2; i++) {
                     System.out.println("Inserisci il primo elemento della coppia: ");
                     x = input.nextInt();
@@ -91,9 +90,6 @@ public class Main {
             }
             case "d" -> {
                 double a, b;
-                System.out.println("CREAZIONE seconda LISTA DI COPPIE \n");
-                System.out.println("Quante coppie vuoi inserire? ");
-                dimensione2 = input.nextInt();
                 for (int i = 0; i < dimensione2; i++) {
                     System.out.println("Inserisci il primo elemento della coppia: ");
                     a = input.nextDouble();
@@ -105,9 +101,6 @@ public class Main {
             }
             case "f" -> {
                 float c, d;
-                System.out.println("CREAZIONE SECONDA LISTA DI COPPIE \n");
-                System.out.println("Quante coppie vuoi inserire? ");
-                dimensione2 = input.nextInt();
                 for (int i = 0; i < dimensione2; i++) {
                     System.out.println("Inserisci il primo elemento della coppia: ");
                     c = input.nextFloat();
@@ -120,17 +113,16 @@ public class Main {
         }
 
 
-        if(lista1.get(1).getClass() == lista2.get(1).getClass()){
-            for (Coppie coppia : lista2) {
-                if (lista1.contains(coppia)) {
-                    occorrenze.add(coppia);
-                    conteggio ++;
-                }
+        if (lista1.get(0).getX().getClass() == lista2.get(0).getX().getClass() && lista1.get(0).getY().getClass() == lista2.get(0).getY().getClass()){
+            for(int i = 0; i < dimensione1; i++){
+                occorrenze.add(lista1.get(i));
+                conteggio++;
             }
-            System.out.println("La lista 1 ha " + conteggio + "elementi in comune con la lista 2 e sono: ");
-            for (Coppie coppie : occorrenze) {
-                System.out.println(coppie);
+            System.out.println("La lista 1 ha " + conteggio + "eòementi in comune con la lista 2 e sono: ");
+            for (int i = 0; i < occorrenze.size(); i ++){
+                System.out.println(occorrenze.get(i));
             }
+
         }
         else{
             System.out.println("TIPI NON COMPATIBILI");
