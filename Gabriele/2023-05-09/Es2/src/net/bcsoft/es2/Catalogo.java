@@ -4,52 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Catalogo implements Articolo{
-    private List <Articolo> catalogoList = new ArrayList<Articolo>();
-    private String nome;
-    private double prezzo;
+public class Catalogo {
+    private List <Articolo> articoloList = new ArrayList<Articolo>();
 
-    public Catalogo(String nome, double prezzo, List <Articolo> catalogoList){
-        this.nome = nome;
-        this.prezzo = prezzo;
-        this.catalogoList = catalogoList;
+    public Catalogo(List <Articolo> catalogoList){
+
+        this.articoloList = catalogoList;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public void setPrezzo(double prezzo){
-        this.prezzo = prezzo;
-    }
+
 
     public void aggiungiArticolo(Articolo articolo){
-        catalogoList.add(articolo);
+        articoloList.add(articolo);
     }
-    public void getArticoliSottoPrezzo(double prezzo){
+    public List <Articolo> getArticoliSottoPrezzo(double prezzo){
         List <Articolo> articoliPrezzominoreList = new ArrayList<>();
-        for (int i = 0; i < catalogoList.size(); i++){
-            if (catalogoList.get(i).getPrezzo() < prezzo){
-                articoliPrezzominoreList.add(catalogoList.get(i));
-                System.out.println("Elemento numero " + (i + 1) + ": \n" + "Nome: " + articoliPrezzominoreList.get(i).getNome() + "\n" + "Prezzo: " + articoliPrezzominoreList.get(i).getPrezzo());
+        for (int i = 0; i < articoloList.size(); i++){
+            if (articoloList.get(i).getPrezzo() < prezzo){
+                articoliPrezzominoreList.add(articoloList.get(i));
+                //System.out.println("Elemento numero " + (i + 1) + ": \n" + "Nome: " + articoliPrezzominoreList.get(i).getNome() + "\n" + "Prezzo: " + articoliPrezzominoreList.get(i).getPrezzo());
             }
         }
+        return articoliPrezzominoreList;
     }
 
     public String toString(){
         String stampa = "";
-        for (int i = 0; i < catalogoList.size(); i++){
-            stampa = stampa + "Elemento numero " + (i + 1) +" : " + "\n " + "nome: " + catalogoList.get(i).getNome() + "\n" + "prezzo: " +  catalogoList.get(i).getPrezzo() + "\n";
+        for (int i = 0; i < articoloList.size(); i++){
+            stampa = stampa + "Elemento numero " + (i + 1) +" : " + "\n " + "nome: " + articoloList.get(i).getNome() + "\n" + "prezzo: " +  articoloList.get(i).getPrezzo() + "\n";
         }
         return stampa;
     }
 
-    @Override
-    public String getNome() {
-        return nome;
-    }
 
-    @Override
-    public double getPrezzo() {
-        return prezzo;
-    }
+
 }

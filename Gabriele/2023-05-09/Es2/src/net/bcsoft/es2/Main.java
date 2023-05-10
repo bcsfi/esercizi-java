@@ -13,10 +13,11 @@ public class Main {
         String nome = null;
         double prezzo = 0.0;
         List <Articolo> catalogoList = new ArrayList<>();
-        Catalogo catalogo = new Catalogo(nome, prezzo, catalogoList);
+        Catalogo catalogo = new Catalogo(catalogoList);
         int scelta, dimensione;
         double limitePrezzo;
         do {
+            Articolo newGame = new PcGame();
             System.out.println("Cosa vuoi fare? \n"+
                     "1) Aggiungere un articolo alla lista; \n" +
                     "2) Stampare l'intero catalogo; \n" +
@@ -30,11 +31,11 @@ public class Main {
                     for(int i = 0; i < dimensione; i++){
                         System.out.println("Inserisci il nome: ");
                         nome = input.next();
-                        catalogo.setNome(nome);
+                        newGame.setNome(nome);
                         System.out.println("Inserisci il prezzo (nel formato " + Locale.getDefault().getDisplayCountry() + ")");
                         prezzo = input.nextDouble();
-                        catalogo.setPrezzo(prezzo);
-                        catalogo.aggiungiArticolo(catalogo);
+                        newGame.setPrezzo(prezzo);
+                        catalogo.aggiungiArticolo(newGame);
                     }
                     break;
                 case 2:
@@ -43,7 +44,10 @@ public class Main {
                 case 3:
                     System.out.println("Sotto quale prezzo vuoi vedere gli elementi? ");
                     limitePrezzo = input.nextInt();
-                    catalogo.getArticoliSottoPrezzo(limitePrezzo);
+                    List <Articolo> articoloList = catalogo.getArticoliSottoPrezzo(limitePrezzo);
+                    for (int i = 0; i < articoloList.size(); i++) {
+                        System.out.println(articoloList.get(i));
+                    }
                     break;
                 case 4:
                     controlloMenu = false;
