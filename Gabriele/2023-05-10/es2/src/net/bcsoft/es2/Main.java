@@ -16,6 +16,9 @@ public class Main {
         indice = input.nextInt();
         System.out.println("Inserisci l'elemento da inserire: ");
 
+        for(int i = 0; i < 5; i ++){
+            lista.add(null);
+        }
 
         if(input.hasNextInt()){
             elemento = input.nextInt();
