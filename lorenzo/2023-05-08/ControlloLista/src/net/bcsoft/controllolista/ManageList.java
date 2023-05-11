@@ -1,7 +1,9 @@
+package net.bcsoft.controllolista;
+
 import java.util.ArrayList;
 
 public class ManageList {
-    public static ArrayList<Integer> getComparing(ArrayList<Integer> list1, ArrayList<Integer> list2){
+    public static ArrayList<Integer> compareList(ArrayList<Integer> list1, ArrayList<Integer> list2){
         ArrayList<Integer> returnList = new ArrayList<Integer>();
 
         for (Integer i : list1) {
@@ -11,9 +13,12 @@ public class ManageList {
     }
 
     public static String getList2String(ArrayList<Integer> comparingList){
-        String comparingString;
-        comparingString = comparingList.toString()
-                .replace("[", "").replace("]", "");
+        String comparingString = "";
+        for(int i = 0; comparingList.size() > i; i++){
+            String s = comparingList.get(i).toString();
+            if(comparingString.length() != 0) comparingString = comparingString + ",";
+            comparingString = comparingString + s;
+        }
 
         return comparingString;
     }

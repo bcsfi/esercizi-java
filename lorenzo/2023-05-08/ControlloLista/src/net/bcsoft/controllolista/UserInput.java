@@ -1,3 +1,5 @@
+package net.bcsoft.controllolista;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,7 +9,7 @@ public class UserInput {
         System.out.print("Quanti numeri vuoi per lista?: ");
         return inputScanner.nextInt();
     }
-    public static ArrayList<Integer> getCreateList(int numberIteration, int numberList){
+    public static ArrayList<Integer> createList(int numberIteration, int numberList){
         ArrayList<Integer> returnList = new ArrayList<Integer>();
         Scanner inputScanner = new Scanner(System.in);
 
