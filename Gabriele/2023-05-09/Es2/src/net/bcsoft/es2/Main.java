@@ -17,7 +17,6 @@ public class Main {
         int scelta, dimensione;
         double limitePrezzo;
         do {
-            Articolo newGame = new PcGame();
             System.out.println("Cosa vuoi fare? \n"+
                     "1) Aggiungere un articolo alla lista; \n" +
                     "2) Stampare l'intero catalogo; \n" +
@@ -29,6 +28,7 @@ public class Main {
                     System.out.println("Quanti articoli vuoi aggiungere? ");
                     dimensione = input.nextInt();
                     for(int i = 0; i < dimensione; i++){
+                        Articolo newGame = new PcGame();
                         System.out.println("Inserisci il nome: ");
                         nome = input.next();
                         newGame.setNome(nome);

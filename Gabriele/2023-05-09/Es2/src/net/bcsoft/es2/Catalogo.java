@@ -7,22 +7,21 @@ import java.util.Scanner;
 public class Catalogo {
     private List <Articolo> articoloList = new ArrayList<Articolo>();
 
-    public Catalogo(List <Articolo> catalogoList){
-
-        this.articoloList = catalogoList;
+    public Catalogo(List <Articolo> articoloList){
+        this.articoloList = articoloList;
     }
-
 
 
     public void aggiungiArticolo(Articolo articolo){
         articoloList.add(articolo);
     }
+
+
     public List <Articolo> getArticoliSottoPrezzo(double prezzo){
         List <Articolo> articoliPrezzominoreList = new ArrayList<>();
         for (int i = 0; i < articoloList.size(); i++){
             if (articoloList.get(i).getPrezzo() < prezzo){
                 articoliPrezzominoreList.add(articoloList.get(i));
-                //System.out.println("Elemento numero " + (i + 1) + ": \n" + "Nome: " + articoliPrezzominoreList.get(i).getNome() + "\n" + "Prezzo: " + articoliPrezzominoreList.get(i).getPrezzo());
             }
         }
         return articoliPrezzominoreList;

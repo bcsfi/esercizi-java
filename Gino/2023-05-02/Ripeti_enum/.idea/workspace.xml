@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="937f809b-409a-4717-8947-2bc8dff43a36" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Angelo/Angelo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Angelo/Angelo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/Punteggiatura/Punteggiatura.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/Punteggiatura/Punteggiatura.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/Ripeti/Ripeti.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/Ripeti/Ripeti.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/SpaziVocali/SpaziVocali.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/SpaziVocali/SpaziVocali.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/TuttiUguali/TuttiUguali.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/TuttiUguali/TuttiUguali.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/ZigZag/ZigZag.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Esercitazioni/ZigZag/ZigZag.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_1/Fibonacci_es_1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_1/Fibonacci_es_1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_3/Fibonacci_es_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_3/Fibonacci_es_3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_4/Fibonacci_es_4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_4/Fibonacci_es_4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_5/Fibonacci_es_5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../EleziKliti/2023-05-02/Fibonacci/Fibonacci_es_5/Fibonacci_es_5.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../2023-04-28/2023-04-28.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../2023-04-28/2023-04-28.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../2023-04-28/_042823_Punteggiatura/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../2023-04-28/_042823_Punteggiatura/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lorenzo/2023-04-28/Fibonacci con Array/Fibonacci con Array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lorenzo/2023-04-28/Fibonacci con Array/Fibonacci con Array.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2PHKrjv2N2kTQVE1a6pdvQe0Qk1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/bcsoft/workspace/esercizi-java/Gino/2023-05-02",
+    "onboarding.tips.debug.path": "C:/Users/bcsoft/workspace/esercizi-java/Gino/2023-05-02/Ripeti_enum/src/Main.java"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="937f809b-409a-4717-8947-2bc8dff43a36" name="Changes" comment="" />
+      <created>1683108770373</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683108770373</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
