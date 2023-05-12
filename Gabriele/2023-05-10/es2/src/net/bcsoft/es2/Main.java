@@ -22,12 +22,15 @@ public class Main {
 
         if(input.hasNextInt()){
             elemento = input.nextInt();
+            System.out.println("Sono int");
         }
         else if (input.hasNextDouble()) {
             elemento = input.nextDouble();
+            System.out.println("Sono double");
         }
         else if (input.hasNextLong()) {
             elemento = input.nextLong();
+            System.out.println("Sono long");
         }
         if(indice > 5){
             throw new IndexOutOfBoundsException();
