@@ -4,13 +4,18 @@ import java.util.Map;
 public class UserManage {
     Map<String, String> userList = new HashMap<String, String>();
 
-    private String nomeTitolare = null;
-    private Integer soldiTitolare = 0;
 
 
+    public boolean createUtente(String email, String password) throws EccezionaValoreNull {
 
-    public boolean createUtente(String email, String password)
-    {
+        if(email == null){
+            throw new EccezionaValoreNull("Errore, valore null non amesso!");
+        }
+
+        if(password == null){
+            throw new EccezionaValoreNull("Errore, valore null non amesso!");
+        }
+
         userList.put(email, password);
 
         if(userList.containsKey(email) && userList.containsValue(password)){return true;} else {

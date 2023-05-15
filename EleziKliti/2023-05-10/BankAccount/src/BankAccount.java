@@ -4,18 +4,13 @@ import java.util.Random;
 public class BankAccount extends UserManage {
 
     private StringBuilder codeNumber= new StringBuilder("@BankItalia#");
-    private String nomeTitolare = null;
     private double soldiTitolare = 0;
 
-    BankAccount(String nomeTitolare, Integer soldiTitolare){
+    BankAccount(Integer soldiTitolare){
         this.codeNumber = generateConto();
-        this.nomeTitolare = nomeTitolare;
         this.soldiTitolare = soldiTitolare;
     }
 
-    public String getNomeTitolare(){
-        return this.nomeTitolare;
-    }
 
     public double getSoldiTitolare(){
         return this.soldiTitolare;
@@ -34,9 +29,9 @@ public class BankAccount extends UserManage {
     public StringBuilder generateConto(){
 
         Random rand = new Random();
-        for(int i=0; i < 16; i++){
+        for(int i=0; i < 6; i++){
             int nCasuale = rand.nextInt(100);
-            codeNumber.append(i);
+            codeNumber.append(nCasuale);
         }
 
         return this.codeNumber;

@@ -1,0 +1,24 @@
+
+
+Archivia e recupera i dati dei studenti utilizzando:
+- mappa di genercis MapOfStudent(T)
+
+Ogni studente è identificato da:
+    K - nome (valore String)
+    V - voto (valore double)
+
+Metodi da implementare su MapOfStudent:
+    ---- Aggiungi il nome e voto a uno studente da implementare nella mappa
+        - addStudent(name, vote)
+    ---- Metodo per recuperare voto da nome
+        - getVoteByName(String)
+        ---- Se non viene trovato creare exception:
+            - StudentNotFoundException
+    ---- Metodo per aggiornare il voto
+        - updateVote(String nome, double newVote)
+        --- In caso che non venga trovato lo studente ritornare
+            - StudentNotFoundException
+    ---- Metodo per rimuovere un utente dalla mappa
+        - removeStudent()
+        ---- In caso non venga trovato fare partire:
+            - StudentNotFoundException
