@@ -1,7 +1,13 @@
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        BankAccount myAccount = new BankAccount(123456, "Angelo Marini", 0.89);
-        Double withdrawalAmount = 0.90;
+        Scanner scanner = new Scanner(System.in);
+
+        BankAccount myAccount = new BankAccount(33333, "Arcangioli Giacomo", 100000);
+
+        System.out.print("Quanto vuoi ritirare ?  ");
+        Double withdrawalAmount = scanner.nextDouble();
+
         try {
             myAccount.collect(withdrawalAmount);
         } catch (InsufficientFundsException e) {
