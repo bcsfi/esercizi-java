@@ -1,6 +1,5 @@
 package net.bcsoft;
 
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,24 +7,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String  percorsoIniziale;
         Map<String, Double> mappaPerProvincia = new HashMap<>();
         Scanner input = new Scanner(System.in);
         System.out.println("Inserisci il path del file da cui importare i dati: ");
-        percorsoIniziale= input.nextLine();
+        String percorsoIniziale = input.nextLine();
         File file = new File(percorsoIniziale);
         elaboraFile(file, mappaPerProvincia);
     }
 
     public static void elaboraFile(File file, Map<String, Double> mappaPerProvincia) {
         try {
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            while (br.ready()) {
-                String riga = br.readLine();
-                elaboraRiga(riga, mappa);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while (bufferedReader.ready()) {
+                String riga = bufferedReader.readLine();
+                elaboraRiga(riga, mappaPerProvincia);
             }
-            scriviMappaSuFile(mappa);
+            scriviMappaSuFile(mappaPerProvincia);
         } catch (IOException e) {
             System.out.println("ERRORE DI LETTURA FILE");
             e.printStackTrace();
