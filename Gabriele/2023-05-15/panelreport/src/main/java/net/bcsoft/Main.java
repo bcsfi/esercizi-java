@@ -14,10 +14,10 @@ public class Main {
         System.out.println("Inserisci il path del file da cui importare i dati: ");
         percorsoIniziale= input.nextLine();
         File file = new File(percorsoIniziale);
-        leggiFile(file, mappaPerProvincia);
+        elaboraFile(file, mappaPerProvincia);
     }
 
-    public static void leggiFile(File file, Map <String, Double> mappa){
+    public static void elaboraFile(File file, Map<String, Double> mappaPerProvincia) {
         try {
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
@@ -28,10 +28,11 @@ public class Main {
             scriviMappaSuFile(mappa);
         } catch (IOException e) {
             System.out.println("ERRORE DI LETTURA FILE");
+            e.printStackTrace();
         }
     }
 
-    private static void elaboraRiga(String riga, Map <String, Double> mappa) {
+    private static void elaboraRiga(String riga, Map<String, Double> mappa) {
         String[] words = new String[0];
         if (riga != null) {
             words = riga.trim().split(";");
@@ -41,16 +42,15 @@ public class Main {
         }
     }
 
-    private static void mettiInMappa(String provincia, Double importo, Map <String, Double> mappa ){
-        if(!mappa.containsKey(provincia)){
+    private static void mettiInMappa(String provincia, Double importo, Map<String, Double> mappa) {
+        if (!mappa.containsKey(provincia)) {
             mappa.put(provincia, importo);
-        }
-        else{
-            mappa.put(provincia, mappa.get(provincia) + importo );
+        } else {
+            mappa.put(provincia, mappa.get(provincia) + importo);
         }
     }
 
-    private static void scriviMappaSuFile (Map <String, Double> mappa ){
+    private static void scriviMappaSuFile(Map<String, Double> mappa) {
         try {
             FileWriter myWriter = new FileWriter("reportFinale.txt");
             for (String chiave : mappa.keySet()) {
@@ -60,7 +60,7 @@ public class Main {
             myWriter.close();
             System.out.println("File scritto correttamente.");
         } catch (IOException e) {
-            System.out.println("ERRORE FILE NON SCRITTO.A");
+            System.out.println("ERRORE FILE NON SCRITTO.");
             e.printStackTrace();
         }
     }
