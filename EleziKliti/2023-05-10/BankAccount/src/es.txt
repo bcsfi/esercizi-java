@@ -1,0 +1,7 @@
+BancoAccount
+    - Integer numero conto
+    - Nome del titolare
+    - Saldo del conto
+    - Method: Collect(double) // Ritira soldi dal tuo conto
+    -- Se il soldi nel conto sono insufficienti rendere l'errore InsufficientFundsException
+

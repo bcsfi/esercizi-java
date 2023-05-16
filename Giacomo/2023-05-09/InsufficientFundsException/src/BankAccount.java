@@ -1,12 +1,12 @@
 public class BankAccount {
     private Integer numeroConto = 0;
-    private String nomeTitolare ;
-    private double saldoConto = 0 ;
- public BankAccount(Integer numeroConto, String nomeTitolare, double saldoConto) {
-     this.numeroConto = numeroConto;
-     this.nomeTitolare = nomeTitolare;
-     this.saldoConto = saldoConto;
- }
+    private String nomeTitolare;
+    private double saldoConto = 0;
+    public BankAccount(Integer numeroConto, String nomeTitolare, double saldoConto) {
+        this.numeroConto = numeroConto;
+        this.nomeTitolare = nomeTitolare;
+        this.saldoConto = saldoConto;
+    }
 
     public void collect(Double amount) throws InsufficientFundsException {
         if (amount > saldoConto) {
@@ -26,6 +26,16 @@ public class BankAccount {
 
     public Double getsaldoConto() {
         return saldoConto;
+    }
+
+    public void setNumeroConto(Integer numeroConto) {
+        this.numeroConto = numeroConto;
+    }
+    public void setNomeTitolare(String nomeTitolare) {
+        this.nomeTitolare = nomeTitolare;
+    }
+    public void setSaldoConto(double saldoConto) {
+        this.saldoConto = saldoConto;
     }
 }
 
