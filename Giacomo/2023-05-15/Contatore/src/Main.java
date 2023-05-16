@@ -1,19 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        Contatore contatore = new Contatore();
+        Counter counter = new Counter();
 
-        IncrementoThread thread1 = new IncrementoThread(contatore, 100);
-        IncrementoThread thread2 = new IncrementoThread(contatore, 50);
+        Thread thread1 = new Thread(new IncrementoThread(counter, 100));
+        Thread thread2 = new Thread(new IncrementoThread(counter, 50));
 
         thread1.start();
         thread2.start();
 
-        try{
+        try {
             thread1.join();
             thread2.join();
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.print("conteggio finale: " + contatore.getCount());
+
+        System.out.println("Final count: " + counter.getCount());
     }
 }

@@ -1,0 +1,5 @@
+Provincia : AR    |    Importo : 14196.57
+Provincia : FI    |    Importo : 18428.409999999996
+Provincia : SI    |    Importo : 34054.8
+Provincia : LU    |    Importo : 5005.58
+Provincia : PI    |    Importo : 4740.66

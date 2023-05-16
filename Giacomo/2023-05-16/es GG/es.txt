@@ -1,0 +1,19 @@
+Esercizio – Pannelli solari: report incassi su file 
+
+Una ditta di pannelli solare raccoglie in un file txt l’elenco degli importi incassati giorno per giorno in ciascuna provincia della Toscana. 
+
+Crea il file txt con un editor in modo da rispettare questo formato: ciascuna riga contiene una data yyyy-MM-dd separata con “;” da una sigla di provincia a sua volta separata con “;” da un importo nel formato con due decimali. Fai in modo tale che per ciascuna provincia siano presenti gli ncassi di più giorni. 
+
+Scopo del progetto 
+Realizzare una applicazione che legga un file txt da una qualsiasi directory su disco e scriva un ulteriore file “report.txt” con il totale degli incassi per ciascuna provincia.  
+Questo report deve avere un formato libero e intellegibile da un qualsiasi dipendente dell’amministrazione dell’azienda. 
+Mandare in console tutti gli errori dovuti all’I/O dei file, per esempio se il file non è stato trovato. 
+
+Il progetto Java deve essere creato usando Maven (vedi appendice) e le Paths API. 
+
+
+---------------------------------------------------------------------------------
+
+1. Crea file file.txt
+2. Calcola totale per provincia 
+3. Scrivi risultato in file report.txt

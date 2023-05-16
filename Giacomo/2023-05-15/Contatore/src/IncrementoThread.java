@@ -1,18 +1,16 @@
-public class IncrementoThread extends Thread {
+class IncrementoThread implements Runnable {
+    private Counter counter;
+    private int incrementAmount;
 
-    private Contatore contatore;
-    private int incrementoThread;
-
-    public IncrementoThread(Contatore contatore, int incrementoThread){
-
-        this.contatore = contatore;
-        this.incrementoThread = incrementoThread;
+    public IncrementoThread(Counter counter, int incrementAmount) {
+        this.counter = counter;
+        this.incrementAmount = incrementAmount;
     }
+
     @Override
-    public void run (){
-        for (int i = 0; i < incrementoThread; i++){
-            contatore.increment();
+    public void run() {
+        for (int i = 0; i < incrementAmount; i++) {
+            counter.increment();
         }
-        System.out.println("Thread completato: incrementato di "+ incrementoThread);
     }
 }

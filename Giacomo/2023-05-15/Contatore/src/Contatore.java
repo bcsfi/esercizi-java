@@ -1,11 +1,11 @@
-public class Contatore {
-
+class Counter {
     private int count = 0;
 
-    public synchronized void increment(){
+    public synchronized void increment() {
         count++;
     }
-    public int getCount(){
+
+    public int getCount() {
         return count;
     }
 }
