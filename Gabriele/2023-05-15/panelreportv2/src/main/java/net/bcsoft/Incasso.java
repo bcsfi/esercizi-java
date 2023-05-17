@@ -1,25 +1,27 @@
 package net.bcsoft;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class Incasso {
     private LocalDate data = null;
-    private String provincia;
+    private ProvinciaEnum provincia;
     private Float importo;
 
-    public Incasso(LocalDate data, String provincia, Float importo) {
+    public Incasso(LocalDate data, ProvinciaEnum provincia, Float importo) {
         this.data = data;
         this.provincia = provincia;
         this.importo = importo;
     }
 
-    public Incasso(String rigaFile) {
+    public Incasso(String rigaFile) throws ProvinciaErrataException {
         String[] colonne = rigaFile.trim().split(";");
-
-        setData(LocalDate.parse(colonne[0]));
-        setProvincia(colonne[1].toUpperCase());
-        setImporto(Float.parseFloat(colonne[2]));
+        try {
+            this.data = LocalDate.parse(colonne[0]);
+            this.provincia = ProvinciaEnum.valueOf(colonne[1].toUpperCase());
+            this.importo = Float.parseFloat(colonne[2]);
+        }catch (IllegalArgumentException e){
+            throw new ProvinciaErrataException();
+        }
     }
 
     public LocalDate getData() {
@@ -30,11 +32,11 @@ public class Incasso {
         this.data = data;
     }
 
-    public String getProvincia() {
+    public ProvinciaEnum getProvincia() {
         return provincia;
     }
 
-    public void setProvincia(String provincia) {
+    public void setProvincia(ProvinciaEnum provincia) {
         this.provincia = provincia;
     }
 

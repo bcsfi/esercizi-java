@@ -1,22 +1,24 @@
 package net.bcsoft;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 
 public class ReportCreator {
     private IncassoMensile incassoMensile = null;
     private String pathIniziale;
-    private Map<String, Float> mappaPerProvincia = new HashMap<>();
+    private Map<ProvinciaEnum, Float> mappaPerProvincia = new HashMap<>();
     private Map<LocalDate, Float> mappaPerData = new HashMap<>();
 
     public ReportCreator(String pathString) throws IOException {
-        incassoMensile = new IncassoMensile(pathString);
-        this.pathIniziale = pathString;
+        try{
+            incassoMensile = new IncassoMensile(pathString);
+            this.pathIniziale = pathString; //TODO ERRORE QUI FORSE PATH é NULL
+        } catch (ProvinciaErrataException e){
+                System.out.println("PROVINCIA SBAGLIATA!");
+        }
     }
 
     public void creaMappaPerProvincia() {
@@ -35,6 +37,8 @@ public class ReportCreator {
         } catch (IOException e) {
             System.out.println("ERRORE NELLA LETTURA DEL FILE");
             e.getStackTrace();
+        } catch (ProvinciaErrataException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -54,6 +58,8 @@ public class ReportCreator {
         } catch (IOException e) {
             System.out.println("ERRORE NELLA LETTURA DEL FILE");
             e.getStackTrace();
+        } catch (ProvinciaErrataException e) {
+            System.out.println("UNA PROVINCIA ERRATA!");
         }
     }
 
@@ -67,7 +73,7 @@ public class ReportCreator {
 
         Files.createFile(pathProvincia);
         StringBuilder outputProvincia = new StringBuilder();
-        for (String provincia : mappaPerProvincia.keySet()) {
+        for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
             Float importo = mappaPerProvincia.get(provincia);
             outputProvincia.append( "Data: " + provincia + " Importo: " + importo + "\n");
         }

@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class IncassoMensile {
     private List<Incasso> incassoList = null;
 
-    public IncassoMensile(String pathIniziale) throws IOException {
+    public IncassoMensile(String pathIniziale) throws IOException, ProvinciaErrataException {
         List<String> righeFile;
         Path path = Path.of(pathIniziale);
         boolean exist = Files.exists(path);
@@ -26,7 +26,6 @@ public class IncassoMensile {
             incassoList.add(incassoCorrente);
         }
     }
-
 
     public List<Incasso> getIncassoList() {
         return incassoList;

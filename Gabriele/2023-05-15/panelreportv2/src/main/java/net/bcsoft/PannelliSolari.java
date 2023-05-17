@@ -24,10 +24,8 @@ public class PannelliSolari {
                 e.getStackTrace();
             }
         } catch (IOException e) {
-            System.out.println("IL PATH " + pathIniziale + "NON E' CORRETTO");
+            System.out.println("IL PATH " + pathIniziale + " NON E' CORRETTO");
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
-
-
     }
 }
