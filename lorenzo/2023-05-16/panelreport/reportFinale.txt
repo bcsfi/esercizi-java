@@ -1,0 +1,4 @@
+Provincia: FI Importo: 26.66
+Provincia: SI Importo: 16.66
+Provincia: LU Importo: 16.66
+Provincia: 86 Importo: 226.66

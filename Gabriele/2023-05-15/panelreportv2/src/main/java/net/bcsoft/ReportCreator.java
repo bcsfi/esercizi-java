@@ -1,21 +1,88 @@
 package net.bcsoft;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.*;
 
 public class ReportCreator {
-    private Map < String, Double> mappaPerProvincia = new HashMap<>();
-    private Map <String, Double> mappaPerData = new HashMap<>();
+    private IncassoMensile incassoMensile = null;
+    private String pathIniziale;
+    private Map<String, Float> mappaPerProvincia = new HashMap<>();
+    private Map<LocalDate, Float> mappaPerData = new HashMap<>();
 
-    public ReportCreator(Map < String, Double> mappaPerProvincia, Map <String, Double> mappaPerData){
-        this.mappaPerData = mappaPerData;
-        this.mappaPerProvincia = mappaPerProvincia;
+    public ReportCreator(String pathString) throws IOException {
+        incassoMensile = new IncassoMensile(pathString);
+        this.pathIniziale = pathString;
     }
 
-    public void leggiFile(String pathIniziale){
-        Path path = Path.of(pathIniziale);
+    public void creaMappaPerProvincia() {
+        try {
+            incassoMensile = new IncassoMensile(pathIniziale);
+            List<Incasso> incassoList = incassoMensile.getIncassoList();
 
+            for (int i = 0; i < incassoList.size(); i++) {
+                if (!mappaPerProvincia.containsKey(incassoMensile.getIncassoList().get(i).getProvincia())) {
+                    mappaPerProvincia.put(incassoMensile.getIncassoList().get(i).getProvincia(), incassoMensile.getIncassoList().get(i).getImporto());
+                } else {
+                    mappaPerProvincia.put(incassoMensile.getIncassoList().get(i).getProvincia(), mappaPerProvincia.get(incassoMensile.getIncassoList().get(i).getProvincia()) + incassoMensile.getIncassoList().get(i).getImporto());
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("ERRORE NELLA LETTURA DEL FILE");
+            e.getStackTrace();
+        }
     }
 
+    public void creaMappaPerData() {
+        try {
+            incassoMensile = new IncassoMensile(pathIniziale);
+            List<Incasso> incassoList = incassoMensile.getIncassoList();
+
+            for (int i = 0; i < incassoList.size(); i++) {
+                if (!mappaPerData.containsKey(incassoMensile.getIncassoList().get(i).getData())) {
+                    mappaPerData.put(incassoMensile.getIncassoList().get(i).getData(), incassoMensile.getIncassoList().get(i).getImporto());
+                } else {
+                    mappaPerData.put(incassoMensile.getIncassoList().get(i).getData(), mappaPerProvincia.get(incassoMensile.getIncassoList().get(i).getData()) + incassoMensile.getIncassoList().get(i).getImporto());
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("ERRORE NELLA LETTURA DEL FILE");
+            e.getStackTrace();
+        }
+    }
+
+    public void stampaSuFile() throws IOException {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Inserire il path del file finale per provincia: ");
+        String pathFinaleProvincia = input.next();
+
+        Path pathProvincia = Path.of(pathFinaleProvincia);
+
+        Files.createFile(pathProvincia);
+        StringBuilder outputProvincia = new StringBuilder();
+        for (String provincia : mappaPerProvincia.keySet()) {
+            Float importo = mappaPerProvincia.get(provincia);
+            outputProvincia.append( "Data: " + provincia + " Importo: " + importo + "\n");
+        }
+        Files.writeString(pathProvincia, outputProvincia);
+        System.out.println("Inserire il path del file finale per data: ");
+        String pathFinaleData = input.next();
+
+        Path pathData = Path.of(pathFinaleData);
+
+        Files.createFile(pathData);
+        StringBuilder outputData = new StringBuilder();
+        for (LocalDate data : mappaPerData.keySet()) {
+            Float importo = mappaPerData.get(data);
+            outputData.append( "Data: " + data + " Importo: " + importo + "\n");
+        }
+        Files.writeString(pathData, outputData);
+    }
 }
