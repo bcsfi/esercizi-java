@@ -11,7 +11,7 @@ public class PannelliSolari {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Inserire il path del file iniziale: ");
+        System.out.print("Inserire il path del file iniziale: ");
         String pathIniziale = input.next();
 
         try {

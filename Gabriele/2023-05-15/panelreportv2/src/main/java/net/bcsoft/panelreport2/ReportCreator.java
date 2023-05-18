@@ -32,9 +32,12 @@ public class ReportCreator {
 
             for (int i = 0; i < incassoList.size(); i++) {
                 if (!mappaPerProvincia.containsKey(incassoMensile.getIncassoList().get(i).getProvincia())) {
-                    mappaPerProvincia.put(incassoMensile.getIncassoList().get(i).getProvincia(), incassoMensile.getIncassoList().get(i).getImporto());
+                    mappaPerProvincia.put(incassoMensile.getIncassoList().get(i).getProvincia(),
+                            incassoMensile.getIncassoList().get(i).getImporto());
                 } else {
-                    mappaPerProvincia.put(incassoMensile.getIncassoList().get(i).getProvincia(), mappaPerProvincia.get(incassoMensile.getIncassoList().get(i).getProvincia()) + incassoMensile.getIncassoList().get(i).getImporto());
+                    mappaPerProvincia.put(incassoMensile.getIncassoList().get(i).getProvincia(),
+                            mappaPerProvincia.get(incassoMensile.getIncassoList().get(i).getProvincia()) +
+                                    incassoMensile.getIncassoList().get(i).getImporto());
                 }
             }
 
@@ -50,9 +53,12 @@ public class ReportCreator {
 
             for (int i = 0; i < incassoList.size(); i++) {
                 if (!mappaPerData.containsKey(incassoMensile.getIncassoList().get(i).getData())) {
-                    mappaPerData.put(incassoMensile.getIncassoList().get(i).getData(), incassoMensile.getIncassoList().get(i).getImporto());
+                    mappaPerData.put(incassoMensile.getIncassoList().get(i).getData(),
+                            incassoMensile.getIncassoList().get(i).getImporto());
                 } else {
-                    mappaPerData.put(incassoMensile.getIncassoList().get(i).getData(), mappaPerProvincia.get(incassoMensile.getIncassoList().get(i).getData()) + incassoMensile.getIncassoList().get(i).getImporto());
+                    mappaPerData.put(incassoMensile.getIncassoList().get(i).getData(),
+                            mappaPerProvincia.get(incassoMensile.getIncassoList().get(i).getData()) +
+                                    incassoMensile.getIncassoList().get(i).getImporto());
                 }
             }
 
@@ -63,25 +69,20 @@ public class ReportCreator {
 
     public void stampaSuFile() throws StampaSuFileException {
         Scanner input = new Scanner(System.in);
-
-        System.out.println("Inserire il path del file finale per provincia: ");
-        String pathFinaleProvincia = input.next();
-
-        Path pathProvincia = Path.of(pathFinaleProvincia);
+        System.out.print("Inserire il path dove creare i file: ");
+        String folderFinale = input.next();
 
         try {
+            Path pathProvincia = Path.of(folderFinale + "Provincia.txt");
             Files.createFile(pathProvincia);
             StringBuilder outputProvincia = new StringBuilder();
             for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
                 Float importo = mappaPerProvincia.get(provincia);
-                outputProvincia.append("Data: " + provincia + " Importo: " + importo + "\n");
+                outputProvincia.append("Provincia: " + provincia + " Importo: " + importo + "\n");
             }
             Files.writeString(pathProvincia, outputProvincia);
-            System.out.println("Inserire il path del file finale per data: ");
-            String pathFinaleData = input.next();
 
-            Path pathData = Path.of(pathFinaleData);
-
+            Path pathData = Path.of(folderFinale + "Data.txt");
             Files.createFile(pathData);
             StringBuilder outputData = new StringBuilder();
             for (LocalDate data : mappaPerData.keySet()) {
@@ -89,6 +90,7 @@ public class ReportCreator {
                 outputData.append("Data: " + data + " Importo: " + importo + "\n");
             }
             Files.writeString(pathData, outputData);
+
         } catch (IOException e) {
             throw new StampaSuFileException();
         }
