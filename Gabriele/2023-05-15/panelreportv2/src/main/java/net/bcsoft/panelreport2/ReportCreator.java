@@ -1,4 +1,8 @@
-package net.bcsoft;
+package net.bcsoft.panelreport2;
+
+import net.bcsoft.panelreport2.Exception.LetturaFileException;
+import net.bcsoft.panelreport2.Exception.ProvinciaErrataException;
+import net.bcsoft.panelreport2.Exception.StampaSuFileException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,16 +16,16 @@ public class ReportCreator {
     private Map<ProvinciaEnum, Float> mappaPerProvincia = new HashMap<>();
     private Map<LocalDate, Float> mappaPerData = new HashMap<>();
 
-    public ReportCreator(String pathString) throws IOException {
+    public ReportCreator(String pathString) throws ProvinciaErrataException, LetturaFileException {
+        this.pathIniziale = pathString;
         try{
             incassoMensile = new IncassoMensile(pathString);
-            this.pathIniziale = pathString; //TODO ERRORE QUI FORSE PATH é NULL
-        } catch (ProvinciaErrataException e){
-                System.out.println("PROVINCIA SBAGLIATA!");
+        } catch (LetturaFileException e) {
+            throw new LetturaFileException();
         }
     }
 
-    public void creaMappaPerProvincia() {
+    public void creaMappaPerProvincia() throws ProvinciaErrataException {
         try {
             incassoMensile = new IncassoMensile(pathIniziale);
             List<Incasso> incassoList = incassoMensile.getIncassoList();
@@ -36,13 +40,10 @@ public class ReportCreator {
 
         } catch (IOException e) {
             System.out.println("ERRORE NELLA LETTURA DEL FILE");
-            e.getStackTrace();
-        } catch (ProvinciaErrataException e) {
-            throw new RuntimeException(e);
         }
     }
 
-    public void creaMappaPerData() {
+    public void creaMappaPerData() throws ProvinciaErrataException, LetturaFileException {
         try {
             incassoMensile = new IncassoMensile(pathIniziale);
             List<Incasso> incassoList = incassoMensile.getIncassoList();
@@ -56,14 +57,11 @@ public class ReportCreator {
             }
 
         } catch (IOException e) {
-            System.out.println("ERRORE NELLA LETTURA DEL FILE");
-            e.getStackTrace();
-        } catch (ProvinciaErrataException e) {
-            System.out.println("UNA PROVINCIA ERRATA!");
+            throw new LetturaFileException();
         }
     }
 
-    public void stampaSuFile() throws IOException {
+    public void stampaSuFile() throws StampaSuFileException {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Inserire il path del file finale per provincia: ");
@@ -71,24 +69,28 @@ public class ReportCreator {
 
         Path pathProvincia = Path.of(pathFinaleProvincia);
 
-        Files.createFile(pathProvincia);
-        StringBuilder outputProvincia = new StringBuilder();
-        for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
-            Float importo = mappaPerProvincia.get(provincia);
-            outputProvincia.append( "Data: " + provincia + " Importo: " + importo + "\n");
-        }
-        Files.writeString(pathProvincia, outputProvincia);
-        System.out.println("Inserire il path del file finale per data: ");
-        String pathFinaleData = input.next();
+        try {
+            Files.createFile(pathProvincia);
+            StringBuilder outputProvincia = new StringBuilder();
+            for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
+                Float importo = mappaPerProvincia.get(provincia);
+                outputProvincia.append("Data: " + provincia + " Importo: " + importo + "\n");
+            }
+            Files.writeString(pathProvincia, outputProvincia);
+            System.out.println("Inserire il path del file finale per data: ");
+            String pathFinaleData = input.next();
 
-        Path pathData = Path.of(pathFinaleData);
+            Path pathData = Path.of(pathFinaleData);
 
-        Files.createFile(pathData);
-        StringBuilder outputData = new StringBuilder();
-        for (LocalDate data : mappaPerData.keySet()) {
-            Float importo = mappaPerData.get(data);
-            outputData.append( "Data: " + data + " Importo: " + importo + "\n");
+            Files.createFile(pathData);
+            StringBuilder outputData = new StringBuilder();
+            for (LocalDate data : mappaPerData.keySet()) {
+                Float importo = mappaPerData.get(data);
+                outputData.append("Data: " + data + " Importo: " + importo + "\n");
+            }
+            Files.writeString(pathData, outputData);
+        } catch (IOException e){
+            throw new StampaSuFileException();
         }
-        Files.writeString(pathData, outputData);
     }
 }

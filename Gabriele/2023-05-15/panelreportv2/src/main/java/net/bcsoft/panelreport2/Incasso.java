@@ -1,4 +1,6 @@
-package net.bcsoft;
+package net.bcsoft.panelreport2;
+
+import net.bcsoft.panelreport2.Exception.ProvinciaErrataException;
 
 import java.time.LocalDate;
 
@@ -14,14 +16,15 @@ public class Incasso {
     }
 
     public Incasso(String rigaFile) throws ProvinciaErrataException {
-        String[] colonne = rigaFile.trim().split(";");
-        try {
-            this.data = LocalDate.parse(colonne[0]);
-            this.provincia = ProvinciaEnum.valueOf(colonne[1].toUpperCase());
-            this.importo = Float.parseFloat(colonne[2]);
-        }catch (IllegalArgumentException e){
-            throw new ProvinciaErrataException();
-        }
+        String[] colonne = rigaFile.split(";");
+
+        this.data = LocalDate.parse(colonne[0]);
+    try {
+        this.provincia = ProvinciaEnum.valueOf(colonne[1].toUpperCase().trim());
+    } catch (IllegalArgumentException e){
+        throw new ProvinciaErrataException();
+    }
+        this.importo = Float.parseFloat(colonne[2]);
     }
 
     public LocalDate getData() {
