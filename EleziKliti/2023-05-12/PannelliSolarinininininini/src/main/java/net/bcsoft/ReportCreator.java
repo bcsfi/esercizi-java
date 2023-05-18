@@ -20,7 +20,6 @@ public class ReportCreator {
 
     public void creaSommaPerPronvica(String nomeOutput){
 
-
         Path path = Path.of(nomeOutput);
         ArrayList<Incasso> listaIncassi = incassoMensile.getLista();
         Map<provinciaEnum, Double> mappa = new HashMap<provinciaEnum, Double>();
@@ -52,6 +51,7 @@ public class ReportCreator {
 
             } catch (IllegalArgumentException x){
                 System.out.print("Errore, ci sono alcune provincie non valide");
+                incassoMensile.getStringError().append("Provincia non valida, perchè non è nella lista delle provincie attendibili. \n");
             }
 
         }
@@ -69,7 +69,10 @@ public class ReportCreator {
             Files.writeString(path, contenuto);
         } catch (IOException x){
             System.out.print(x.getMessage());
+            incassoMensile.getStringError().append("Errore, il file non è lebbile o scrivibile dalla directory inserita, riprovare. Controllare se i file non esistano già nella directory \n");
         }
+
+
 
     }
 
@@ -112,11 +115,27 @@ public class ReportCreator {
             Files.writeString(path, contenuto);
         } catch (IOException x){
             System.out.print(x.getMessage());
+            incassoMensile.getStringError().append("Errore, il file non è lebbile o scrivibile dalla directory inserita, riprovare. Controllare se i file non esistano già nella directory.\n");
+        }
+
+    }
+
+    public void createLogs(String nomeOutput){
+        try {
+            Path path = Path.of(nomeOutput);
+            if(Files.exists(path)){
+                Files.delete(path);
+            }
+
+            Files.createFile(path);
+            Files.writeString(path, incassoMensile.getStringError());
+
+            } catch (IOException x){
+            incassoMensile.getStringError().append("Errore, il file non è leggibile o scrivibile.");
         }
 
 
     }
-
 
 
 }

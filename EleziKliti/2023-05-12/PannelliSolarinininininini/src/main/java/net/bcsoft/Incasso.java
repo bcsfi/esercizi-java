@@ -13,6 +13,7 @@ public class Incasso {
 
     public Incasso(LocalDate data, provinciaEnum provincia, double importo){
 
+        
         this.data = data;
         this.provincia = provincia;
         this.importo = importo;
