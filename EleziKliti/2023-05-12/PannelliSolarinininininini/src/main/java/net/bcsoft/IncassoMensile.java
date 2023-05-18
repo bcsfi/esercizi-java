@@ -33,7 +33,7 @@ public class IncassoMensile{
 
                 String[] lineSplit = line.split(";"); // ha 3 elementi dell'incasso
 
-                for(int i=0; i < lineSplit.length-1; i++) {
+                for(int i=1; i < lineSplit.length-1; i++) {
 
                     String[] lineSplitDate = lineSplit[0].split("/"); // ha 3 elementi della data;
 
@@ -45,17 +45,20 @@ public class IncassoMensile{
 
                         LocalDate data = LocalDate.of(anno, mese, giorno);
 
-                        String provincia = lineSplit[i];
+                        // System.out.print("PRVINCIA: " + lineSplit[i + 1] + "\n");
+                        provinciaEnum provincia = provinciaEnum.valueOf(lineSplit[i]);
+
+                        // System.out.print("IMPORTO: " + lineSplit[i + 2] + "\n");
                         int importo = Integer.parseInt(lineSplit[i + 1]);
+
+                        // System.out.print("Oggetto;" + data + provincia + importo + "\n");
 
                         Incasso lineUno = new Incasso(data, provincia, importo);
                         listaIncassi.add(lineUno);
 
-                    } catch (NumberFormatException c){
+                    } catch (IllegalArgumentException c){
                         System.out.print(c.getMessage());
                     }
-
-
 
                 }
             }
@@ -65,7 +68,7 @@ public class IncassoMensile{
         } catch (IOException d){
             System.out.print(d.getMessage());
         }
-        System.out.print("Tutti gli oggetti sono stati istanziati.");
+        // System.out.print("Tutti gli oggetti sono stati istanziati.");
     }
 
     public ArrayList<Incasso> getLista(){

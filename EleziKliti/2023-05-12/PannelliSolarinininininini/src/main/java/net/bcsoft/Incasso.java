@@ -8,10 +8,10 @@ import java.util.Date;
 public class Incasso {
 
     LocalDate data;
-    String provincia;
+    provinciaEnum provincia;
     double importo;
 
-    public Incasso(LocalDate data, String provincia, double importo){
+    public Incasso(LocalDate data, provinciaEnum provincia, double importo){
 
         this.data = data;
         this.provincia = provincia;
@@ -23,22 +23,8 @@ public class Incasso {
     }
 
 
-    public  String getProvincia(){
-
-        switch (this.provincia) {
-            case "MS":
-            case "LU":
-            case "LI":
-            case "PI":
-            case "PT":
-            case "PO":
-            case "FI":
-            case "AR":
-            case "SI":
-            case "GR":
-                return this.provincia;
-        }
-        return null;
+    public  provinciaEnum getProvincia(){
+        return this.provincia;
     }
 
     public Double getImport(){
