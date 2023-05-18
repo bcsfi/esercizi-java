@@ -19,7 +19,7 @@ public class IncassoMensile {
         if (!exist) {
             throw new LetturaFileException();
         }
-        try{
+        try {
             righeFile = Files.readAllLines(path);
         } catch (IOException e) {
             throw new LetturaFileException();

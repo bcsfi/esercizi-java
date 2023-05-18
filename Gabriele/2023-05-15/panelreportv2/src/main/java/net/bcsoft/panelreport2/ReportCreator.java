@@ -18,7 +18,7 @@ public class ReportCreator {
 
     public ReportCreator(String pathString) throws ProvinciaErrataException, LetturaFileException {
         this.pathIniziale = pathString;
-        try{
+        try {
             incassoMensile = new IncassoMensile(pathString);
         } catch (LetturaFileException e) {
             throw new LetturaFileException();
@@ -89,7 +89,7 @@ public class ReportCreator {
                 outputData.append("Data: " + data + " Importo: " + importo + "\n");
             }
             Files.writeString(pathData, outputData);
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new StampaSuFileException();
         }
     }

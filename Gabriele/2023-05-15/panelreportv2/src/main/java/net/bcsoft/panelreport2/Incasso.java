@@ -19,11 +19,11 @@ public class Incasso {
         String[] colonne = rigaFile.split(";");
 
         this.data = LocalDate.parse(colonne[0]);
-    try {
-        this.provincia = ProvinciaEnum.valueOf(colonne[1].toUpperCase().trim());
-    } catch (IllegalArgumentException e){
-        throw new ProvinciaErrataException();
-    }
+        try {
+            this.provincia = ProvinciaEnum.valueOf(colonne[1].toUpperCase().trim());
+        } catch (IllegalArgumentException e) {
+            throw new ProvinciaErrataException();
+        }
         this.importo = Float.parseFloat(colonne[2]);
     }
 
