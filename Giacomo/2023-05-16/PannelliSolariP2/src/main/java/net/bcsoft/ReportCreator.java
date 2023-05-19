@@ -16,10 +16,22 @@ public class ReportCreator
     IncassoMensile incassoMensile;
 
 
-    public ReportCreator(Path pathOfIncassoMensile) throws IOException, IllegalArgumentException, DateTimeParseException
+    public ReportCreator(Path pathOfIncassoMensile) throws IOException//, Exception
     {
         this.incassoMensile = new IncassoMensile(pathOfIncassoMensile);
         gestoreFile();
+    }
+
+    private void creaReporterrori()
+    {
+        try
+        {
+            Files.writeString(Files.createFile(Path.of("C:\\Users\\bcsoft\\Desktop\\es GG").resolve("error.txt")), incassoMensile.getEccezioni());
+        }
+        catch (IOException f)
+        {
+            f.printStackTrace();
+        }
     }
 
     private void creaReportSecondo() throws IOException
@@ -102,6 +114,8 @@ public class ReportCreator
                 System.exit(0);
                 break;
         }
+
+        creaReporterrori();
     }
 
     /*public IncassoMensile getIncassoMensile() {

@@ -11,7 +11,7 @@ public class Incasso
 
     public Incasso() {}; //Per renderlo Java Been
 
-    public Incasso(String riga) throws DateTimeParseException, NumberFormatException
+    public Incasso(String riga) throws DateTimeParseException, IllegalArgumentException
     {
         String[] parts = riga.split(";");
 
