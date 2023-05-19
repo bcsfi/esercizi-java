@@ -14,12 +14,14 @@ public class ReportCreator
 {
     private static final DecimalFormat DF = new DecimalFormat("#.00");
     IncassoMensile incassoMensile;
+    Path path = Path.of("C:\\Users\\bcsoft\\Desktop\\es GG");
+    int scelta; // = 3;
 
-
-    public ReportCreator(Path pathOfIncassoMensile) throws IOException//, Exception
+    public ReportCreator(Path pathOfIncassoMensile, int scelta) throws IOException//, Exception
     {
         this.incassoMensile = new IncassoMensile(pathOfIncassoMensile);
-        gestoreFile();
+        this.scelta = scelta;
+        gestoreFile(scelta);
     }
 
     private void creaReporterrori()
@@ -86,14 +88,12 @@ public class ReportCreator
         Files.writeString(Files.createFile(incassoMensile.getDirectoryPath().resolve("report.txt")), text);
     }
 
-    private void gestoreFile() throws IOException
+    private void gestoreFile(int scelta) throws IOException
     {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
-        int scelta;
-
-        System.out.print("\nQuali file desideri creare?\n 1- report.txt\n 2- reportSecondo.txt\n 3- Entrambi\n 0- Esci\n  - ");
-        scelta = scanner.nextInt();
+        //System.out.print("\nQuali file desideri creare?\n 1- report.txt\n 2- reportSecondo.txt\n 3- Entrambi\n 0- Esci\n  - ");
+        //scelta = scanner.nextInt();
 
         switch (scelta)
         {
