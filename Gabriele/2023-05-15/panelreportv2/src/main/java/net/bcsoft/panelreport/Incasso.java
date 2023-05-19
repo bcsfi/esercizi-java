@@ -1,13 +1,15 @@
-package net.bcsoft.panelreport2;
+package net.bcsoft.panelreport;
 
-import net.bcsoft.panelreport2.Exception.ProvinciaErrataException;
-
+import net.bcsoft.panelreport.Enum.ProvinciaEnum;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Incasso {
     private LocalDate data = null;
     private ProvinciaEnum provincia;
     private Float importo;
+    private String pathFinale;
 
     public Incasso(LocalDate data, ProvinciaEnum provincia, Float importo) {
         this.data = data;
@@ -15,16 +17,15 @@ public class Incasso {
         this.importo = importo;
     }
 
-    public Incasso(String rigaFile) throws ProvinciaErrataException {
-        String[] colonne = rigaFile.split(";");
-
-        this.data = LocalDate.parse(colonne[0]);
+    public Incasso(String rigaFile) throws IOException {
+        String[] colonna = rigaFile.trim().split(";");
         try {
-            this.provincia = ProvinciaEnum.valueOf(colonne[1].toUpperCase().trim());
-        } catch (IllegalArgumentException e) {
-            throw new ProvinciaErrataException();
+            this.data = LocalDate.parse(colonna[0]);
+            this.provincia = ProvinciaEnum.valueOf(colonna[1].toUpperCase().trim());
+            this.importo = Float.parseFloat(colonna[2]);
+        } catch (DateTimeParseException | IllegalArgumentException e) {
+            throw new IOException(e);
         }
-        this.importo = Float.parseFloat(colonne[2]);
     }
 
     public LocalDate getData() {
@@ -49,5 +50,9 @@ public class Incasso {
 
     public void setImporto(Float importo) {
         this.importo = importo;
+    }
+
+    public void setPathFinale(String pathFinale) {
+        this.pathFinale = pathFinale;
     }
 }
