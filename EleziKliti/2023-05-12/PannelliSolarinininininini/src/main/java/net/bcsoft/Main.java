@@ -21,7 +21,7 @@ public class Main {
                     String REPORT_PROVINCE = args[0];
                     String REPORT_DATE = args[1];
 
-                    System.out.print("\n \n File resoconto.txt trovato all'interno della cartella, stiamo iniziando la lettura... \n \n");
+                    System.out.print("\n \n \n \n File resoconto.txt trovato all'interno della cartella, stiamo iniziando la lettura... \n \n");
 
                     try {
 
@@ -35,9 +35,9 @@ public class Main {
                         System.out.print("Errore, il file resoconto.txt non esiste, inserire all'interno il file ");
                     }
 
-                System.out.print("\n \n Programma, terminato con successo, i file sono stati creati all'interno dele due directory.\n");
-                System.out.print("\n  | Directory dove è stato creato il report per le provincie: " + args[0] + "\n");
-                System.out.print("\n | Directory dove è stato creato il report per le date: " + args[1] + "\n");
+                System.out.print("\n \n Programma, terminato con successo, i file sono stati creati all'interno delle due directory.\n");
+                System.out.print("\n | Directory dove è stato creato il report per le provincie: " + args[0] );
+                System.out.print("\n | Directory dove è stato creato il report per le date: " + args[1] );
             } else {
                 System.out.print("\n Programma non partito, mancano i 2 output del report.");
 
