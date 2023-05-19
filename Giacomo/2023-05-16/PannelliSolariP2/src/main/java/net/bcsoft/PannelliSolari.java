@@ -17,24 +17,6 @@ public class PannelliSolari
         }
         catch (IOException e)
         {
-            errori += e;
-        }
-        catch (IllegalArgumentException e)
-        {
-            errori += e;
-        }
-        catch (DateTimeParseException e)
-        {
-            errori += e;
-        }
-
-        try
-        {
-            Files.writeString(Files.createFile(Path.of("C:\\Users\\bcsoft\\Desktop\\es GG").resolve("error.txt")), errori);
-        }
-        catch (IOException f)
-        {
-            f.printStackTrace();
-        }
+            errori += e
     }
 }
