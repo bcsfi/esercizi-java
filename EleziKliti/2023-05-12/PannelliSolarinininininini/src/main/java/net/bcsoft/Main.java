@@ -1,15 +1,6 @@
 package net.bcsoft;
 
-import javax.print.DocFlavor;
-import java.io.*;
-import java.lang.reflect.Field;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.io.IOException;
 
 public class Main {
     /**
@@ -24,31 +15,33 @@ public class Main {
     public static void main(String[] args) {
 
             // Verifica se i input sono 2
-            if(args.length == 1){
+            if(args.length == 2){
 
-                Path directoryUtenteProvinei = Paths.get(args[0]);
-                Path directoryUtenteDate = Paths.get(args[1]);
 
-                if(Files.isDirectory(directoryUtenteProvinei) && Files.isDirectory(directoryUtenteDate)){
                     String REPORT_PROVINCE = args[0];
                     String REPORT_DATE = args[1];
 
-                    System.out.print("Stiamo leggendo i percosi");
+                    System.out.print("\n \n File resoconto.txt trovato all'interno della cartella, stiamo iniziando la lettura... \n \n");
 
-                    IncassoMensile incassoMensile = new IncassoMensile("resoconto.txt");
-                    ReportCreator creator = new ReportCreator(incassoMensile);
+                    try {
 
-                    creator.creaSommaPerPronvica(REPORT_PROVINCE);
-                    creator.creaSommaPerData(REPORT_DATE);
-                    creator.createLogs(LOGS_DATA);
-                } else {
-                    System.out.print("Questo programma non puo funzionare, perchè le directory inserite sembrano inesistenti...");
-                }
+                        IncassoMensile incassoMensile = new IncassoMensile("resoconto.txt");
+                        ReportCreator creator = new ReportCreator(incassoMensile);
+                        creator.creaSommaPerPronvica(REPORT_PROVINCE);
+                        creator.creaSommaPerData(REPORT_DATE);
+                        creator.createLogs(LOGS_DATA);
+
+                    } catch (IOException d){
+                        System.out.print("Errore, il file resoconto.txt non esiste, inserire all'interno il file ");
+                    }
+
+                System.out.print("\n \n Programma, terminato con successo, i file sono stati creati all'interno dele due directory.\n");
+                System.out.print("\n  | Directory dove è stato creato il report per le provincie: " + args[0] + "\n");
+                System.out.print("\n | Directory dove è stato creato il report per le date: " + args[1] + "\n");
+            } else {
+                System.out.print("\n Programma non partito, mancano i 2 output del report.");
 
             }
-
-        System.out.print("Programma non partito, mancano i 2 output del report.");
-
 
 
     }
