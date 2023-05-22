@@ -1,26 +1,42 @@
 package net.bcsoft.panelreport;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class IncassoMensile {
     private List<Incasso> incassoList = null;
 
-    public IncassoMensile(String pathIniziale) throws IOException {
-        Path path = Path.of(pathIniziale);
-        List<String> righeList = Files.readAllLines(path);
-        incassoList = new ArrayList<>();
+    public IncassoMensile() throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
 
-        for (String riga : righeList) {
-            try {
-                Incasso incassoCorrente = new Incasso(riga);
-                incassoList.add(incassoCorrente);
-            } catch (IOException e) {
-                Logger.addException(String.valueOf(e.getMessage()));
+        try {
+            connection = ConnectionManager.createConnection();
+            statement = connection.createStatement();
+            incassoList = new ArrayList<>();
+
+            String query = "select id, incassi_data, incassi_provincia, incassi_importo from incassi";
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                try {
+                    Incasso incassoCorrente = new Incasso(resultSet);
+                    incassoList.add(incassoCorrente);
+                } catch (SQLException | IllegalArgumentException e) {
+                    Logger.addException(String.valueOf(e.getMessage()));
+                }
             }
+        } catch (SQLException | ClassNotFoundException e) {
+            Logger.addException(String.valueOf(e.getMessage()));
+        } finally {
+            resultSet.close();
+            statement.close();
+            connection.close();
         }
     }
 
