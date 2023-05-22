@@ -9,14 +9,13 @@ import java.util.*;
 
 public class ReportCreator {
     private IncassoMensile incassoMensile = null;
-    private String pathIniziale, pathFinale;
+    private String pathFinale;
     private Map<ProvinciaEnum, Float> mappaPerProvincia = new HashMap<>();
     private Map<LocalDate, Float> mappaPerData = new HashMap<>();
 
-    public ReportCreator(String pathIniziale, String pathFinale) throws IOException {
-        this.pathIniziale = pathIniziale;
+    public ReportCreator( String pathFinale) throws IOException {
         this.pathFinale = pathFinale;
-        incassoMensile = new IncassoMensile(pathIniziale);
+        incassoMensile = new IncassoMensile();
     }
 
     public void creaMappaPerProvincia() {
@@ -43,6 +42,7 @@ public class ReportCreator {
 
     public void stampaSuFile() throws IOException {
         Path pathProvincia = Path.of(pathFinale + "Provincia.txt");
+        Files.deleteIfExists(pathProvincia);
         Files.createFile(pathProvincia);
         StringBuilder outputProvincia = new StringBuilder();
         for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
@@ -52,6 +52,7 @@ public class ReportCreator {
         Files.writeString(pathProvincia, outputProvincia.toString());
 
         Path pathData = Path.of(pathFinale + "Data.txt");
+        Files.deleteIfExists(pathData);
         Files.createFile(pathData);
         StringBuilder outputData = new StringBuilder();
         for (LocalDate data : mappaPerData.keySet()) {
