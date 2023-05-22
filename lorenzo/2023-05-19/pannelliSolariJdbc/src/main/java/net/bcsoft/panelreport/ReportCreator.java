@@ -1,22 +1,23 @@
 package net.bcsoft.panelreport;
 
 import net.bcsoft.panelreport.Enum.ProvinciaEnum;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
 public class ReportCreator {
     private IncassoMensile incassoMensile = null;
-    private String pathIniziale, pathFinale;
+    private String pathFinale;
     private Map<ProvinciaEnum, Float> mappaPerProvincia = new HashMap<>();
     private Map<LocalDate, Float> mappaPerData = new HashMap<>();
 
-    public ReportCreator(String pathIniziale, String pathFinale) throws IOException {
-        this.pathIniziale = pathIniziale;
+    public ReportCreator(String pathFinale) throws SQLException {
         this.pathFinale = pathFinale;
-        incassoMensile = new IncassoMensile(pathIniziale);
+        incassoMensile = new IncassoMensile();
     }
 
     public void creaMappaPerProvincia() {
@@ -25,7 +26,9 @@ public class ReportCreator {
             if (!mappaPerProvincia.containsKey(incasso.getProvincia())) {
                 mappaPerProvincia.put(incasso.getProvincia(), incasso.getImporto());
             } else {
-                mappaPerProvincia.put(incasso.getProvincia(), mappaPerProvincia.get(incasso.getProvincia()) + incasso.getImporto());
+                mappaPerProvincia.put(incasso.getProvincia(),
+                        mappaPerProvincia.get(incasso.getProvincia()) +
+                                incasso.getImporto());
             }
         }
     }
@@ -43,7 +46,9 @@ public class ReportCreator {
 
     public void stampaSuFile() throws IOException {
         Path pathProvincia = Path.of(pathFinale + "Provincia.txt");
+        Files.deleteIfExists(pathProvincia);
         Files.createFile(pathProvincia);
+
         StringBuilder outputProvincia = new StringBuilder();
         for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
             Float importo = mappaPerProvincia.get(provincia);
@@ -52,7 +57,9 @@ public class ReportCreator {
         Files.writeString(pathProvincia, outputProvincia.toString());
 
         Path pathData = Path.of(pathFinale + "Data.txt");
+        Files.deleteIfExists(pathData);
         Files.createFile(pathData);
+
         StringBuilder outputData = new StringBuilder();
         for (LocalDate data : mappaPerData.keySet()) {
             Float importo = mappaPerData.get(data);
