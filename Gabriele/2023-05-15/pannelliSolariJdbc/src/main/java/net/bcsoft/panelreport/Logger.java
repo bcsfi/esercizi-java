@@ -15,7 +15,6 @@ public class Logger {
 
     public static void printLog(String folderFinale) throws IOException {
         Path pathLog = Path.of(folderFinale + "log.txt");
-        Files.deleteIfExists(pathLog);
         Files.createFile(pathLog);
         String logString = "";
         for (String errorLine : listError) logString += errorLine + "\n";

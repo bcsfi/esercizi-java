@@ -2,20 +2,20 @@ package net.bcsoft.panelreport;
 
 import net.bcsoft.panelreport.Enum.ProvinciaEnum;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
-
 public class Incasso {
-    private LocalDate data = null;
+    private LocalDate data;
     private ProvinciaEnum provincia;
     private Float importo;
-
+    private String pathFinale;
 
     public Incasso(ResultSet resultSet) throws SQLException, IllegalArgumentException {
-        this.data = resultSet.getDate(1).toLocalDate();
-        this.provincia = ProvinciaEnum.valueOf(resultSet.getString(2));
-        this.importo = resultSet.getFloat(3);
+        this.data = resultSet.getDate(2).toLocalDate();
+        this.provincia = ProvinciaEnum.valueOf(resultSet.getString(3));
+        this.importo = resultSet.getFloat(4);
     }
 
     public LocalDate getData() {
@@ -40,5 +40,9 @@ public class Incasso {
 
     public void setImporto(Float importo) {
         this.importo = importo;
+    }
+
+    public void setPathFinale(String pathFinale) {
+        this.pathFinale = pathFinale;
     }
 }
