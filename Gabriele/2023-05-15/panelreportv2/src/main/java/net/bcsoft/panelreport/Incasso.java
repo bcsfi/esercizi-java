@@ -1,7 +1,6 @@
 package net.bcsoft.panelreport;
 
 import net.bcsoft.panelreport.Enum.ProvinciaEnum;
-
 import java.sql.*;
 import java.time.LocalDate;
 

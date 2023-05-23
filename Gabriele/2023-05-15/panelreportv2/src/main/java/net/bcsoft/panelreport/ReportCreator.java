@@ -10,37 +10,13 @@ import java.util.*;
 public class ReportCreator {
     private IncassoMensile incassoMensile = null;
     private String pathFinale;
-    private Map<ProvinciaEnum, Float> mappaPerProvincia = new HashMap<>();
-    private Map<LocalDate, Float> mappaPerData = new HashMap<>();
-
     public ReportCreator( String pathFinale) throws IOException {
         this.pathFinale = pathFinale;
         incassoMensile = new IncassoMensile();
     }
 
-    public void creaMappaPerProvincia() {
-        List<Incasso> incassoList = incassoMensile.getIncassoList();
-        for (Incasso incasso : incassoList) {
-            if (!mappaPerProvincia.containsKey(incasso.getProvincia())) {
-                mappaPerProvincia.put(incasso.getProvincia(), incasso.getImporto());
-            } else {
-                mappaPerProvincia.put(incasso.getProvincia(), mappaPerProvincia.get(incasso.getProvincia()) + incasso.getImporto());
-            }
-        }
-    }
 
-    public void creaMappaPerData() {
-        List<Incasso> incassoList = incassoMensile.getIncassoList();
-        for (Incasso incasso : incassoList) {
-            if (!mappaPerData.containsKey(incasso.getData())) {
-                mappaPerData.put(incasso.getData(), incasso.getImporto());
-            } else {
-                mappaPerData.put(incasso.getData(), mappaPerData.get(incasso.getData()) + incasso.getImporto());
-            }
-        }
-    }
-
-    public void stampaSuFile() throws IOException {
+    public void stampaSuFile(Map<ProvinciaEnum, Float> mappaPerProvincia, Map<LocalDate, Float> mappaPerData) throws IOException {
         Path pathProvincia = Path.of(pathFinale + "Provincia.txt");
         Files.deleteIfExists(pathProvincia);
         Files.createFile(pathProvincia);
