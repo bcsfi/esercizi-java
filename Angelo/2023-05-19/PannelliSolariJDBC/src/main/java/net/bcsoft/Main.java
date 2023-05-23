@@ -1,6 +1,10 @@
 package net.bcsoft;
 
+import javax.swing.plaf.SeparatorUI;
 import java.io.IOException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Main {
     /**
@@ -12,7 +16,13 @@ public class Main {
     // public static final String REPORT_DATE = "C:\\Users\\bcsoft\\outputPanelli\\reportDate.txt";
     public static final String LOGS_DATA = "C:\\Users\\bcsoft\\outputPanelli\\logs.txt";
 
-    public static void main(String[] args) {
+    public Main() throws SQLException, ClassNotFoundException {
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
+
+
 
             // Verifica se i input sono 2
             if(args.length == 2){
@@ -44,5 +54,8 @@ public class Main {
             }
 
 
+
     }
+
+
 }

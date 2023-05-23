@@ -1,33 +1,29 @@
 package net.bcsoft;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
+import java.lang.Class;
 
-public class ConnectionManager {
-    private static final String DRIVER = "org.postgresql.Driver";
 
-    private static final String USERNAME = "postgres";
+public class DbmSystemManage {
+    String IP_ADDRESS = "", PORT, DATABASENAME;
 
-    private static final String PASSWORD ="3237";
-
-    private static final String CONN_URL = "jdbc:postgresql://localhost:5432/pannelli_solari";
-
-    public static Connection createConnection() throws ClassNotFoundException, SQLException {
-        Class.forName(DRIVER);
-
-        Connection dbConn = DriverManager.getConnection(CONN_URL, USERNAME, PASSWORD);
-
-        if (dbConn != null) {
-
-            System.out.println("Connection Successful");
-
-        } else {
-
-            System.out.println("Impossibile connettersi al DB!");
-
-        }
-
-        return dbConn;
+    public DbmSystemManage(String IP_ADDRESS, String PORT, String DATABASENAME) throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+        this.IP_ADDRESS = IP_ADDRESS;
+        this.PORT = PORT;
+        this.DATABASENAME = DATABASENAME;
     }
+    public Connection connectToDb() throws SQLException {
+        Connection pannelli_solari = DriverManager.getConnection("jdbc:postgresql://"+ IP_ADDRESS + ":" + PORT + "/" + DATABASENAME, "postgres", "3237" );
+        return pannelli_solari;
+
+    }
+    public ResultSet readDb(String ilComandoCheVogliamoCheIlDbEseguaERitorniSetDiDati) throws SQLException {
+        Statement oggettoCheComunicaEMandaComandocheSqlEsegueEStampaDelDb = this.connectToDb().createStatement();
+        return oggettoCheComunicaEMandaComandocheSqlEsegueEStampaDelDb.executeQuery(ilComandoCheVogliamoCheIlDbEseguaERitorniSetDiDati);
+
+    }
+
+
 }

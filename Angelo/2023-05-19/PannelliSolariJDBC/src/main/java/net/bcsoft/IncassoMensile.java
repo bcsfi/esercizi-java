@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,15 +23,25 @@ public class IncassoMensile{
     private Path path = Paths.get("");
     private String directoryCorrente = path.toAbsolutePath().toString() + "\\";
     private ArrayList<Incasso> listaIncassi = new ArrayList<Incasso>();
+    DbmSystemManage nostroGestoreDb = new DbmSystemManage("localhost","5432", "pannelli_solari");
+    ResultSet setDiDatiLetti = nostroGestoreDb.readDb("SELECT * FROM incassi");
 
-    public IncassoMensile(String nomeFile) throws IOException {
+    public IncassoMensile(String nomeFile) throws IOException, SQLException, ClassNotFoundException {
 
             Path pathIncassi = Path.of(directoryCorrente + nomeFile);
             Files.exists(pathIncassi);
             List<String> righeFile = Files.readAllLines(pathIncassi);
 
+            while (setDiDatiLetti.next()){
+                Timestamp data = setDiDatiLetti.getTimestamp(2);
+                LocalDate localDate = data.toLocalDateTime().toLocalDate();
+                Incasso oggettiIncassi = new Incasso(localDate, provinciaEnum.valueOf(setDiDatiLetti.getString(3)), setDiDatiLetti.getDouble(4));
+                listaIncassi.add(oggettiIncassi);
+            }
+
+            /**
             for (String linea : righeFile) {
-                String[] lineSplit = linea.split(";"); // ha 3 elementi dell'incasso
+                String[] lineSplit = linea.split("-"); // ha 3 elementi dell'incasso
 
                 for(int i=1; i < lineSplit.length-1; i++) {
                     String[] lineSplitDate = lineSplit[0].split("/"); // ha 3 elementi della data;
@@ -59,6 +72,7 @@ public class IncassoMensile{
                 }
             }
         // System.out.print("Tutti gli oggetti sono stati istanziati.");
+             */
     }
 
     public ArrayList<Incasso> getLista(){
@@ -68,5 +82,8 @@ public class IncassoMensile{
     public StringBuilder getStringError(){
         return this.totalError;
     }
+
+
+
 
 }
