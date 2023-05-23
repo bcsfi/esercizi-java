@@ -6,15 +6,19 @@ import java.nio.file.DirectoryIteratorException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
 
 public class ReportCreator {
+    DbmSystemManage nostroGestoreDb = new DbmSystemManage("localhost","5432", "pannelli_solari");
+    ResultSet setDiDatiLetti = nostroGestoreDb.readDb("SELECT * FROM incassi");
 
     private IncassoMensile incassoMensile = null;
 
-    public ReportCreator(IncassoMensile incassoMensile) {
+    public ReportCreator(IncassoMensile incassoMensile) throws SQLException, ClassNotFoundException {
         this.incassoMensile = incassoMensile;
     }
 
@@ -116,6 +120,7 @@ public class ReportCreator {
         } catch (IOException x){
             incassoMensile.getStringError().append("Errore, il file non è lebbile o scrivibile dalla directory inserita, riprovare. Controllare se i file non esistano già nella directory.\n");
         }
+
     }
 
     public void createLogs(String nomeOutput){
