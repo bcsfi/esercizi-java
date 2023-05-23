@@ -1,5 +1,9 @@
 package net.bcsoft;
 
+import net.bcsoft.JDBCystemManage.ConnectToDriver;
+import net.bcsoft.JDBCystemManage.CreateDriver;
+import net.bcsoft.JDBCystemManage.SendQueryToDriver;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,17 +24,15 @@ import java.util.Map;
 public class IncassoMensile{
 
     private StringBuilder totalError = new StringBuilder();
-    private Path path = Paths.get("");
-    private String directoryCorrente = path.toAbsolutePath().toString() + "\\";
     private ArrayList<Incasso> listaIncassi = new ArrayList<Incasso>();
-    DbmSystemManage nostroGestoreDb = new DbmSystemManage("localhost","5432", "pannelli_solari");
-    ResultSet setDiDatiLetti = nostroGestoreDb.readDb("SELECT * FROM incassi");
+
+    CreateDriver driver = new CreateDriver("localhost","5432","pannelli_solari");
+    ConnectToDriver conessioneDriver = new ConnectToDriver(driver);
+    SendQueryToDriver commandMaster = new SendQueryToDriver(conessioneDriver);
+
+    ResultSet setDiDatiLetti = commandMaster.sendCommand("SELECT * FROM incassi");
 
     public IncassoMensile(String nomeFile) throws IOException, SQLException, ClassNotFoundException {
-
-            Path pathIncassi = Path.of(directoryCorrente + nomeFile);
-            Files.exists(pathIncassi);
-            List<String> righeFile = Files.readAllLines(pathIncassi);
 
             while (setDiDatiLetti.next()){
                 Timestamp data = setDiDatiLetti.getTimestamp(2);

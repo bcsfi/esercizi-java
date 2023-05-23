@@ -116,7 +116,6 @@ public class ReportCreator {
         } catch (IOException x){
             incassoMensile.getStringError().append("Errore, il file non è lebbile o scrivibile dalla directory inserita, riprovare. Controllare se i file non esistano già nella directory.\n");
         }
-
     }
 
     public void createLogs(String nomeOutput){
