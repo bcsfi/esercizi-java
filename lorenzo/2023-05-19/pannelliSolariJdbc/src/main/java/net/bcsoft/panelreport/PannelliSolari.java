@@ -1,5 +1,7 @@
 package net.bcsoft.panelreport;
 
+import net.bcsoft.panelreport.util.Logger;
+
 import java.io.IOException;
 import java.sql.SQLException;
 

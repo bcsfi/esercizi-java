@@ -1,12 +1,10 @@
-package net.bcsoft.panelreport;
+package net.bcsoft.panelreport.util;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
-public class ConnectionManager {
+public class DatabaseConnection {
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "admin";

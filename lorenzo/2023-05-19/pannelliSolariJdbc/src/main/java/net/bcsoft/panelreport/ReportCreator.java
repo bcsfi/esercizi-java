@@ -1,13 +1,14 @@
 package net.bcsoft.panelreport;
 
 import net.bcsoft.panelreport.Enum.ProvinciaEnum;
+import net.bcsoft.panelreport.util.FileManager;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ReportCreator {
     private IncassoMensile incassoMensile = null;
@@ -45,26 +46,18 @@ public class ReportCreator {
     }
 
     public void stampaSuFile() throws IOException {
-        Path pathProvincia = Path.of(pathFinale + "Provincia.txt");
-        Files.deleteIfExists(pathProvincia);
-        Files.createFile(pathProvincia);
-
         StringBuilder outputProvincia = new StringBuilder();
         for (ProvinciaEnum provincia : mappaPerProvincia.keySet()) {
             Float importo = mappaPerProvincia.get(provincia);
             outputProvincia.append("Provincia: " + provincia + " Importo: " + importo + "\n");
         }
-        Files.writeString(pathProvincia, outputProvincia.toString());
-
-        Path pathData = Path.of(pathFinale + "Data.txt");
-        Files.deleteIfExists(pathData);
-        Files.createFile(pathData);
+        FileManager.buildFile(pathFinale, "Provincia.txt", outputProvincia.toString());
 
         StringBuilder outputData = new StringBuilder();
         for (LocalDate data : mappaPerData.keySet()) {
             Float importo = mappaPerData.get(data);
             outputData.append("Data: " + data + " Importo: " + importo + "\n");
         }
-        Files.writeString(pathData, outputData.toString());
+        FileManager.buildFile(pathFinale, "Data.txt", outputData.toString());
     }
 }
