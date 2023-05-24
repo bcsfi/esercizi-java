@@ -1,5 +1,8 @@
 package net.bcsoft.panelreport;
 
+import net.bcsoft.panelreport.util.DatabaseConnection;
+import net.bcsoft.panelreport.util.Logger;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +19,7 @@ public class IncassoMensile {
         ResultSet resultSet = null;
 
         try {
-            connection = ConnectionManager.createConnection();
+            connection = DatabaseConnection.createConnection();
             statement = connection.createStatement();
             incassoList = new ArrayList<>();
 
