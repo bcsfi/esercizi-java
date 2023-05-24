@@ -54,7 +54,7 @@ public class ReportCreator {
 
 
             StringBuilder contenuto = new StringBuilder();
-            contenuto.append("DATA        |       GUADAGNO");
+            contenuto.append("PROVINCIA      |       GUADAGNO" + "\n");
 
             mappa.forEach((provincie, somma) ->{
 
@@ -97,7 +97,7 @@ public class ReportCreator {
 
             StringBuilder contenuto = new StringBuilder();
 
-            contenuto.append("DATA        |       GUADAGNO");
+            contenuto.append("DATA           |       GUADAGNO" + "\n");
             mappa.forEach((data, somma) ->{
 
                 contenuto.append("**  " + data + "     |    " + somma + "\n");
