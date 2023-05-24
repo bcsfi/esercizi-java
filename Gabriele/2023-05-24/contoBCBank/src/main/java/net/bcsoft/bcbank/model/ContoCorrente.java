@@ -1,27 +1,31 @@
-package net.bcsoft.bcbank;
+package net.bcsoft.bcbank.model;
 
 import java.sql.ResultSet;
 
-public class Contocorrente {
-    private String identificativo;
+public class ContoCorrente {
+    private String iban;
     private String nome;
+    private String cognome;
     private String indirizzo;
-    private String numeroTelefono
+    private String numeroTelefono;
+    private Integer id;
 
 
-    public Contocorrente(ResultSet resultSet){
-        this.identificativo = resultSet.getString();
+    public ContoCorrente(ResultSet resultSet){
+        this.iban = resultSet.getString();
         this.nome = resultSet.getString();
+        this.cognome = resultSet.getString();
         this.indirizzo = resultSet.getString();
         this.numeroTelefono = resultSet.getString();
+        this.id = resultSet.getInt();
     }
 
-    public String getIdentificativo() {
-        return identificativo;
+    public String getIban() {
+        return iban;
     }
 
-    public void setIdentificativo(String identificativo) {
-        this.identificativo = identificativo;
+    public void setIban(String iban) {
+        this.iban = iban;
     }
 
     public String getNome() {
@@ -30,6 +34,14 @@ public class Contocorrente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
     public String getIndirizzo() {
@@ -46,5 +58,13 @@ public class Contocorrente {
 
     public void setNumeroTelefono(String numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
