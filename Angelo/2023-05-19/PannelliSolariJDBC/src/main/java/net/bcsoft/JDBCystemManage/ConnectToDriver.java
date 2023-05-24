@@ -13,6 +13,7 @@ public class ConnectToDriver {
     }
 
     public Connection activeConnection() throws SQLException {
+
         Connection pannelli_solari = DriverManager.getConnection("jdbc:postgresql://"+ driver.getIP_ADDRESS() + ":" + driver.getPORT() + "/" + driver.getDATABASENAME(), "postgres", "3237" );
         return pannelli_solari;
     }

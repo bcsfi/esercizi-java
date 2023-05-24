@@ -6,7 +6,7 @@ public class CreateDriver {
 
     String IP_ADDRESS = "", PORT, DATABASENAME;
 
-    public CreateDriver(String IP_ADDRESS, String PORT, String DATABASENAME) throws ClassNotFoundException, SQLException {
+    public CreateDriver(String IP_ADDRESS, String PORT, String DATABASENAME) throws ClassNotFoundException, SQLException, NullPointerException {
         Class.forName("org.postgresql.Driver");
         this.IP_ADDRESS = IP_ADDRESS;
         this.PORT = PORT;
@@ -23,7 +23,7 @@ public class CreateDriver {
     }
 
     public String getDATABASENAME(){
-        return this.getDATABASENAME();
+        return this.DATABASENAME;
     }
 
 }

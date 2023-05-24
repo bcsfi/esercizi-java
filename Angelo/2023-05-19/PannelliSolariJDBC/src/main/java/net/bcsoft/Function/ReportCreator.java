@@ -1,35 +1,32 @@
-package net.bcsoft;
+package net.bcsoft.Function;
 
-import java.io.File;
+import net.bcsoft.DataObject.Incasso;
+import net.bcsoft.Enum.provinciaEnum;
+import net.bcsoft.Function.RaccoltaIncassi;
+
 import java.io.IOException;
-import java.nio.file.DirectoryIteratorException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
 
 public class ReportCreator {
-    DbmSystemManage nostroGestoreDb = new DbmSystemManage("localhost","5432", "pannelli_solari");
-    ResultSet setDiDatiLetti = nostroGestoreDb.readDb("SELECT * FROM incassi");
 
-    private IncassoMensile incassoMensile = null;
+    private RaccoltaIncassi raccoltaIncassi = null;
 
-    public ReportCreator(IncassoMensile incassoMensile) throws SQLException, ClassNotFoundException {
-        this.incassoMensile = incassoMensile;
+    public ReportCreator(RaccoltaIncassi raccoltaIncassi) throws SQLException, ClassNotFoundException {
+        this.raccoltaIncassi = raccoltaIncassi;
     }
 
-    public void creaSommaPerPronvica(String nomeOutput){
+    public void creaSommaPerPronvica(String nomeOutput) throws IOException{
 
         Path path = Path.of(nomeOutput);
-        ArrayList<Incasso> listaIncassi = incassoMensile.getLista();
+        ArrayList<Incasso> listaIncassi = raccoltaIncassi.getLista();
         Map<provinciaEnum, Double> mappa = new HashMap<provinciaEnum, Double>();
 
         for(int b=0; b < listaIncassi.size(); b++){
-            try {
 
             boolean verifica = (mappa.containsKey(listaIncassi.get(b).getProvincia()));
 
@@ -53,37 +50,29 @@ public class ReportCreator {
 
             }
 
-            } catch (IllegalArgumentException x){
-                System.out.print("Errore, ci sono alcune provincie non valide");
-                incassoMensile.getStringError().append("Provincia non valida, perchè non è nella lista delle provincie attendibili. \n");
-            }
-
         }
 
-        try {
+
             StringBuilder contenuto = new StringBuilder();
+            contenuto.append("DATA        |       GUADAGNO");
 
             mappa.forEach((provincie, somma) ->{
 
-                contenuto.append(" PROVINCIE: " + provincie + " TOTALE GUADAGNATO PER PROVINCIA " + somma + "\n");
+                contenuto.append("**  " + provincie + "     |    " + somma + "\n");
                 // System.out.print(" PROVINCIE: " + provincie + " TOTALE GUADAGNATO PER PROVINCIA " + somma + "\n");
             });
 
             Files.createFile(path);
             Files.writeString(path, contenuto);
-        } catch (IOException x){
-            System.out.print(x.getMessage());
-            incassoMensile.getStringError().append("Errore, il file non è lebbile o scrivibile dalla directory inserita, riprovare. Controllare se i file non esistano già nella directory \n");
-        }
 
 
 
     }
 
-    public void creaSommaPerData(String nomeOutput){
+    public void creaSommaPerData(String nomeOutput) throws IOException{
 
         Path path = Path.of(nomeOutput);
-        ArrayList<Incasso> listaIncassi = incassoMensile.getLista();
+        ArrayList<Incasso> listaIncassi = raccoltaIncassi.getLista();
         Map<LocalDate, Double> mappa = new HashMap<LocalDate, Double>();
 
         for(int b=0; b < listaIncassi.size(); b++){
@@ -106,39 +95,21 @@ public class ReportCreator {
 
         }
 
-        try {
             StringBuilder contenuto = new StringBuilder();
 
+            contenuto.append("DATA        |       GUADAGNO");
             mappa.forEach((data, somma) ->{
 
-                contenuto.append(" DATA: " + data + " TOTALE GUADAGNATO PER PROVINCIA " + somma + "\n");
+                contenuto.append("**  " + data + "     |    " + somma + "\n");
                 // System.out.print(" DATA: " + data + " TOTALE GUADAGNATO PER PROVINCIA " + somma + "\n");
             });
 
             Files.createFile(path);
             Files.writeString(path, contenuto);
-        } catch (IOException x){
-            incassoMensile.getStringError().append("Errore, il file non è lebbile o scrivibile dalla directory inserita, riprovare. Controllare se i file non esistano già nella directory.\n");
-        }
-
-    }
-
-    public void createLogs(String nomeOutput){
-        try {
-            Path path = Path.of(nomeOutput);
-            if(Files.exists(path)){
-                Files.delete(path);
-            }
-
-            Files.createFile(path);
-            Files.writeString(path, incassoMensile.getStringError());
-
-            } catch (IOException x){
-            incassoMensile.getStringError().append("Errore, il file non è leggibile o scrivibile.");
-        }
 
 
     }
+
 
 
 }

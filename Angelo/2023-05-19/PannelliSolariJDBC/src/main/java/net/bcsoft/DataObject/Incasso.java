@@ -1,8 +1,7 @@
-package net.bcsoft;
-import javax.xml.crypto.Data;
+package net.bcsoft.DataObject;
+import net.bcsoft.Enum.provinciaEnum;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 
 
 public class Incasso {
