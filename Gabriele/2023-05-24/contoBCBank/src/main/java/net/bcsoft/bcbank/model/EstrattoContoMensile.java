@@ -1,7 +1,10 @@
 package net.bcsoft.bcbank.model;
 
 import net.bcsoft.bcbank.enumeration.MeseEnum;
+import net.bcsoft.bcbank.util.ConnessioneDatabase;
+import net.bcsoft.bcbank.util.DatabaseManager;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Month;
@@ -11,13 +14,22 @@ public class EstrattoContoMensile {
     private Integer idRiferimentoContoCorrente;
     private Year anno;
     private MeseEnum mese;
-    private Integer giacenzaInizioMese;
+    private Double giacenzaInizioMese;
 
-    public EstrattoContoMensile(ResultSet resultSet) throws SQLException {
-        this.idRiferimentoContoCorrente = resultSet.getInt(1);
-        this.anno = Year.of(resultSet.getInt(2));
-        this.mese = MeseEnum.valueOf(resultSet.getString(3));
-        this.giacenzaInizioMese = resultSet.getInt(4);
+    public EstrattoContoMensile() throws SQLException, ClassNotFoundException {
+        Connection connection = ConnessioneDatabase.createConnection();
+        DatabaseManager databaseManager = new DatabaseManager(connection);
+        ResultSet resultSet = databaseManager.ottieniResultSet("SELECT * FROM estratto_conto_corrente");
+        try{
+            this.idRiferimentoContoCorrente = resultSet.getInt(1);
+            this.anno = Year.of(resultSet.getInt(2));
+            this.mese = MeseEnum.valueOf(resultSet.getString(3));
+            this.giacenzaInizioMese = resultSet.getDouble(4);
+        }finally{
+            resultSet.close();
+            connection.close();
+        }
+
     }
 
     public Integer getIdRiferimentoContoCorrente() {
@@ -44,11 +56,11 @@ public class EstrattoContoMensile {
         this.mese = mese;
     }
 
-    public Integer getGiacenzaInizioMese() {
+    public Double getGiacenzaInizioMese() {
         return giacenzaInizioMese;
     }
 
-    public void setGiacenzaInizioMese(Integer giacenzaInizioMese) {
+    public void setGiacenzaInizioMese(Double giacenzaInizioMese) {
         this.giacenzaInizioMese = giacenzaInizioMese;
     }
 }

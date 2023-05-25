@@ -1,14 +1,12 @@
 package net.bcsoft.bcbank.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
-public class GestioneDatabase {
+public class ConnessioneDatabase {
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "admin";
-    private static final String CONN_URL = "postgres://localhost:5432/bc_bank";
+    private static final String PASSWORD = "Gabry0308";
+    private static final String CONN_URL = "jdbc:postgresql://localhost:5432/bc_bank";
 
     public static Connection createConnection() throws ClassNotFoundException, SQLException {
         Class.forName(DRIVER);
@@ -22,4 +20,6 @@ public class GestioneDatabase {
 
         return dbConn;
     }
+
+
 }
