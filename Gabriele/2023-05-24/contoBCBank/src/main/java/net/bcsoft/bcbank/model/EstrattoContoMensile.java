@@ -1,20 +1,23 @@
 package net.bcsoft.bcbank.model;
 
+import net.bcsoft.bcbank.enumeration.MeseEnum;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Month;
 import java.time.Year;
 
 public class EstrattoContoMensile {
     private Integer idRiferimentoContoCorrente;
     private Year anno;
-    private Month mese;
+    private MeseEnum mese;
     private Integer giacenzaInizioMese;
 
-    public EstrattoContoMensile(ResultSet resultSet){
-        this.idRiferimentoContoCorrente = resultSet.getInt();
-        this.anno = anno.toString(resultSet.getString());
-        this.mese = mese.toString(resultSet.getString());
-        this.giacenzaInizioMese = resultSet.getInt();
+    public EstrattoContoMensile(ResultSet resultSet) throws SQLException {
+        this.idRiferimentoContoCorrente = resultSet.getInt(1);
+        this.anno = Year.of(resultSet.getInt(2));
+        this.mese = MeseEnum.valueOf(resultSet.getString(3));
+        this.giacenzaInizioMese = resultSet.getInt(4);
     }
 
     public Integer getIdRiferimentoContoCorrente() {
@@ -33,11 +36,11 @@ public class EstrattoContoMensile {
         this.anno = anno;
     }
 
-    public Month getMese() {
+    public MeseEnum getMese() {
         return mese;
     }
 
-    public void setMese(Month mese) {
+    public void setMese(MeseEnum mese) {
         this.mese = mese;
     }
 
