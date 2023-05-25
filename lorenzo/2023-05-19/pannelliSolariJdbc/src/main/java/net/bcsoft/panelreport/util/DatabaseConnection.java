@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String DRIVER = "org.postgresql.Driver";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "admin";
     private static final String CONN_URL = "jdbc:postgresql://localhost:5432/pannelli_solari";
 
-    public static Connection createConnection() throws ClassNotFoundException, SQLException {
+    private DatabaseConnection() {}
+    public static Connection createConnection() throws SQLException {
         Connection dbConn = DriverManager.getConnection(CONN_URL, USERNAME, PASSWORD);
 
         if (dbConn != null) {
