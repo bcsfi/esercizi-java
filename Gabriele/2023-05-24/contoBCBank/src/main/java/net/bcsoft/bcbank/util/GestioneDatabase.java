@@ -1,9 +1,9 @@
-package net.bcsoft.bcbank;
+package net.bcsoft.bcbank.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import net.bcsoft.bcbank.enumeration.TipoTransazioneEnum;
+
 public class GestioneDatabase {
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String USERNAME = "postgres";
