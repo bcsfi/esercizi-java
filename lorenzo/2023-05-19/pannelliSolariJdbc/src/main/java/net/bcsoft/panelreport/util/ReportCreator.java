@@ -1,28 +1,45 @@
-package net.bcsoft.panelreport;
+package net.bcsoft.panelreport.util;
 
-import net.bcsoft.panelreport.Enum.ProvinciaEnum;
-import net.bcsoft.panelreport.util.FileManager;
+import net.bcsoft.panelreport.enumeration.ProvinciaEnum;
+import net.bcsoft.panelreport.model.Incasso;
+import net.bcsoft.panelreport.model.IncassoMensile;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ReportCreator {
-    private IncassoMensile incassoMensile = null;
     private String pathFinale;
     private Map<ProvinciaEnum, Float> mappaPerProvincia = new HashMap<>();
     private Map<LocalDate, Float> mappaPerData = new HashMap<>();
 
-    public ReportCreator(String pathFinale) throws SQLException {
+    public ReportCreator(String pathFinale) {
         this.pathFinale = pathFinale;
-        incassoMensile = new IncassoMensile();
+    }
+
+    public void creaReport() throws SQLException {
+        Connection connection = DatabaseConnection.createConnection();
+        DatabaseManager databaseManager = new DatabaseManager(connection);
+        ResultSet resultSet = databaseManager.ottieniResultSet(
+                "select " +
+                "id, " +
+                "incassi_data, " +
+                "incassi_provincia, " +
+                "incassi_importo " +
+                "from incassi");
+        Elaboratore elaboratore = new Elaboratore();
+        IncassoMensile incassoMensile = elaboratore.costruisciIncassoMensile(resultSet);
+        //TODO partendo da incasso mensile, pdoduci i report tramite FileManager
     }
 
     public void creaMappaPerProvincia() {
-        List<Incasso> incassoList = incassoMensile.getIncassoList();
+        List<Incasso> incassoList = IncassoMensile.
         for (Incasso incasso : incassoList) {
             if (!mappaPerProvincia.containsKey(incasso.getProvincia())) {
                 mappaPerProvincia.put(incasso.getProvincia(), incasso.getImporto());
@@ -35,7 +52,7 @@ public class ReportCreator {
     }
 
     public void creaMappaPerData() {
-        List<Incasso> incassoList = incassoMensile.getIncassoList();
+        List<Incasso> incassoList = incassoMensile.getIncassoList() != null ? incassoMensile.getIncassoList() : Collections.emptyList();
         for (Incasso incasso : incassoList) {
             if (!mappaPerData.containsKey(incasso.getData())) {
                 mappaPerData.put(incasso.getData(), incasso.getImporto());
