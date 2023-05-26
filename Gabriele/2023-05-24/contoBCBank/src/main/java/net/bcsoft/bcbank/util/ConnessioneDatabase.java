@@ -20,6 +20,10 @@ public class ConnessioneDatabase {
 
         return dbConn;
     }
-
+    public static ResultSet ottieniResultSet(Connection connection, String query) throws SQLException {
+        Statement statement = null;
+        statement = connection.createStatement();
+        return statement.executeQuery(query);
+    }
 
 }

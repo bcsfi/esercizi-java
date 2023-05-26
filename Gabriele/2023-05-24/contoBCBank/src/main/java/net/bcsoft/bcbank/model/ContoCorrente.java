@@ -1,7 +1,7 @@
 package net.bcsoft.bcbank.model;
 
 import net.bcsoft.bcbank.util.ConnessioneDatabase;
-import net.bcsoft.bcbank.util.DatabaseManager;
+
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,21 +16,7 @@ public class ContoCorrente {
     private Integer id;
 
 
-    public ContoCorrente() throws SQLException, ClassNotFoundException {
-        Connection connection = ConnessioneDatabase.createConnection();
-        DatabaseManager databaseManager = new DatabaseManager(connection);
-        ResultSet resultSet = databaseManager.ottieniResultSet("SELECT * FROM conto_corrente");
-        try{
-            this.id = resultSet.getInt(1);
-            this.iban = resultSet.getString(2);
-            this.nome = resultSet.getString(3);
-            this.cognome = resultSet.getString(4);
-            this.indirizzo = resultSet.getString(5);
-            this.numeroTelefono = resultSet.getString(6);
-        }finally {
-            resultSet.close();
-            connection.close();
-        }
+    public ContoCorrente() {
 
     }
 

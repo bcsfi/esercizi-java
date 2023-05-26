@@ -1,16 +1,12 @@
 package net.bcsoft.bcbank.model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.bcsoft.bcbank.enumeration.TipoTransazioneEnum;
-import net.bcsoft.bcbank.util.ConnessioneDatabase;
-import net.bcsoft.bcbank.util.DatabaseManager;
+
+
 
 public class Transazione {
     private Integer idTransazione;
@@ -20,27 +16,27 @@ public class Transazione {
     private LocalTime ora;
     private String ibanDestinatario;
     private TipoTransazioneEnum tipoTransazione;
-    private List <Transazione> transazioneList = new ArrayList<>();
 
-    public Transazione() throws SQLException, ClassNotFoundException {
-        Connection connection = ConnessioneDatabase.createConnection();
-        DatabaseManager databaseManager = new DatabaseManager(connection);
-        ResultSet resultSet = databaseManager.ottieniResultSet("SELECT * FROM transazioni");
-        try{ //TODO SISTEMARE QUI PER FARGLI ENTRARE COSE NELLA LISTA
-            this.idTransazione = resultSet.getInt(1);
-            this.idRiferimentoContoCorrente = resultSet.getInt(2);
-            this.importo = resultSet.getDouble(3);
-            this.data = resultSet.getDate(4).toLocalDate();
-            this.ora = resultSet.getTime(5).toLocalTime();
-            this.ibanDestinatario = resultSet.getString(6);
-            this.tipoTransazione = TipoTransazioneEnum.valueOf(resultSet.getString(7));
-        }finally {
-            resultSet.close();
-            connection.close();
-        }
+
+    public Transazione(){
+
 
     }
 
+    public Transazione(Integer idTransazione, Integer idRiferimentoContoCorrente, Double importo, LocalDate data, LocalTime ora, String ibanDestinatario, TipoTransazioneEnum tipoTransazione) {
+        this.idTransazione = idTransazione;
+        this.idRiferimentoContoCorrente = idRiferimentoContoCorrente;
+        this.importo = importo;
+        this.data = data;
+        this.ora = ora;
+        this.ibanDestinatario = ibanDestinatario;
+        this.tipoTransazione = tipoTransazione;
+
+    }
+
+    public void setIdTransazione(Integer idTransazione) {
+        this.idTransazione = idTransazione;
+    }
 
     public Integer getIdRiferimentoContoCorrente() {
         return idRiferimentoContoCorrente;
