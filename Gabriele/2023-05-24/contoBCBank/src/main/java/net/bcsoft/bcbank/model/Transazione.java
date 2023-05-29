@@ -6,8 +6,6 @@ import java.time.LocalTime;
 
 import net.bcsoft.bcbank.enumeration.TipoTransazioneEnum;
 
-
-
 public class Transazione {
     private Integer idTransazione;
     private Integer idRiferimentoContoCorrente;
@@ -17,10 +15,7 @@ public class Transazione {
     private String ibanDestinatario;
     private TipoTransazioneEnum tipoTransazione;
 
-
-    public Transazione(){
-
-
+    public Transazione() {
     }
 
     public Transazione(Integer idTransazione, Integer idRiferimentoContoCorrente, Double importo, LocalDate data, LocalTime ora, String ibanDestinatario, TipoTransazioneEnum tipoTransazione) {
@@ -31,7 +26,10 @@ public class Transazione {
         this.ora = ora;
         this.ibanDestinatario = ibanDestinatario;
         this.tipoTransazione = tipoTransazione;
+    }
 
+    public Integer getIdTransazione() {
+        return idTransazione;
     }
 
     public void setIdTransazione(Integer idTransazione) {

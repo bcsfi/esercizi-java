@@ -13,12 +13,12 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class Query {
+public class Query {
 
-
-    public static ArrayList <Transazione> loadTransazioneList(ArrayList <Transazione> listaUscita, Connection connessione) throws SQLException {
+    public static List <Transazione> loadTransazioneList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM transazioni";
         ResultSet resultSet = ConnessioneDatabase.ottieniResultSet(connessione, query);
+        List <Transazione> listaUscita = new ArrayList<>();
         try {
             while (resultSet.next()){
                 Transazione transazione = new Transazione();
@@ -37,9 +37,10 @@ public  class Query {
        return listaUscita;
     }
 
-    public static ArrayList <EstrattoContoMensile> loadEstrattoContoMensileList(ArrayList <EstrattoContoMensile> listaUscita, Connection connessione) throws SQLException {
+    public static List <EstrattoContoMensile> loadEstrattoContoMensileList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM estratto_conto_mensile";
         ResultSet resultSet = ConnessioneDatabase.ottieniResultSet(connessione, query);
+        List <EstrattoContoMensile> listaUscita = new ArrayList<>();
         try {
             while (resultSet.next()){
                 EstrattoContoMensile estrattoContoMensile = new EstrattoContoMensile();
@@ -55,10 +56,10 @@ public  class Query {
         }
         return listaUscita;
     }
-    public static ArrayList <ContoCorrente> loadContoCorrenteList(Connection connessione) throws SQLException {
+    public static List <ContoCorrente> loadContoCorrenteList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM conto_corrente";
         ResultSet resultSet = ConnessioneDatabase.ottieniResultSet(connessione, query);
-        ArrayList <ContoCorrente> listaUscita = new ArrayList<>();
+        List <ContoCorrente> listaUscita = new ArrayList<>();
         try {
             while (resultSet.next()){
                 ContoCorrente contoCorrente = new ContoCorrente();

@@ -5,12 +5,11 @@ import net.bcsoft.bcbank.model.EstrattoContoMensile;
 import net.bcsoft.bcbank.model.Transazione;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 public class ReportCreator {
@@ -22,23 +21,14 @@ public class ReportCreator {
         this.pathFinale = pathFinale;
     }
 
-
-    public void caricaDati(ArrayList <Transazione> transazioneList, ArrayList <EstrattoContoMensile> estrattoContoMensileList) throws SQLException, ClassNotFoundException {
-        Connection connessione = ConnessioneDatabase.createConnection();
-        transazioneList = Query.loadTransazioneList(transazioneList, connessione);
-        estrattoContoMensileList = Query.loadEstrattoContoMensileList(estrattoContoMensileList, connessione);
-        List <ContoCorrente> contoCorrenteList = Query.loadContoCorrenteList(connessione);
-        connessione.close();
-    }
-
-    public Map <Integer, Double> aggregaGiacenze(ArrayList <EstrattoContoMensile> estrattoContoMensileList, ArrayList <Transazione> transazioneList){
+    public Map <Integer, Double> aggregaGiacenze(List <EstrattoContoMensile> estrattoContoMensileList, List <Transazione> transazioneList){
         for(EstrattoContoMensile estrattoContoMensile : estrattoContoMensileList){
             giacenzaFinaleMap.put(estrattoContoMensile.getIdRiferimentoContoCorrente(), estrattoContoMensile.getGiacenzaInizioMese());
         }
 
         for (Transazione transazione: transazioneList) {
             if (giacenzaFinaleMap.containsKey(transazione.getIdRiferimentoContoCorrente())) {
-                giacenzaFinaleMap.put(transazione.getIdRiferimentoContoCorrente(), giacenzaFinaleMap.get(giacenzaFinaleMap.get(transazione)) + transazione.getImporto());
+                giacenzaFinaleMap.put(transazione.getIdRiferimentoContoCorrente(), giacenzaFinaleMap.get(transazione.getIdRiferimentoContoCorrente()) + transazione.getImporto());
             }
         }
         return giacenzaFinaleMap;
@@ -47,23 +37,25 @@ public class ReportCreator {
         Integer occorrenza = 1;
         for(Transazione transazione: transazioneList){
             if(aggregaTransazioniMap.containsKey(transazione.getIdRiferimentoContoCorrente())){
-                aggregaTransazioniMap.put(transazione.getIdRiferimentoContoCorrente(), occorrenza);
+                aggregaTransazioniMap.put(transazione.getIdRiferimentoContoCorrente(), occorrenza+1);
             }
             else{
-                aggregaTransazioniMap.put(transazione.getIdRiferimentoContoCorrente(), occorrenza + 1);
+                aggregaTransazioniMap.put(transazione.getIdRiferimentoContoCorrente(), occorrenza);
             }
         }
         return aggregaTransazioniMap;
     }
-    public void stampaSuFile(Map <Integer, Double> mappaGiacenzaFinale, Map <Integer, Integer> mappaTransazioni ) throws IOException, SQLException, ClassNotFoundException {
+
+    //TODO sistemare il ciclo: dovete esporre i dati per ogni conto corrente -> bisogna partiate da lì. Si può fare anche tutto in un ciclo, producendo come output:
+    //  idConto o IBAN o idCliente (tanto è tutto 1-1) e poi numero transazioni e giacenza
+    public void stampaSuFile(List<ContoCorrente> contoCorrenteList, Map <Integer, Double> mappaGiacenzaFinale, Map <Integer, Integer> mappaTransazioni ) throws IOException, SQLException, ClassNotFoundException {
         StringBuilder output = new StringBuilder();
-        for (Integer id : mappaTransazioni.keySet()) {
-            Integer conteggio = mappaTransazioni.get(id);
-            output.append("IBAN: " + id + " Numero Transazioni: " + conteggio + "\n");
-        }
-        for (Integer id : mappaGiacenzaFinale.keySet()) {
-            Double conteggio = mappaGiacenzaFinale.get(id);
-            output.append("ID UTENTE: " + id + " giacenza finale: " + conteggio + "\n");
+
+        for (ContoCorrente contoCorrente : contoCorrenteList) {
+            Integer id = contoCorrente.getId();
+            Integer conteggioTransazioni = Optional.ofNullable(mappaTransazioni.get(id)).orElse(0);
+            Double conteggioGiacenze = Optional.ofNullable(mappaGiacenzaFinale.get(id)).orElse(0.0);
+            output.append("ID UTENTE: " + id + " NUMERO TRANSAZIONI: " + conteggioTransazioni + " GIACENZA FINALE " + conteggioGiacenze +"\n");
         }
 
         FileManager.buildFile(pathFinale, "ReportTransazioni.txt", output.toString());

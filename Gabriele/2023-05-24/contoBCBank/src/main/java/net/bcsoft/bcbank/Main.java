@@ -1,6 +1,7 @@
 package net.bcsoft.bcbank;
 
 import net.bcsoft.bcbank.enumeration.TipoTransazioneEnum;
+import net.bcsoft.bcbank.model.ContoCorrente;
 import net.bcsoft.bcbank.model.EstrattoContoMensile;
 import net.bcsoft.bcbank.model.Transazione;
 import net.bcsoft.bcbank.util.ConnessioneDatabase;
@@ -22,16 +23,15 @@ public class Main {
         String pathFinale = input.next();
         try {
             Connection connection = ConnessioneDatabase.createConnection();
-            ArrayList<Transazione> transazioneList = new ArrayList<>();
-            ArrayList<EstrattoContoMensile> estrattoContoMensileList = new ArrayList<>();
-            Map <Integer, Integer> transazioneMap = null;
-            Map <Integer, Double> giacenzaMap = null;
+
+            List<Transazione> transazioneList = Query.loadTransazioneList(connection);
+            List<EstrattoContoMensile> estrattoContoMensileList = Query.loadEstrattoContoMensileList(connection);
+            List<ContoCorrente> contoCorrenteList = Query.loadContoCorrenteList(connection);
 
             ReportCreator reportCreator = new ReportCreator(pathFinale);
-            reportCreator.caricaDati(transazioneList, estrattoContoMensileList);
-            transazioneMap = reportCreator.aggregaTransazioni(transazioneList);
-            giacenzaMap = reportCreator.aggregaGiacenze(estrattoContoMensileList, transazioneList);
-            reportCreator.stampaSuFile(giacenzaMap, transazioneMap);
+            Map <Integer, Integer> transazioneMap = reportCreator.aggregaTransazioni(transazioneList);
+            Map <Integer, Double> giacenzaMap = reportCreator.aggregaGiacenze(estrattoContoMensileList, transazioneList);
+            reportCreator.stampaSuFile(contoCorrenteList, giacenzaMap, transazioneMap);
             connection.close();
         } catch (IllegalArgumentException e) {
             System.out.println("ERRORE PATH INSERITO | " + e.getMessage());
@@ -39,6 +39,6 @@ public class Main {
             //  System.out.println("ERRORE DATABASE | " + e.getMessage());
         } catch (SQLException | IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }
+        } //TODO aggiungere il finally e spostarci riga 35 (il close connection)
     }
 }
