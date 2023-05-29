@@ -8,6 +8,7 @@ import net.bcsoft.bcbank.model.Transazione;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
@@ -15,9 +16,10 @@ import java.util.List;
 
 public class Query {
 
-    public static List<Transazione> loadTransazioneList(Connection connessione) throws SQLException {
+    public static List<Transazione> loadTransazioneList(Connection connessione) throws SQLException, ClassNotFoundException {
         String query = "SELECT * FROM transazioni";
-        ResultSet resultSet = ConnessioneDatabase.ottieniResultSet(connessione, query);
+        Statement statement = connessione.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
         List<Transazione> listaUscita = new ArrayList<>();
         try {
             while (resultSet.next()) {
@@ -33,13 +35,15 @@ public class Query {
             }
         } finally {
             resultSet.close();
+            statement.close();
         }
         return listaUscita;
     }
 
-    public static List<EstrattoContoMensile> loadEstrattoContoMensileList(Connection connessione) throws SQLException {
+    public static List<EstrattoContoMensile> loadEstrattoContoMensileList(Connection connessione) throws SQLException, ClassNotFoundException {
         String query = "SELECT * FROM estratto_conto_mensile";
-        ResultSet resultSet = ConnessioneDatabase.ottieniResultSet(connessione, query);
+        Statement statement = connessione.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
         List<EstrattoContoMensile> listaUscita = new ArrayList<>();
         try {
             while (resultSet.next()) {
@@ -53,13 +57,15 @@ public class Query {
             }
         } finally {
             resultSet.close();
+            statement.close();
         }
         return listaUscita;
     }
 
-    public static List<ContoCorrente> loadContoCorrenteList(Connection connessione) throws SQLException {
+    public static List<ContoCorrente> loadContoCorrenteList(Connection connessione) throws SQLException, ClassNotFoundException {
         String query = "SELECT * FROM conto_corrente";
-        ResultSet resultSet = ConnessioneDatabase.ottieniResultSet(connessione, query);
+        Statement statement = connessione.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
         List<ContoCorrente> listaUscita = new ArrayList<>();
         try {
             while (resultSet.next()) {
@@ -74,6 +80,7 @@ public class Query {
             }
         } finally {
             resultSet.close();
+            statement.close();
         }
         return listaUscita;
     }
