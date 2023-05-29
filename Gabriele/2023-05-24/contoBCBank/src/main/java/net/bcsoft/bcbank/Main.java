@@ -19,14 +19,14 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Inserire il path dove salvare i file: ");
         String pathFinale = input.next();
-        Connection connesione = null;
+        Connection conessione = null;
 
         try {
-            connesione = ConnessioneDatabase.createConnection();
+            conessione = ConnessioneDatabase.createConnection();
 
-            List<Transazione> transazioneList = Query.loadTransazioneList(connesione);
-            List<EstrattoContoMensile> estrattoContoMensileList = Query.loadEstrattoContoMensileList(connesione);
-            List<ContoCorrente> contoCorrenteList = Query.loadContoCorrenteList(connesione);
+            List<Transazione> transazioneList = Query.loadTransazioneList(conessione);
+            List<EstrattoContoMensile> estrattoContoMensileList = Query.loadEstrattoContoMensileList(conessione);
+            List<ContoCorrente> contoCorrenteList = Query.loadContoCorrenteList(conessione);
 
             ReportCreator reportCreator = new ReportCreator(pathFinale);
             Map<Integer, Integer> transazioneMap = reportCreator.aggregaTransazioni(transazioneList);
@@ -40,7 +40,7 @@ public class Main {
             throw new RuntimeException(exception);
         } finally {
             try {
-                connesione.close();
+                conessione.close();
             } catch (SQLException exception) {
                 System.out.println("ERRORE DISCONNESSIONE DATABASE | " + exception.getMessage());
                 throw new RuntimeException(exception);

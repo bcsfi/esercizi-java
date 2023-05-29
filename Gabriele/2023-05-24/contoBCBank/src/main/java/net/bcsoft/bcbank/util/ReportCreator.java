@@ -51,8 +51,6 @@ public class ReportCreator {
         return aggregaTransazioniMap;
     }
 
-    // TODO sistemare il ciclo: dovete esporre i dati per ogni conto corrente -> bisogna partiate da lì. Si può fare anche tutto in un ciclo, producendo come output:
-    //  idConto o IBAN o idCliente (tanto è tutto 1-1) e poi numero transazioni e giacenza
     public void stampaSuFile(List<ContoCorrente> contoCorrenteList,
                              Map<Integer, Double> mappaGiacenzaFinale,
                              Map<Integer, Integer> mappaTransazioni)
