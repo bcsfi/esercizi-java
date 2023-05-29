@@ -1,24 +1,16 @@
 package net.bcsoft.bcbank.model;
 
-import net.bcsoft.bcbank.enumeration.MeseEnum;
-import net.bcsoft.bcbank.util.ConnessioneDatabase;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.Month;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EstrattoContoMensile {
     private Integer idEstrattoConto;
     private Integer idRiferimentoContoCorrente;
     private Year anno;
-    private MeseEnum mese;
+    private Month mese;
     private Double giacenzaInizioMese;
 
-    public EstrattoContoMensile()  {
+    public EstrattoContoMensile() {
 
     }
 
@@ -42,11 +34,11 @@ public class EstrattoContoMensile {
         this.anno = anno;
     }
 
-    public MeseEnum getMese() {
+    public Month getMese() {
         return mese;
     }
 
-    public void setMese(MeseEnum mese) {
+    public void setMese(Month mese) {
         this.mese = mese;
     }
 

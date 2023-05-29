@@ -1,12 +1,5 @@
 package net.bcsoft.bcbank.model;
 
-import net.bcsoft.bcbank.util.ConnessioneDatabase;
-
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class ContoCorrente {
     private String iban;
     private String nome;
@@ -17,7 +10,6 @@ public class ContoCorrente {
 
 
     public ContoCorrente() {
-
     }
 
     public String getIban() {

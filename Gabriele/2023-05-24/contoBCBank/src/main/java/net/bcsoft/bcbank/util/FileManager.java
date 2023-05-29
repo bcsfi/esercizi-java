@@ -3,10 +3,10 @@ package net.bcsoft.bcbank.util;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 
 public class FileManager {
-    private FileManager() { }
+    private FileManager() {
+    }
 
     public static void buildFile(String pathStr, String nomeFileEdEstensione, String contenuto)
             throws IOException, IllegalArgumentException {
