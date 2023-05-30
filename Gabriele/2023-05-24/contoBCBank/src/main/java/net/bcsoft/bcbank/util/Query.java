@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Query {
