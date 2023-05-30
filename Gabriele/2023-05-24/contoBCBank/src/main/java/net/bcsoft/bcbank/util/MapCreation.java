@@ -8,16 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public class MapCreation {
-    private Map<Integer, Integer> aggregaTransazioniMap = new HashMap<>();
-    private Map<Integer, Double> giacenzaFinaleMap = new HashMap<>();
 
-    public MapCreation(Map<Integer, Double> giacenzaFinaleMap, Map<Integer, Integer> aggregaTransazioniMap){
-
+    public MapCreation(){
     }
 
     public Map<Integer, Double> aggregaGiacenze(
             List<EstrattoContoMensile> estrattoContoMensileList, List<Transazione> transazioneList) {
-
+        Map<Integer, Double> giacenzaFinaleMap = new HashMap<>();
         for (EstrattoContoMensile estrattoContoMensile : estrattoContoMensileList) {
             giacenzaFinaleMap.put(estrattoContoMensile.getIdRiferimentoContoCorrente(),
                     estrattoContoMensile.getGiacenzaInizioMese());
@@ -34,6 +31,7 @@ public class MapCreation {
 
     public Map<Integer, Integer> aggregaTransazioni(List<Transazione> transazioneList) {
         Integer occorrenza = 1;
+        Map<Integer, Integer> aggregaTransazioniMap = new HashMap<>();
         for (Transazione transazione : transazioneList) {
             if (aggregaTransazioniMap.containsKey(transazione.getIdRiferimentoContoCorrente())) {
                 aggregaTransazioniMap.put(transazione.getIdRiferimentoContoCorrente(), occorrenza + 1);

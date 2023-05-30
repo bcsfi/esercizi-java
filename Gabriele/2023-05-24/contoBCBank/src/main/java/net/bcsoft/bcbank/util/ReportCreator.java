@@ -29,13 +29,14 @@ public class ReportCreator {
     public void stampaSuFile()
             throws IOException, SQLException, ClassNotFoundException {
         StringBuilder output = new StringBuilder();
-        MapCreation mapCreation = new MapCreation(aggregaTransazione, aggregaGiacenze);
-        aggregaGiacenze = mapCreation.aggregaGiacenze(estrattoContoMensileList, transazioneList);
-        aggregaTransazione = mapCreation.aggregaTransazioni(transazioneList);
+        MapCreation mapCreation = new MapCreation();
+        Map<Integer, Integer> aggregaTransazioniMap = mapCreation.aggregaTransazioni(transazioneList);
+        Map<Integer, Double> giacenzaFinaleMap = mapCreation.aggregaGiacenze(estrattoContoMensileList, transazioneList);
+
         for (ContoCorrente contoCorrente : contoCorrenteList) {
             Integer id = contoCorrente.getId();
-            Integer conteggioTransazioni = Optional.ofNullable(aggregaTransazione.get(id)).orElse(0);
-            Double conteggioGiacenze = Optional.ofNullable(aggregaGiacenze.get(id)).orElse(0.0);
+            Integer conteggioTransazioni = Optional.ofNullable(aggregaTransazioniMap.get(id)).orElse(0);
+            Double conteggioGiacenze = Optional.ofNullable(giacenzaFinaleMap.get(id)).orElse(0.0);
             output.append("ID UTENTE: " + id + " | " +
                           "NUMERO TRANSAZIONI NEL MESE: " + conteggioTransazioni + " | " +
                           "GIACENZA FINALE " + conteggioGiacenze + "\n");

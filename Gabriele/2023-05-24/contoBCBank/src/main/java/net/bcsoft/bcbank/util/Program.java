@@ -21,15 +21,13 @@ public class Program {
         DatabaseManager database = null;
         try {
             database = new DatabaseManager("localhost", 5432,
-                    "bcbank", "postgres", "admin");
+                    "bc_bank", "postgres", "Gabry0308");
             Connection connessioneDatabase = database.getConnection();
 
             List<Transazione> transazioneList = Query.loadTransazioneList(connessioneDatabase);
             List<EstrattoContoMensile> estrattoContoMensileList = Query.loadEstrattoContoMensileList(connessioneDatabase);
             List<ContoCorrente> contoCorrenteList = Query.loadContoCorrenteList(connessioneDatabase);
-            //TODO Togliere mappe create qui e crearle private nelle classi
-            ReportCreator reportCreator = new ReportCreator(pathFinale, transazioneList, estrattoContoMensileList,
-                    contoCorrenteList);
+            ReportCreator reportCreator = new ReportCreator(pathFinale, transazioneList, estrattoContoMensileList, contoCorrenteList);
 
             reportCreator.stampaSuFile();
 
@@ -40,11 +38,8 @@ public class Program {
             throw new RuntimeException(exception);
         } finally {
             closeConnection(database);
-            // } catch (SQLException exception) {
-             //   System.out.println("ERRORE DISCONNESSIONE DATABASE | " + exception.getMessage());
-               // throw new RuntimeException(exception);
             }
-        }
+    }
 
     private static void closeConnection(DatabaseManager database) {
         try {
@@ -54,5 +49,5 @@ public class Program {
             throw new RuntimeException(e);
         }
     }
-}
+
 }

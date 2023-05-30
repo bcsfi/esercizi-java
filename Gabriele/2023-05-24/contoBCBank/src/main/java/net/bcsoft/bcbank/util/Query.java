@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Query {
 
-    public static List<Transazione> loadTransazioneList(Connection connessione) throws SQLException, ClassNotFoundException {
+    public static List<Transazione> loadTransazioneList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM transazioni";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -41,7 +41,7 @@ public class Query {
         return listaUscita;
     }
 
-    public static List<EstrattoContoMensile> loadEstrattoContoMensileList(Connection connessione) throws SQLException, ClassNotFoundException {
+    public static List<EstrattoContoMensile> loadEstrattoContoMensileList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM estratto_conto_mensile";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -63,7 +63,7 @@ public class Query {
         return listaUscita;
     }
 
-    public static List<ContoCorrente> loadContoCorrenteList(Connection connessione) throws SQLException, ClassNotFoundException {
+    public static List<ContoCorrente> loadContoCorrenteList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM conto_corrente";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
