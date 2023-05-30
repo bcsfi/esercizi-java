@@ -14,8 +14,7 @@ import java.util.Scanner;
 
 public class Program {
 
-    public void start() {
-
+    public static void start () {
         Scanner input = new Scanner(System.in);
         System.out.println("Inserire il path dove salvare i file: ");
         String pathFinale = input.next();
