@@ -11,7 +11,7 @@ public class MapCreation {
     private Map<Integer, Integer> aggregaTransazioniMap = new HashMap<>();
     private Map<Integer, Double> giacenzaFinaleMap = new HashMap<>();
 
-    public MapCreation(Map<Integer, Integer> aggregaTransazioniMap, Map<Integer, Double> giacenzaFinaleMap){
+    public MapCreation(Map<Integer, Double> giacenzaFinaleMap, Map<Integer, Integer> aggregaTransazioniMap){
 
     }
 

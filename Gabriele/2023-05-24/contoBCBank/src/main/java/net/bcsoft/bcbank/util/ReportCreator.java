@@ -15,17 +15,13 @@ public class ReportCreator {
     private List<Transazione> transazioneList = new ArrayList<>();
     private List<EstrattoContoMensile> estrattoContoMensileList = new ArrayList<>();
     private List<ContoCorrente> contoCorrenteList = new ArrayList<>();
-    private Map <Integer, Integer> aggregaTransazione = new HashMap<>();
-    private Map<Integer, Double> aggregaGiacenze =new HashMap<>();
 
     public ReportCreator(String pathFinale, List<Transazione> transazioneList, List<EstrattoContoMensile> estrattoContoMensileList,
-                         List<ContoCorrente> contoCorrenteList, Map <Integer, Integer> aggregaTransazione, Map<Integer, Double> aggregaGiacenze) {
+                         List<ContoCorrente> contoCorrenteList) {
         this.pathFinale = pathFinale;
         this.transazioneList = transazioneList;
         this.estrattoContoMensileList = estrattoContoMensileList;
         this.contoCorrenteList = contoCorrenteList;
-        this.aggregaTransazione = aggregaTransazione;
-        this.aggregaGiacenze = aggregaGiacenze;
 
     }
 
