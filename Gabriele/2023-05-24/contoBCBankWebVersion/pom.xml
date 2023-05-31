@@ -6,6 +6,7 @@
 
     <groupId>net.bcsoft</groupId>
     <artifactId>contoBCBankWebVersion</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -20,6 +21,12 @@
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
         </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -32,7 +39,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>net.bcsoft.panelreport.PannelliSolari</mainClass>
+                            <mainClass>net.bcsoft.bcbank.main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
