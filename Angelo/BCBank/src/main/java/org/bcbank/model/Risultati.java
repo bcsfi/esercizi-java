@@ -3,10 +3,10 @@ package org.bcbank.model;
 public class Risultati {
 
     private String iban;
-    private double numeroTransazioni;
+    private int numeroTransazioni;
     private double giacenzaMensileConto;
 
-    public Risultati(String iban, double numeroTransazioni, double giacenzaMensileConto){
+    public Risultati(String iban, int numeroTransazioni, double giacenzaMensileConto){
         this.iban=iban;
         this.numeroTransazioni=numeroTransazioni;
         this.giacenzaMensileConto=giacenzaMensileConto;
@@ -18,11 +18,11 @@ public class Risultati {
     public void setIban(String iban) {
         this.iban = iban;
     }
-    public double getNumero() {
+    public int getNumero() {
         return numeroTransazioni;
     }
-    public void setNumero(double numero_transizioni) {
-        this.numeroTransazioni = numero_transizioni;
+    public void setNumero(int numeroTransazioni) {
+        this.numeroTransazioni = numeroTransazioni;
     }
     public void addOne(){
         this.numeroTransazioni+=1;
@@ -30,7 +30,7 @@ public class Risultati {
     public double getGiacenza() {
         return giacenzaMensileConto;
     }
-    public void setGiacenza(double giacenza_mensile_conto) {
-        this.giacenzaMensileConto = giacenza_mensile_conto;
+    public void setGiacenza(double giacenzaMensileConto) {
+        this.giacenzaMensileConto = giacenzaMensileConto;
     }
 }
