@@ -6,27 +6,24 @@ import net.bcsoft.bcbank.model.Transazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-//TODO: Rendere Giacenze e Transazioni private, creare costruttore che accetta liste
 public class ReportCreator {
-    private String pathFinale;
-
     private List<Transazione> transazioneList = new ArrayList<>();
     private List<EstrattoContoMensile> estrattoContoMensileList = new ArrayList<>();
     private List<ContoCorrente> contoCorrenteList = new ArrayList<>();
 
-    public ReportCreator(String pathFinale, List<Transazione> transazioneList, List<EstrattoContoMensile> estrattoContoMensileList,
+    public ReportCreator(List<Transazione> transazioneList, List<EstrattoContoMensile> estrattoContoMensileList,
                          List<ContoCorrente> contoCorrenteList) {
-        this.pathFinale = pathFinale;
         this.transazioneList = transazioneList;
         this.estrattoContoMensileList = estrattoContoMensileList;
         this.contoCorrenteList = contoCorrenteList;
-
     }
 
-
-    public void stampaSuFile()
+    public String outputWeb()
             throws IOException, SQLException, ClassNotFoundException {
         StringBuilder output = new StringBuilder();
         MapCreation mapCreation = new MapCreation();
@@ -42,6 +39,6 @@ public class ReportCreator {
                           "GIACENZA FINALE " + conteggioGiacenze + "\n");
         }
 
-        FileManager.buildFile(pathFinale, "ReportTransazioni.txt", output.toString());
+        return output.toString();
     }
 }
