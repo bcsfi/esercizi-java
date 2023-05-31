@@ -5,38 +5,38 @@ import java.time.Year;
 
 public class EstrattoContoMensile
 {
-    private Long id_EstrattoContoMensile; // Key
-    private Long id_ContoCorrente; // Foreign key
+    private Long id; // Key
+    private Long idContoCorrente; // Foreign key
     private Year anno;
     private Month mese;
     private Double giacenzaInizioMese;
 
-    public EstrattoContoMensile(Long id_EstrattoContoMensile, Long id_ContoCorrente, Year anno, Month mese, Double giacenzaInizioMese)
+    public EstrattoContoMensile(Long id, Long idContoCorrente, Year anno, Month mese, Double giacenzaInizioMese)
     {
-        this.id_EstrattoContoMensile = id_EstrattoContoMensile;
-        this.id_ContoCorrente = id_ContoCorrente;
+        this.id = id;
+        this.idContoCorrente = idContoCorrente;
         this.anno = anno;
         this.mese = mese;
         this.giacenzaInizioMese = giacenzaInizioMese;
     }
 
-    public Long getId_EstrattoContoMensile()
+    public Long getId()
     {
-        return id_EstrattoContoMensile;
+        return id;
     }
 
-    public void setId_EstrattoContoMensile(Long id_EstrattoContoMensile) {
-        this.id_EstrattoContoMensile = id_EstrattoContoMensile;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getId_ContoCorrente()
+    public Long getIdContoCorrente()
     {
-        return id_ContoCorrente;
+        return idContoCorrente;
     }
 
-    public void setId_ContoCorrente(Long id_ContoCorrente)
+    public void setIdContoCorrente(Long idContoCorrente)
     {
-        this.id_ContoCorrente = id_ContoCorrente;
+        this.idContoCorrente = idContoCorrente;
     }
 
     public Year getAnno()

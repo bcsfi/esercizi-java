@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class Transazione
 {
-    private Long id_Transazione; // Key
-    private Long id_ContoCorrente; // Foreign Key
+    private Long id; // Key
+    private Long idContoCorrente; // Foreign Key
     private Double importo;
     private LocalDateTime dataOraTransazione;
     private String identificativoAttore;
@@ -13,32 +13,32 @@ public class Transazione
 
     public Transazione(Long id_Transazione, Long id_ContoCorrente, Double importo, LocalDateTime dataOraTransazione, String identificativoAttore, MezzoPagamentoEnum mezzoPagamento)
     {
-        this.id_Transazione = id_Transazione;
-        this.id_ContoCorrente = id_ContoCorrente;
+        this.id = id_Transazione;
+        this.idContoCorrente = id_ContoCorrente;
         this.importo = importo;
         this.dataOraTransazione = dataOraTransazione;
         this.identificativoAttore = identificativoAttore;
         this.mezzoPagamento = mezzoPagamento;
     }
 
-    public Long getId_Transazione()
+    public Long getId()
     {
-        return id_Transazione;
+        return id;
     }
 
-    public void setId_Transazione(Long id_Transazione)
+    public void setId(Long id)
     {
-        this.id_Transazione = id_Transazione;
+        this.id = id;
     }
 
-    public Long getId_ContoCorrente()
+    public Long getIdContoCorrente()
     {
-        return id_ContoCorrente;
+        return idContoCorrente;
     }
 
-    public void setId_ContoCorrente(Long id_ContoCorrente)
+    public void setIdContoCorrente(Long idContoCorrente)
     {
-        this.id_ContoCorrente = id_ContoCorrente;
+        this.idContoCorrente = idContoCorrente;
     }
 
     public Double getImporto()
