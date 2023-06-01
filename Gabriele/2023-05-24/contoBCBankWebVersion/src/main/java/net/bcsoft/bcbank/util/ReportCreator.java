@@ -32,6 +32,7 @@ public class ReportCreator {
         aggregaTransazioniMap = mapCreation.aggregaTransazioni(transazioneList);
         giacenzaFinaleMap = mapCreation.aggregaGiacenze(estrattoContoMensileList, transazioneList);
     }
+
     public String HtmlOutput()
             throws IOException, SQLException, ClassNotFoundException {
         String output = "";

@@ -1,4 +1,4 @@
-package net.bcsoft.bcbank;
+package net.bcsoft.bcbank.web;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,9 +23,9 @@ public class ReportServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter writer = null;
         String output = null;
-        try { 
+        try {
             writer = response.getWriter();
-            output = createStringReport();
+            output = createHtmlReport();
         } catch (IOException e) {
             output = "ERRORE: " + e.getMessage();
         }
@@ -33,7 +33,7 @@ public class ReportServlet extends HttpServlet {
         writer.flush();
     }
 
-    private String createStringReport() {
+    private String createHtmlReport() {
         DatabaseManager database = null;
         String output = null;
 
