@@ -16,28 +16,59 @@ public class ReportCreator {
     private List<EstrattoContoMensile> estrattoContoMensileList = new ArrayList<>();
     private List<ContoCorrente> contoCorrenteList = new ArrayList<>();
 
+    private Map<Integer, Integer> aggregaTransazioniMap;
+    private Map<Integer, Double> giacenzaFinaleMap;
+
     public ReportCreator(List<Transazione> transazioneList, List<EstrattoContoMensile> estrattoContoMensileList,
                          List<ContoCorrente> contoCorrenteList) {
         this.transazioneList = transazioneList;
         this.estrattoContoMensileList = estrattoContoMensileList;
         this.contoCorrenteList = contoCorrenteList;
+        popolaMappe();
     }
 
-    public String outputWeb()
-            throws IOException, SQLException, ClassNotFoundException {
-        StringBuilder output = new StringBuilder();
+    private void popolaMappe(){
         MapCreation mapCreation = new MapCreation();
-        Map<Integer, Integer> aggregaTransazioniMap = mapCreation.aggregaTransazioni(transazioneList);
-        Map<Integer, Double> giacenzaFinaleMap = mapCreation.aggregaGiacenze(estrattoContoMensileList, transazioneList);
+        aggregaTransazioniMap = mapCreation.aggregaTransazioni(transazioneList);
+        giacenzaFinaleMap = mapCreation.aggregaGiacenze(estrattoContoMensileList, transazioneList);
+    }
+    public String HtmlOutput()
+            throws IOException, SQLException, ClassNotFoundException {
+        String output = "";
+
+        String header =
+                "<!DOCTYPE html>" +
+                "<html>\n" +
+                "  <head>\n" +
+                "       <title>BCBank | Report</title>\n" +
+                "   </head>\n" +
+                "   <body>\n" +
+                "       <table>\n \n" +
+                "           <tr>\n" +
+                "               <th>ID</th>\n" +
+                "               <th>CONTEGGIO GIACENZE</th>\n" +
+                "               <th>CONTEGGIO TRANSAZIONE</th>\n" +
+                "           </tr>\n \n";
+        output += header;
 
         for (ContoCorrente contoCorrente : contoCorrenteList) {
             Integer id = contoCorrente.getId();
             Integer conteggioTransazioni = Optional.ofNullable(aggregaTransazioniMap.get(id)).orElse(0);
             Double conteggioGiacenze = Optional.ofNullable(giacenzaFinaleMap.get(id)).orElse(0.0);
-            output.append("ID UTENTE: " + id + " | " +
-                          "NUMERO TRANSAZIONI NEL MESE: " + conteggioTransazioni + " | " +
-                          "GIACENZA FINALE " + conteggioGiacenze + "\n");
+            String rigaTabella =
+                        "           <tr>\n" +
+                        "               <td>" + id + "</td>\n" +
+                        "               <td>" + conteggioGiacenze + "</td>\n" +
+                        "               <td>" + conteggioTransazioni + "</td>\n" +
+                        "           </tr>\n \n";
+            output += rigaTabella;
         }
+
+        String chiusuraTag =
+                        "       </table>\n" +
+                        "   </body>\n" +
+                        "</html>";
+        output += chiusuraTag;
 
         return output.toString();
     }

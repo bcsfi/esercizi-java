@@ -20,7 +20,7 @@ import java.util.List;
 @WebServlet(name = "Report", urlPatterns = "/report")
 public class ReportServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        response.setContentType("text/plain");
+        response.setContentType("text/html");
         PrintWriter writer = null;
         String output = null;
         try { 
@@ -39,14 +39,14 @@ public class ReportServlet extends HttpServlet {
 
         try {
             database = new DatabaseManager("localhost", 5432,
-                    "bc_bank", "postgres", "Gabry0308");
+                    "bcbank", "postgres", "admin");
             Connection connessioneDatabase = database.getConnection();
 
             List<Transazione> transazioneList = Query.loadTransazioneList(connessioneDatabase);
             List<EstrattoContoMensile> estrattoContoMensileList = Query.loadEstrattoContoMensileList(connessioneDatabase);
             List<ContoCorrente> contoCorrenteList = Query.loadContoCorrenteList(connessioneDatabase);
             ReportCreator reportCreator = new ReportCreator(transazioneList, estrattoContoMensileList, contoCorrenteList);
-            output = reportCreator.outputWeb();
+            output = reportCreator.HtmlOutput();
 
         } catch (SQLException | IOException | ClassNotFoundException exception) {
             System.out.println("ERRORE GENERICO | " + exception.getMessage());
