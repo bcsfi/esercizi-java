@@ -41,13 +41,17 @@ public class ReportCreator {
                 "<html>\n" +
                 "  <head>\n" +
                 "       <title>BCBank | Report</title>\n" +
+                "       <style>" +
+                "           .font { text-align: center; font-family: Arial, Helvetica, sans-serif;}" +
+                "           th, td { border-top: 1px solid black; }" +
+                "       </style>" +
                 "   </head>\n" +
                 "   <body>\n" +
                 "       <table>\n \n" +
                 "           <tr>\n" +
-                "               <th>ID</th>\n" +
-                "               <th>CONTEGGIO GIACENZE</th>\n" +
-                "               <th>CONTEGGIO TRANSAZIONE</th>\n" +
+                "               <th class='font' style='color: black;'>ID</th>\n" +
+                "               <th class='font' style='color: black;'>Giacenza</th>\n" +
+                "               <th class='font' style='color: black;'>Transazioni</th>\n" +
                 "           </tr>\n \n";
         output += header;
 
@@ -57,9 +61,9 @@ public class ReportCreator {
             Double conteggioGiacenze = Optional.ofNullable(giacenzaFinaleMap.get(id)).orElse(0.0);
             String rigaTabella =
                         "           <tr>\n" +
-                        "               <td>" + id + "</td>\n" +
-                        "               <td>" + conteggioGiacenze + "</td>\n" +
-                        "               <td>" + conteggioTransazioni + "</td>\n" +
+                        "               <td class='font' style='color: grey;'>" + id + "</td>\n" +
+                        "               <td class='font' style='color: grey;'>" + conteggioGiacenze + "</td>\n" +
+                        "               <td class='font' style='color: grey;'>" + conteggioTransazioni + "</td>\n" +
                         "           </tr>\n \n";
             output += rigaTabella;
         }
