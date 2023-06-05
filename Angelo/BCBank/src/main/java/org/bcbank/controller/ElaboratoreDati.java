@@ -10,6 +10,7 @@ public class ElaboratoreDati {
     private final List<Transazione> elencoTransazioni;
     private final List<Conto> elencoConti;
     private final List<Estratto> elencoEstratti;
+
     public ElaboratoreDati(List<Transazione> elencoTransazioni, List<Conto> elencoConti, List<Estratto> elencoEstratti){
             this.elencoTransazioni=elencoTransazioni;
             this.elencoConti=elencoConti;
@@ -24,7 +25,6 @@ public class ElaboratoreDati {
             res.setGiacenza(calcolaGiacenza(conto));
             if(verificaData()){
                 listaDeiRisultati.add(res);
-                System.out.print("Aggiunto alla lista res... \n");
             } else {
                 System.out.print("FALSEE|");
             }
@@ -59,7 +59,6 @@ public class ElaboratoreDati {
                     }
 
                 }
-                return giacenza;
             }
         }
 

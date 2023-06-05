@@ -1,18 +1,20 @@
 package org.bcbank;
 import org.bcbank.controller.ElaboratoreDati;
 import org.bcbank.controller.ElaboratoreElenchi;
-import org.bcbank.controller.ReportWriter;
 import org.bcbank.jdbc.ConnectionProvider;
 import org.bcbank.model.Conto;
 import org.bcbank.model.Estratto;
+import org.bcbank.model.Risultati;
 import org.bcbank.model.Transazione;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Main {
-    public static void main(String[] args)  {
+public class ProgramManage {
+
+    List<Risultati> elencoRisultati;
+
+    public ProgramManage(){
 
         try {
 
@@ -26,14 +28,19 @@ public class Main {
 
             ElaboratoreDati elaboratoreDati = new ElaboratoreDati(elencoTransazioni, elencoConti, elencoEstratti);
 
-            ReportWriter.reportWrite("C:\\Users\\bcsoft\\Desktop\\Oggi\\result.txt", elaboratoreDati.creaListaDeiRisultati());
+            // ReportWriter.reportWrite("C:\\Users\\bcsoft\\Desktop\\Oggi\\result.txt", elaboratoreDati.creaListaDeiRisultati());
 
+            this.elencoRisultati=elaboratoreDati.creaListaDeiRisultati();
 
         } catch (ClassNotFoundException ignored){
 
-        } catch (SQLException | IOException e) {
+        } catch (SQLException  e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public List<Risultati> getListaRisultati(){
+        return this.elencoRisultati;
     }
 }

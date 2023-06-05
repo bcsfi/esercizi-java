@@ -63,7 +63,6 @@ public class ElaboratoreElenchi {
         {
             Conto conto = new Conto(resultQuery.getInt(1), resultQuery.getString(2), resultQuery.getString(3),
                     resultQuery.getString(4), resultQuery.getBigDecimal(5));
-            System.out.print(conto + "\n");
             elencoConti.add(conto);
         }
 

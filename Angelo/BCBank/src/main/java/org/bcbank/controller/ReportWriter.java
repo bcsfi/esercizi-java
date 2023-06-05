@@ -14,15 +14,16 @@ public class ReportWriter {
         StringBuilder strRes = new StringBuilder();
         Path fsToWrite = Files.createFile(Paths.get(pathToSave));
 
-        String strTitle = String.format("%-30s|¯\\_(ツ)_/¯%-30s|¯\\_(ツ)_/¯|%-30s\n", "IBAN", "NUMERO TRANSAZIONI", "GIACENZA");
+        String strTitle = String.format("%-30s|%-30s|%-30s\n", "IBAN", "NUMERO TRANSAZIONI", "GIACENZA");
         strRes.append(strTitle);
 
         for (Risultati resultato : listOfResult){
-            String strLine = String.format("%-40s%-40d %-40f\n", resultato.getIban(), resultato.getNumero(), resultato.getGiacenza());
+            String strLine = String.format("| %-30s|%-30d|%-30f\n", resultato.getIban(), resultato.getNumero(), resultato.getGiacenza());
             strRes.append(strLine);
         }
 
         Files.writeString(fsToWrite, strRes);
     }
+
 
 }
