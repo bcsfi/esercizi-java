@@ -1,0 +1,49 @@
+// Tentativo di funzione generica eseguiQuesry
+    /*public <T> List<T> eseguiQuery(String query)
+    {
+        ResultSet resultSet = LetturaScritturaDB.inviaQuery(query);
+        List<T> risultati = new ArrayList<>();
+        int numColonne = 0;
+
+        try
+        {
+            numColonne = resultSet.getMetaData().getColumnCount();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        List<T> riga;
+
+        while (true)
+        {
+            try
+            {
+                if (!resultSet.next()) break;
+            }
+            catch (SQLException e)
+            {
+                throw new RuntimeException(e);
+            }
+
+            riga = new ArrayList<>();
+
+            for (int i = 1; i <= numColonne; i++)
+            {
+                try
+                {
+                    riga.add((T) resultSet.getObject(i));
+                }
+                catch (SQLException e)
+                {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            risultati.add((T) riga);
+        }
+
+        return risultati;
+    }
+    */
