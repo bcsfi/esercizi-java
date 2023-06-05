@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.bcsoft</groupId>
-    <artifactId>contoBCBankWebVersion</artifactId>
+    <artifactId>BCvinaino</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
 
