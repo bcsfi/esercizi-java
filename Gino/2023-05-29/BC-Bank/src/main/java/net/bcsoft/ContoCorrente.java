@@ -2,12 +2,12 @@ package net.bcsoft;
 
 public class ContoCorrente
 {
-    private Long id_ContoCorrente; // Key
+    private Long id; // Key
     private String iban, nome, cognome, indirizzo, telefono;
 
-    public ContoCorrente(Long id_ContoCorrente, String iban, String nome, String cognome, String indirizzo, String telefono)
+    public ContoCorrente(Long id, String iban, String nome, String cognome, String indirizzo, String telefono)
     {
-        this.id_ContoCorrente = id_ContoCorrente;
+        this.id = id;
         this.iban = iban;
         this.nome = nome;
         this.cognome = cognome;
@@ -15,14 +15,14 @@ public class ContoCorrente
         this.telefono = telefono;
     }
 
-    public Long getId_ContoCorrente()
+    public Long getId()
     {
-        return id_ContoCorrente;
+        return id;
     }
 
-    public void setId_ContoCorrente(Long id_ContoCorrente)
+    public void setId(Long id)
     {
-        this.id_ContoCorrente = id_ContoCorrente;
+        this.id = id;
     }
 
     public String getIban()

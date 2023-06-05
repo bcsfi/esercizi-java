@@ -6,6 +6,5 @@ public class Main
     {
         GestoreContiCorrenti gestoreContiCorrenti = new GestoreContiCorrenti();
         gestoreContiCorrenti.creaFile();
-
     }
 }

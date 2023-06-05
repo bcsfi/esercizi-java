@@ -57,5 +57,5 @@ INSERT INTO transazioni (importo, conto_corrente_id,
 	('1200.00', '3', '2023/05/25', '12:18', 'IT41G0300203280173229983298', 'APP');
 
 INSERT INTO estratto_conto_mensile (conto_corrente_id, anno, mese, giacenza_inizio_mese) VALUES
-	('2', '2022', 'APRILE', '4000'),
-	('4', '2012', 'DICEMBRE', '80000');
+	('2', '2022', 'APRIL', '4000'),
+	('4', '2012', 'DECEMBER', '80000');

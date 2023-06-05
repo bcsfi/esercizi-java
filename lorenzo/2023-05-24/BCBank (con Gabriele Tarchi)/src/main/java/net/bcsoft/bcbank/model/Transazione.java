@@ -18,19 +18,6 @@ public class Transazione {
     public Transazione() {
     }
 
-    public Transazione(Integer idTransazione, Integer idRiferimentoContoCorrente,
-                       Double importo,
-                       LocalDate data, LocalTime ora,
-                       String ibanDestinatario,
-                       TipoTransazioneEnum tipoTransazione) {
-        this.idTransazione = idTransazione;
-        this.idRiferimentoContoCorrente = idRiferimentoContoCorrente;
-        this.importo = importo;
-        this.data = data;
-        this.ora = ora;
-        this.ibanDestinatario = ibanDestinatario;
-        this.tipoTransazione = tipoTransazione;
-    }
 
     public Integer getIdTransazione() {
         return idTransazione;
