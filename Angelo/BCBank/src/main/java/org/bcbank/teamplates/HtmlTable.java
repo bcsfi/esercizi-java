@@ -9,6 +9,7 @@ public class HtmlTable {
 
     public static String createHtmlTable(List<Risultati> elencoRisultati){
 
+
         String htmlResult =
                 "<html>" +
                 "<head>" +
