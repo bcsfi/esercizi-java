@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class Query {
 
-    public static List <Menu> creaMenu(Connection connessione) throws SQLException {
+    public static List <Menu> creaMenuList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM menu ";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -37,7 +37,7 @@ public class Query {
         return listaUscita;
     }
 
-    public static List <Ordine> creaOrdine(Connection connessione) throws SQLException {
+    public static List <Ordine> creaOrdineList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM ordini ";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -56,7 +56,7 @@ public class Query {
         return listaUscita;
     }
 
-    public static List <MenuOrdini> creaMenuOrdini(Connection connessione) throws SQLException {
+    public static List <MenuOrdini> creaMenuOrdiniList(Connection connessione) throws SQLException {
         String query = "SELECT * FROM menu_ordini";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -90,7 +90,7 @@ public class Query {
         Map <LocalDate, Double> mappaUscita = new HashMap<>();
         try{
             while(resultSet.next()){
-
+               mappaUscita.put(resultSet.getDate(1).toLocalDate(), resultSet.getDouble(2));
             }
         }finally{
             resultSet.close();
