@@ -57,7 +57,7 @@ public class ServletReport extends HttpServlet
                 "<!DOCTYPE html>\n" +
                 "   <html>" +
                 "       <body>" +
-                "           <h2> Giacommmmo Gay </h2>" +
+                "           <h2> Report </h2>" +
                 "           <table style=\"width:100%\">" +
                 "               <tr>" +
                 "                   <th> IBAN </th>" +
