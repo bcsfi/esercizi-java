@@ -34,7 +34,7 @@ public class FocacceServlet extends HttpServlet {
 
         try {
             database = new DatabaseManager("localhost", 5432,
-                    "bcbank", "postgres", "admin");
+                    "bc_vinaio", "postgres", "Gabry0308");
             Connection connessioneDatabase = database.getConnection();
 
 
