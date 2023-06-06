@@ -1,7 +1,5 @@
 package net.bcsoft.bcvinaino.model;
 
-import java.time.LocalDate;
-
 public class Menu {
     Short id;
     String nome;

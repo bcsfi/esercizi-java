@@ -13,9 +13,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.Optional;
 
-@WebServlet(name = "Incassi", urlPatterns = "/incassi")
+@WebServlet(name = "Incassi", urlPatterns = "/bcvinaino/incassi")
 public class IncassiServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html");
@@ -37,7 +36,7 @@ public class IncassiServlet extends HttpServlet {
 
         try {
             database = new DatabaseManager("localhost", 5432,
-                    "bc_vinaio", "postgres", "Gabry0308");
+                    "bcvinaino", "postgres", "admin");
             Connection connessioneDatabase = database.getConnection();
             incassiMensiliMap = Query.creaIncassiMensiliMap(connessioneDatabase);
 
@@ -52,36 +51,36 @@ public class IncassiServlet extends HttpServlet {
 
         String header =
                 "<!DOCTYPE html>" +
-                        "<html>\n" +
-                        "  <head>\n" +
-                        "       <title>BCBank | Report</title>\n" +
-                        "       <style>" +
-                        "           .font { text-align: center; font-family: Arial, Helvetica, sans-serif;}" +
-                        "           th, td { border-top: 1px solid black; }" +
-                        "       </style>" +
-                        "   </head>\n" +
-                        "   <body>\n" +
-                        "       <table>\n \n" +
-                        "           <tr>\n" +
-                        "               <th class='font' style='color: black;'>Data</th>\n" +
-                        "               <th class='font' style='color: black;'>Incasso</th>\n" +
-                        "           </tr>\n \n";
+                "<html>\n" +
+                "  <head>\n" +
+                "       <title>BC Vinaino | Report incassi</title>\n" +
+                "       <style>" +
+                "           .font { text-align: center; font-family: Arial, Helvetica, sans-serif;}" +
+                "           th, td { border-top: 1px solid black; }" +
+                "       </style>" +
+                "   </head>\n" +
+                "   <body>\n" +
+                "       <table>\n \n" +
+                "           <tr>\n" +
+                "               <th class='font' style='color: black;'>Data</th>\n" +
+                "               <th class='font' style='color: black;'>Incasso</th>\n" +
+                "           </tr>\n \n";
         output += header;
 
         for (LocalDate localDate : incassiMensiliMap.keySet()) {
             Double incasso = incassiMensiliMap.get(localDate);
             String rigaTabella =
                     "           <tr>\n" +
-                            "               <td class='font' style='color: grey;'>" + localDate + "</td>\n" +
-                            "               <td class='font' style='color: grey;'>" + incasso + "</td>\n" +
-                            "           </tr>\n \n";
+                    "               <td class='font' style='color: grey;'>" + localDate + "</td>\n" +
+                    "               <td class='font' style='color: grey;'>" + incasso + "</td>\n" +
+                    "           </tr>\n \n";
             output += rigaTabella;
         }
 
         String chiusuraTag =
                 "       </table>\n" +
-                        "   </body>\n" +
-                        "</html>";
+                "   </body>\n" +
+                "</html>";
         output += chiusuraTag;
 
         return output.toString();

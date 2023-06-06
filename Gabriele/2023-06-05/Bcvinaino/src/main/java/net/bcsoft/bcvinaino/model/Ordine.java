@@ -1,7 +1,6 @@
 package net.bcsoft.bcvinaino.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Ordine {
     Short idOrdine;
