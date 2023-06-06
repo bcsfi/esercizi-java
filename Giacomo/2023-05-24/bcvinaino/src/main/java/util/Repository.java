@@ -5,6 +5,8 @@ import model.Incasso;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Repository
@@ -15,14 +17,20 @@ public class Repository
     {
         List<Incasso> incassi = new ArrayList<>();
 
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("" +
+        PreparedStatement statement = connection.prepareStatement("" +
                 "SELECT ordini.dataora, COUNT(distinct ordini.id), SUM(menu.prezzo) " +
                 "FROM ordini JOIN scontrini ON ordini.id = scontrini.idordini " +
                 "   JOIN menu ON scontrini.idmenu = menu.id " +
-                "WHERE DATE_PART('day', CURRENT_DATE - ordini.dataora) < 30 " +
+                "WHERE ordini.dataora >= ? " +
                 "GROUP BY(ordini.dataora) " +
                 "ORDER BY ordini.dataora");
+
+        Calendar cal = new GregorianCalendar();
+        cal.add( Calendar.DAY_OF_MONTH, -15);
+        Date sqlDate = new Date(cal.getTimeInMillis());
+        statement.setDate(1, sqlDate);
+
+        ResultSet resultSet = statement.executeQuery();
 
         while (resultSet.next())
         {
@@ -39,13 +47,19 @@ public class Repository
     {
         List<Focaccia> focacce = new ArrayList<>();
 
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("" +
+        PreparedStatement statement = connection.prepareStatement("" +
                 "SELECT menu.nome, COUNT(*) " +
                 "FROM menu JOIN scontrini ON menu.id = scontrini.idmenu " +
                 "   JOIN ordini ON scontrini.idordini = ordini.id " +
-                "WHERE DATE_PART('day', CURRENT_DATE - ordini.dataora) < 30  " +
+                "WHERE ordini.dataora >= ? " +
                 "GROUP BY(menu.nome)");
+
+        Calendar cal = new GregorianCalendar();
+        cal.add(Calendar.DAY_OF_MONTH, -15);
+        Date sqlDate = new Date(cal.getTimeInMillis());
+        statement.setDate(1, sqlDate);
+
+        ResultSet resultSet = statement.executeQuery();
 
         while (resultSet.next())
         {
