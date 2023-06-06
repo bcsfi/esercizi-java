@@ -1,10 +1,9 @@
 package net.bcsoft.bcvinaino.web;
 
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import net.bcsoft.bcvinaino.model.Menu;
-import net.bcsoft.bcvinaino.model.Ordine;
 import net.bcsoft.bcvinaino.util.DatabaseManager;
 import net.bcsoft.bcvinaino.util.Query;
 
@@ -13,11 +12,11 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @WebServlet(name = "Incassi", urlPatterns = "/incassi")
-public class IncassiServlet {
+public class IncassiServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html");
         PrintWriter writer = null;
@@ -38,7 +37,7 @@ public class IncassiServlet {
 
         try {
             database = new DatabaseManager("localhost", 5432,
-                    "bcbank", "postgres", "admin");
+                    "bc_vinaio", "postgres", "Gabry0308");
             Connection connessioneDatabase = database.getConnection();
             incassiMensiliMap = Query.creaIncassiMensiliMap(connessioneDatabase);
 
@@ -49,7 +48,9 @@ public class IncassiServlet {
             closeDatabaseConnection(database);
         }
 
-        String output =
+        String output = "";
+
+        String header =
                 "<!DOCTYPE html>" +
                         "<html>\n" +
                         "  <head>\n" +
@@ -60,10 +61,30 @@ public class IncassiServlet {
                         "       </style>" +
                         "   </head>\n" +
                         "   <body>\n" +
-                        "<p>" + incassiMensiliMap + "</p>\n" +
+                        "       <table>\n \n" +
+                        "           <tr>\n" +
+                        "               <th class='font' style='color: black;'>Data</th>\n" +
+                        "               <th class='font' style='color: black;'>Incasso</th>\n" +
+                        "           </tr>\n \n";
+        output += header;
+
+        for (LocalDate localDate : incassiMensiliMap.keySet()) {
+            Double incasso = incassiMensiliMap.get(localDate);
+            String rigaTabella =
+                    "           <tr>\n" +
+                            "               <td class='font' style='color: grey;'>" + localDate + "</td>\n" +
+                            "               <td class='font' style='color: grey;'>" + incasso + "</td>\n" +
+                            "           </tr>\n \n";
+            output += rigaTabella;
+        }
+
+        String chiusuraTag =
+                "       </table>\n" +
                         "   </body>\n" +
                         "</html>";
-        return output;
+        output += chiusuraTag;
+
+        return output.toString();
     }
 
     private void closeDatabaseConnection(DatabaseManager database) {

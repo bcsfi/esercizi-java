@@ -81,10 +81,10 @@ public class Query {
 
 
     public static Map<LocalDate, Double> creaIncassiMensiliMap (Connection connessione) throws SQLException {
-        String query = "SELECT ordini.data_ordine, SUM(menu.prezzo * menu_ordini.quantita)" +
-                "FROM ordine JOIN menu_ordini ON ordini.id = menu_ordini.id_ordini" +
-                "JOIN menu on menu_ordini.id_menu = menu.id " +
-                "GROUP BY ordini.data";
+        String query = "SELECT ordini.data_ordine, SUM(menu.prezzo * menu_ordini.quantita) \n" +
+                "FROM ordini JOIN menu_ordini ON ordini.id_ordine = menu_ordini.id_ordini \n" +
+                "JOIN menu on menu_ordini.id_menu = menu.id_menu \n" +
+                "GROUP BY ordini.data_ordine";
         Statement statement = connessione.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         Map <LocalDate, Double> mappaUscita = new HashMap<>();

@@ -1,6 +1,7 @@
 package net.bcsoft.bcvinaino.web;
 
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.bcsoft.bcvinaino.util.DatabaseManager;
@@ -10,8 +11,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name = "Focacce", urlPatterns = "bcvinaino/focacce")
-public class FocacceServlet {
+@WebServlet(name = "Focacce", urlPatterns = "/focacce")
+public class FocacceServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html");
