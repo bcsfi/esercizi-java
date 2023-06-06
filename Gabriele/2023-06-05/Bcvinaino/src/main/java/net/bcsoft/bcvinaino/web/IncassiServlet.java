@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Map;
 
-@WebServlet(name = "Incassi", urlPatterns = "/bcvinaino/incassi")
+@WebServlet(name = "Incassi", urlPatterns = "/incassi")
 public class IncassiServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html");

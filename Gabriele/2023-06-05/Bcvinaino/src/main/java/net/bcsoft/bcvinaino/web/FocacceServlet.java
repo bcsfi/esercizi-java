@@ -13,7 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
 
-@WebServlet(name = "Focacce", urlPatterns = "/bcvinaino/focacce")
+@WebServlet(name = "Focacce", urlPatterns = "/focacce")
 public class FocacceServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -39,7 +39,6 @@ public class FocacceServlet extends HttpServlet {
                     "bcvinaino", "postgres", "admin");
             Connection connessioneDatabase = database.getConnection();
             focacceMap = Query.creaFocacceMap(connessioneDatabase);
-
 
         } catch (SQLException | ClassNotFoundException exception) {
             System.out.println("ERRORE GENERICO | " + exception.getMessage());
