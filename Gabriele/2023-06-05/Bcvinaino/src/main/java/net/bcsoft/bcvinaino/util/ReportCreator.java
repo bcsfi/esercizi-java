@@ -18,7 +18,4 @@ public class ReportCreator {
             this.menuOrdiniList = menuOrdiniList;
             this.ordineList = ordineList;
         }
-
-
-
 }
