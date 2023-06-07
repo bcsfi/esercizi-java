@@ -66,4 +66,19 @@ public class Query {
         return mappaUscita;
     }
 
+    public static void inserisciMenu (Connection connessione, Short id, Integer quantita) throws SQLException {
+        Date sqlDate = new Date(new java.util.Date().getTime());
+        String query1 = "INSERT INTO ordini (data_ordine)\n" +
+                "VALUES ('?')\n";
+        PreparedStatement preparedStatement1 = connessione.prepareStatement(query1);
+        preparedStatement1.setDate(1, sqlDate);
+        ResultSet resultSet = preparedStatement1.getGeneratedKeys();
+
+
+        String query2 = "INSERT INTO menu_ordini (id_menu, id_ordini, quantita)\n" +
+                "VALUES ('?', '?', '?')";
+        PreparedStatement preparedStatement2 = connessione.prepareStatement(query2);
+
+    }
+
 }
