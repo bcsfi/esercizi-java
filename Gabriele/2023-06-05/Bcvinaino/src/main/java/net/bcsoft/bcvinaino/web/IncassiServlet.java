@@ -35,8 +35,7 @@ public class IncassiServlet extends HttpServlet {
         Map<LocalDate, Double> incassiMensiliMap;
 
         try {
-            database = new DatabaseManager("localhost", 5432,
-                    "bcvinaino", "postgres", "admin");
+            database = new DatabaseManager();
             Connection connessioneDatabase = database.getConnection();
             incassiMensiliMap = Query.creaIncassiMensiliMap(connessioneDatabase);
 

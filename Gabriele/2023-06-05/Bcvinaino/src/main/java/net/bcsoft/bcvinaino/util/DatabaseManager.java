@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-    private String ipAddress, databaseName, username, password;
+    private String ipAddress;
+    private String databaseName;
+    private String username;
+    private String password;
     private Integer port;
     private Connection connection = null;
 
@@ -16,6 +19,15 @@ public class DatabaseManager {
         this.databaseName = databaseName;
         this.username = username;
         this.password = password;
+    }
+
+    public DatabaseManager() throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        this.ipAddress = "localhost";
+        this.port = 5432;
+        this.databaseName = "bcvinaino";
+        this.username = "postgres";
+        this.password = "admin";
     }
 
     public Connection getConnection() throws SQLException {

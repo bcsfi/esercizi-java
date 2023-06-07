@@ -35,8 +35,7 @@ public class FocacceServlet extends HttpServlet {
         Map<String, Integer> focacceMap;
 
         try {
-            database = new DatabaseManager("localhost", 5432,
-                    "bcvinaino", "postgres", "admin");
+            database = new DatabaseManager();
             Connection connessioneDatabase = database.getConnection();
             focacceMap = Query.creaFocacceMap(connessioneDatabase);
 

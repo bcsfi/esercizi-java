@@ -23,8 +23,7 @@ public class InsertOrdineServlet extends HttpServlet {
     private void insert() {
         DatabaseManager database = null;
         try {
-            database = new DatabaseManager("localhost", 5432,
-                    "bcvinaino", "postgres", "admin");
+            database = new DatabaseManager();
             Connection connessioneDatabase = database.getConnection();
 
 
