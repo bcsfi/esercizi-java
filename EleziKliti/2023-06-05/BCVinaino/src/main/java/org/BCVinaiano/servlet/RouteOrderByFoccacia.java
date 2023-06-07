@@ -39,6 +39,7 @@ public class RouteOrderByFoccacia extends HttpServlet {
                             "menu.focaccia " +
                             "HAVING\n" +
                              "COUNT(*) > 3;"));
+
             writer.println(htmlStr);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
