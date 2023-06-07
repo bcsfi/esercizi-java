@@ -8,7 +8,6 @@ import net.bcsoft.bcvinaino.util.DatabaseManager;
 import net.bcsoft.bcvinaino.util.Query;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @WebServlet(name = "InsertOrdine", urlPatterns = "/insertordine")
@@ -17,10 +16,15 @@ public class InsertOrdineServlet extends HttpServlet {
     private Integer quantita;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        menu_id = Short.valueOf(request.getParameter("menu_id"));
-        quantita = Integer.valueOf(request.getParameter("quantita"));
-        insert();
+        try {
+            menu_id = Short.valueOf(request.getParameter("menu_id"));
+            quantita = Integer.valueOf(request.getParameter("quantita"));
+        } catch(IllegalArgumentException exception) {
+            System.out.println("ERRORE INSERIMENTO UTENTE | " + exception.getMessage());
+            exception.printStackTrace();
+        }
 
+        insert();
     }
 
     private void insert() {
@@ -31,7 +35,7 @@ public class InsertOrdineServlet extends HttpServlet {
             Query.inserisciMenu(connessioneDatabase, menu_id, quantita);
 
         } catch (SQLException | ClassNotFoundException exception) {
-            System.out.println("ERRORE GENERICO | " + exception.getMessage());
+            System.out.println("ERRORE INSERIMENTO DATI NEL DATABASE | " + exception.getMessage());
             exception.printStackTrace();
             throw new RuntimeException(exception);
         } finally {

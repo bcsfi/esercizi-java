@@ -12,7 +12,8 @@ public class DatabaseManager {
     private Integer port;
     private Connection connection = null;
 
-    public DatabaseManager(String ipAddress, Integer port, String databaseName, String username, String password) throws ClassNotFoundException {
+    public DatabaseManager(String ipAddress, Integer port, String databaseName, String username, String password)
+            throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         this.ipAddress = ipAddress;
         this.port = port;
