@@ -1,10 +1,6 @@
 package net.bcsoft.bcvinaino.util;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -68,22 +64,27 @@ public class Query {
 
     public static void inserisciMenu (Connection connessione, Short idMenu, Integer quantita) throws SQLException {
         Date sqlDate = new Date(new java.util.Date().getTime());
-        String query1 = "INSERT INTO ordini (data_ordine)\n" +
-                "VALUES ('?')\n";
-        PreparedStatement preparedStatement1 = connessione.prepareStatement(query1);
+        String query1 = "INSERT INTO ordini (data_ordine) " +
+                "VALUES (?)";
+        PreparedStatement preparedStatement1 = connessione.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
         preparedStatement1.setDate(1, sqlDate);
+        preparedStatement1.executeUpdate();
         ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
-        Integer idOrdine = resultSet1.getInt(1);
+        if(resultSet1.next()){
+            Integer idOrdine = resultSet1.getInt(1);
+
+
+            String query2 = "INSERT INTO menu_ordini (id_ordini, id_menu, quantita)\n" +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement2 = connessione.prepareStatement(query2);
+            preparedStatement2.setInt(1, idOrdine);
+            preparedStatement2.setShort(2, idMenu);
+            preparedStatement2.setInt(3, quantita);
+            preparedStatement2.executeUpdate();
+            preparedStatement2.close();
+        }
         resultSet1.close();
         preparedStatement1.close();
-
-        String query2 = "INSERT INTO menu_ordini (id_menu, id_ordini, quantita)\n" +
-                "VALUES ('?', '?', '?')";
-        PreparedStatement preparedStatement2 = connessione.prepareStatement(query2);
-        preparedStatement2.setShort(1, idMenu);
-        preparedStatement2.setInt(2, idOrdine);
-        preparedStatement2.setInt(3, quantita);
-        preparedStatement2.close();
     }
 
 }

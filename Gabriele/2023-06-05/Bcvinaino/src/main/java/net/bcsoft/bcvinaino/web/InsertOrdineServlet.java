@@ -19,6 +19,8 @@ public class InsertOrdineServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         menu_id = Short.valueOf(request.getParameter("menu_id"));
         quantita = Integer.valueOf(request.getParameter("quantita"));
+        insert();
+
     }
 
     private void insert() {
@@ -30,6 +32,7 @@ public class InsertOrdineServlet extends HttpServlet {
 
         } catch (SQLException | ClassNotFoundException exception) {
             System.out.println("ERRORE GENERICO | " + exception.getMessage());
+            exception.printStackTrace();
             throw new RuntimeException(exception);
         } finally {
             closeDatabaseConnection(database);
