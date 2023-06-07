@@ -25,18 +25,18 @@
     <div class="container_box">
         <div class="box">
             <h1> Controlla i tuoi guadagni Mensili.</h1>
-            <a> Controllo i tuoi incassi, quanti ne hai fatti in questo mese, per ogni data.</a>
-            <a class="button"> Controlla </a>
+            <a class="descrizione"> Controllo i tuoi incassi, quanti ne hai fatti in questo mese, per ogni data.</a>
+            <a class="button" href="./incassi"> Controlla </a>
         </div>
         <div class="box">
             <h1> Controlla i Ordini delle focaccie</h1>
-            <a> Controllo quanti ordini sono stati fatti per ogni focaccia..</a>
-            <a class="button"> Controlla </a>
+            <a class="descrizione"> Controllo quanti ordini sono stati fatti per ogni focaccia..</a>
+            <a class="button" href="./foccacie"> Controlla </a>
         </div>
         <div class="box">
             <h1> Inserisci un nuovo ordine </h1>
-            <a> Crea e inserisci un nuovo ordine.</a>
-            <a class="button"> Controlla </a>
+            <a class="descrizione" > Crea e inserisci un nuovo ordine.</a>
+            <a class="button" href="./insert.html"> Controlla </a>
         </div>
     </div>
 </body>
@@ -47,6 +47,7 @@
         display: flex;
         width: 100%;
         text-align: center;
+
     }
 
     .button {
@@ -56,14 +57,24 @@
         padding: 0.5em;
         margin: 0.8em;
         cursor: pointer;
+        margin-top: 3em;
+
     }
 
+.descrizione {
+    display: block;
+    height: 130px;
+    width: 80%;
+    margin: auto;
+    margin-top: 0.3em;
+}
     .box {
         flex: 1;
         margin: 1em;
         padding: 0.5em;
         border: 2px solid rgba(128, 128, 128, 0.233);
         border-radius: 5px;
+
     }
 
     * {

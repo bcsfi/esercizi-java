@@ -11,33 +11,53 @@
     <title>Document</title>
 </head>
 
-<body>
-    <header>
-        <div class="contnt">
-            <a class="title">
-                BCbanini
-            </a>
-            <a class="back" href="http://localhost:8080/java/home.html">
-                back to home
-            </a>
-        </div>
-    </header>
-    <form action="./insertordine" method="post" class="insert">
-        <div class="box">
-            <input type="text" name="menu_id" placeholder="menu id" />
-        </div>
-        <div class="box">
-            <input type="number" name="qta" placeholder="quantita" />
-        </div>
+<body style="background-color: rgb(14, 71, 136);">
+<header>
+    <div class="contnt">
+        <a class="title">
+            BCbanini
+        </a>
+        <a class="back">
+            back to home
+        </a>
+    </div>
+</header>
+<div class="errorBox" >
+    <h1> :) SEI STATO BRAVO!. </h1>
+    <a href="http://localhost:8080/java/insert.html" class="retry">
+        INSERISCI ALTRO
+    </a>
+    <a href="http://localhost:8080/java/home.html" class="retry">
+        TORNA NELLA HOME
+    </a>
+</div>
 
-        <input type="submit" value="inserisci Ordine">
-    </form>
+
+
 </body>
 <style>
+    .errorBox {
+        display: block;
+        width: 50%;
+        margin: auto;
+        background-color: white;
+        padding: 2em;
+    }
+    .retry {
+        background-color: white;
+        font-size: 1.3em;
+        margin-top: 0.8em;
+        display: block;
+    }
+
     .insert {
         padding: 2em;
         background-color: rgb(41, 37, 37);
         text-align: center;
+    }
+
+    .focacciaList {
+
     }
 
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -84,7 +104,7 @@
     }
 
     .title {
-        flex: 3;
+        flex: 1;
         font-weight: bold;
         font-size: 1.4em;
         color: white;
