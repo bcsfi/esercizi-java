@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.bcsoft.bcvinaino.util.DatabaseManager;
+import net.bcsoft.bcvinaino.util.Query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class InsertOrdineServlet extends HttpServlet {
         try {
             database = new DatabaseManager();
             Connection connessioneDatabase = database.getConnection();
-
+            Query.inserisciMenu(connessioneDatabase, menu_id, quantita);
 
         } catch (SQLException | ClassNotFoundException exception) {
             System.out.println("ERRORE GENERICO | " + exception.getMessage());
