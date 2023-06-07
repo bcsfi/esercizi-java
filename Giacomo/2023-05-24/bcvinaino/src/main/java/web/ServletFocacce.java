@@ -28,11 +28,7 @@ public class ServletFocacce extends HttpServlet
             Connection connessione = GestoreConnessione.creaConnessione();
             focacce = Repository.eseguiQueryFocacce(connessione);
         }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-        catch (ClassNotFoundException e)
+        catch (SQLException | ClassNotFoundException e)
         {
             throw new RuntimeException(e);
         }

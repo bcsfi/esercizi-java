@@ -28,11 +28,7 @@ public class ServletIncassi extends HttpServlet
             Connection connessione = GestoreConnessione.creaConnessione();
             incassi = Repository.eseguiQueryIncassi(connessione);
         }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-        catch (ClassNotFoundException e)
+        catch (SQLException | ClassNotFoundException e)
         {
             throw new RuntimeException(e);
         }
