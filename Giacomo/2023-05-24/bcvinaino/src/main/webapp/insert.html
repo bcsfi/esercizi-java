@@ -1,21 +1,80 @@
 <!DOCTYPE html>
-
 <html>
-
     <head>
         <title>Inserimento Ordine</title>
-    </head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #333;
+                color: #FFF;
+                margin: 0;
+                padding: 20px;
+                text-align: center;
+            }
 
+            h1 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                margin-bottom: 10px;
+                width: 200px;
+            }
+
+            select {
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                margin-bottom: 10px;
+                width: 200px;
+            }
+
+            .submitPuls {
+                padding: 12px 24px;
+                background-color: #2ecc71;
+                color: #FFF;
+                text-decoration: none;
+                border-radius: 30px;
+                border: none;
+                font-size: 18px;
+            }
+        </style>
+    </head>
     <body>
+        <h1>Inserimento Ordine</h1>
         <form action="./insertordine" method="post">
-            <p >menu_id:</p>
-            <input type="text" name="menu_id"/>
-            <br/>
-            <p>quantita:</p>
-            <input type="text" name="quantita"/>
-            <br/>
-            <input type="submit"/>
+            <p>Menu:</p>
+            <select name="menu_id">
+                <option value="" disabled selected>- Seleziona una focaccia -</option>
+                <option value="1">Angi</option>
+                <option value="2">Cafonaha</option>
+                <option value="3">Giacomo</option>
+                <option value="4">Gino</option>
+                <option value="5">Inferno</option>
+                <option value="6">Meraviglia</option>
+                <option value="7">Meridione</option>
+                <option value="8">Paradiso</option>
+                <option value="9">Roberto</option>
+                <option value="10">Klitosauro</option>
+            </select><p>Quantita:</p>
+            <input type="text" name="quantita" />
+
+            <br/> <br/> <br/>
+
+            <input class="submitPuls" type="submit" value="Submit" />
+
+            <br/> <br/> <br/>
+
+            <span style="margin-right: 8em;">
+                <a class="submitPuls" href=http://localhost:8080/bcvinaino/incassi>Passa a Incassi</a>
+            </span>
+            <span>
+                <a class="submitPuls" href=http://localhost:8080/bcvinaino/incassi>Passa a Focacce</a>
+            </span>
         </form>
     </body>
-
 </html>

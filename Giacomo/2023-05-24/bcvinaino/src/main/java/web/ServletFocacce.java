@@ -127,8 +127,7 @@ public class ServletFocacce extends HttpServlet
                             "       </tbody>\n" +
                             "    </table>\n" +
                             "    <div class=\"passa-focacce\">\n" +
-                            "        <p>Passa a Incassi</p>\n" +
-                            "        <a href=http://localhost:8080/bcvinaino/incassi>Vai</a>\n" +
+                            "        <a href=http://localhost:8080/bcvinaino/incassi>Passa a Incassi</a>\n" +
                             "    </div>\n" +
                             "</body>\n" +
                             "</html>";

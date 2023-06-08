@@ -140,8 +140,7 @@ public class ServletIncassi extends HttpServlet
                             "       </tbody>\n" +
                             "    </table>\n" +
                             "    <div class=\"passa-incassi\">\n" +
-                            "        <p>Passa a Focacce</p>\n" +
-                            "        <a href=http://localhost:8080/bcvinaino/focacce>Vai</a>\n" +
+                            "        <a href=http://localhost:8080/bcvinaino/focacce>Passa a Focacce</a>\n" +
                             "    </div>\n" +
                             "</body>\n" +
                             "</html>";
