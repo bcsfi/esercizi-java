@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inserimento Ordine</title>
+        <link href="./style/style.css" type="text/css" rel="stylesheet">
+        <link href="./style/table.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body>
+        <center>
+            <h1>Aggiungi ordine</h1>
+            <form action="./insertordine" method="post">
+                <p>ID del panino:</p>
+                <input type="text" name="menu_id"/>
+
+
+                <p style="aling">Quantita':</p>
+                <input type="text" name="quantita"/>
+                <br>
+
+                <input type="submit"/>
+            </form>
+        </center>
+    </body>
+
+</html>

@@ -1,0 +1,24 @@
+body {
+    background-color: #222831;
+}
+
+h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #EEEEEE;
+}
+
+p {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #EEEEEE;
+}
+
+input {
+    width: 122px;
+    text-align: center;
+    font: icon;
+    border-style: solid;
+    border-color: #000000;
+}
+
+<!-- https://colorhunt.co/palette/222831393e46fd7014eeeeee --!>

@@ -53,31 +53,32 @@ public class IncassiServlet extends HttpServlet {
                 "<html>\n" +
                 "  <head>\n" +
                 "       <title>BC Vinaino | Report incassi</title>\n" +
-                "       <style>" +
-                "           .font { text-align: center; font-family: Arial, Helvetica, sans-serif;}" +
-                "           th, td { border-top: 1px solid black; }" +
-                "       </style>" +
+                "       <link href=\"./style/style.css\" rel=\"stylesheet\">" +
+                "       <link href=\"./style/table.css\" rel=\"stylesheet\">" +
                 "   </head>\n" +
                 "   <body>\n" +
-                "       <table>\n \n" +
-                "           <tr>\n" +
-                "               <th class='font' style='color: black;'>Data</th>\n" +
-                "               <th class='font' style='color: black;'>Incasso</th>\n" +
-                "           </tr>\n \n";
+                "       <center>\n" +
+                "       <h1>Report incassi</h1>\n" +
+                "           <table>\n \n" +
+                "               <tr>\n" +
+                "                   <th>Data</th>\n" +
+                "                   <th>Incasso</th>\n" +
+                "               </tr>\n \n";
         output += header;
 
         for (LocalDate localDate : incassiMensiliMap.keySet()) {
             Double incasso = incassiMensiliMap.get(localDate);
             String rigaTabella =
                     "           <tr>\n" +
-                    "               <td class='font' style='color: grey;'>" + localDate + "</td>\n" +
-                    "               <td class='font' style='color: grey;'>" + incasso + "</td>\n" +
+                    "               <td>" + localDate + "</td>\n" +
+                    "               <td>" + incasso + "</td>\n" +
                     "           </tr>\n \n";
             output += rigaTabella;
         }
 
         String chiusuraTag =
-                "       </table>\n" +
+                "           </table>\n" +
+                "        </center>\n" +
                 "   </body>\n" +
                 "</html>";
         output += chiusuraTag;
