@@ -12,10 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "IncassiSettimanali", urlPatterns = "/ordini")
 public class IncassiSettimanaliServlet extends HttpServlet {
@@ -60,7 +58,7 @@ public class IncassiSettimanaliServlet extends HttpServlet {
                         "       <link href=\"./style/table.css\" rel=\"stylesheet\">" +
                         "   </head>\n" +
                         "   <body>\n" +
-                        "       <center>\n" +
+                        "        <center> <a href=\"./home\">Homepage</a>\n" +
                         "       <h1>Report incassi settimanali</h1>\n" +
                         "           <table>\n \n" +
                         "               <tr>\n" +

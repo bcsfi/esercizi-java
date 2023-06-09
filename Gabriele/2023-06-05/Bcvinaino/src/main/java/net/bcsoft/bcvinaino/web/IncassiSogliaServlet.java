@@ -54,11 +54,11 @@ public class IncassiSogliaServlet extends HttpServlet {
                         "<html>\n" +
                         "  <head>\n" +
                         "       <title>BC Vinaino | Report incassi con soglia</title>\n" +
-                        "       <link href=\"./style/style.css\" rel=\"stylesheet\">" +
-                        "       <link href=\"./style/table.css\" rel=\"stylesheet\">" +
+                        "       <link href=\"./style/style.css\" rel=\"stylesheet\"> \n" +
+                        "       <link href=\"./style/table.css\" rel=\"stylesheet\"> \n" +
                         "   </head>\n" +
                         "   <body>\n" +
-                        "       <center>\n" +
+                        "        <center> <a href=\"./home\">Homepage</a>\n" +
                         "       <h1>Report incassi con soglia</h1>\n" +
                         "           <table>\n \n" +
                         "               <tr>\n" +

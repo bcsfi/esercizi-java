@@ -57,7 +57,7 @@ public class IncassiMensiliServlet extends HttpServlet {
                 "       <link href=\"./style/table.css\" rel=\"stylesheet\">" +
                 "   </head>\n" +
                 "   <body>\n" +
-                "       <center>\n" +
+                "        <center> <a href=\"./home\">Homepage</a>\n" +
                 "       <h1>Report incassi</h1>\n" +
                 "           <table>\n \n" +
                 "               <tr>\n" +

@@ -26,9 +26,9 @@ public class DatabaseManager {
         Class.forName("org.postgresql.Driver");
         this.ipAddress = "localhost";
         this.port = 5432;
-        this.databaseName = "bc_vinaio";
+        this.databaseName = "bcvinaino";
         this.username = "postgres";
-        this.password = "Gabry0308";
+        this.password = "admin";
     }
 
     public Connection getConnection() throws SQLException {

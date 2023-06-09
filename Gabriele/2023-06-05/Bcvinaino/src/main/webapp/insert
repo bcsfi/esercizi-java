@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <center>
+         <center> <a href="./home">Homepage</a>
             <h1>Aggiungi ordine</h1>
             <form action="./insertordine" method="post">
                 <p>ID del panino:</p>

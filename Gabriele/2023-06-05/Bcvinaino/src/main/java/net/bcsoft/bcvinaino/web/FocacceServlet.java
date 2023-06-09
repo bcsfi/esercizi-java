@@ -57,7 +57,7 @@ public class FocacceServlet extends HttpServlet {
                 "       <link href=\"./style/table.css\" rel=\"stylesheet\">" +
                 "   </head>\n" +
                 "   <body>\n" +
-                "        <center>\n" +
+                "        <center> <a href=\"./home\">Homepage</a>\n" +
                 "        <h1>Report focacce</h1>\n" +
                 "       <table class=\"table_user\">\n \n" +
                 "           <tr>\n" +

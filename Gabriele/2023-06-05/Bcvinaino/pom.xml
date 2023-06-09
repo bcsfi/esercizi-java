@@ -7,7 +7,7 @@
     <groupId>net.bcsoft</groupId>
     <artifactId>BCvinaino</artifactId>
     <packaging>war</packaging>
-    <version>1.1</version>
+    <version>1.2</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
