@@ -1,40 +1,40 @@
 package net.bcsoft.model;
 
 public class MenuOrdini {
-    short id;
-    short idMenu;
-    short idOrdine;
-    int quantita;
+    Short id;
+    Short idMenu;
+    Short idOrdine;
+    Integer quantita;
 
-    public short getId() {
+    public Short getId() {
         return id;
     }
 
-    public void setId(short id) {
+    public void setId(Short id) {
         this.id = id;
     }
 
-    public short getIdMenu() {
+    public Short getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(short idMenu) {
+    public void setIdMenu(Short idMenu) {
         this.idMenu = idMenu;
     }
 
-    public short getIdOrdine() {
+    public Short getIdOrdine() {
         return idOrdine;
     }
 
-    public void setIdOrdine(short idOrdine) {
+    public void setIdOrdine(Short idOrdine) {
         this.idOrdine = idOrdine;
     }
 
-    public int getQuantita() {
+    public Integer getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(int quantita) {
+    public void setQuantita(Integer quantita) {
         this.quantita = quantita;
     }
 }
