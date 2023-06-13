@@ -1,12 +1,12 @@
-package net.bcsoft.bcvinaino.web;
+package net.bcsoft.web;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import net.bcsoft.bcvinaino.model.IncassiSettimanali;
-import net.bcsoft.bcvinaino.util.DatabaseManager;
-import net.bcsoft.bcvinaino.util.Query;
+import net.bcsoft.model.IncassiSettimanali;
+import net.bcsoft.util.DatabaseManager;
+import net.bcsoft.util.Query;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 @WebServlet(name = "IncassiSettimanali", urlPatterns = "/ordini")
 public class IncassiSettimanaliServlet extends HttpServlet {

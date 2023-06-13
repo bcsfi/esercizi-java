@@ -1,6 +1,6 @@
-package net.bcsoft.bcvinaino.util;
+package net.bcsoft.util;
 
-import net.bcsoft.bcvinaino.model.IncassiSettimanali;
+import net.bcsoft.model.IncassiSettimanali;
 
 import java.sql.Connection;
 import java.sql.Date;

@@ -1,4 +1,4 @@
-package net.bcsoft.bcvinaino.model;
+package net.bcsoft.model;
 
 import java.util.Date;
 

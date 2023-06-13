@@ -1,4 +1,4 @@
-package net.bcsoft.bcvinaino.util;
+package net.bcsoft.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
