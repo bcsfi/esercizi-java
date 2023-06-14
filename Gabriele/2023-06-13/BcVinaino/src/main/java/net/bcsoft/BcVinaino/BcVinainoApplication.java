@@ -1,13 +1,13 @@
-package net.bcsoft.bcvinaino;
+package net.bcsoft.BcVinaino;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BcvinainoApplication {
+public class BcVinainoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BcvinainoApplication.class, args);
+		SpringApplication.run(BcVinainoApplication.class, args);
 	}
 
 }
