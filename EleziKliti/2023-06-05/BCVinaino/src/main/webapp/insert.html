@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link href='https://fonts.googleapis.com/css2?family=Geologica:wght@300&display=swap' rel='stylesheet'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="contnt">
+            <a class="title">
+                BCbanini
+            </a>
+            <a class="back" href="http://localhost:8080/java/home.html">
+                back to home
+            </a>
+        </div>
+    </header>
+    <form action="./insertordine" method="post" class="insert">
+        <div class="box">
+            <input type="text" name="menu_id" placeholder="menu id" />
+        </div>
+        <div class="box">
+            <input type="number" name="qta" placeholder="quantita" />
+        </div>
+
+        <input type="submit" value="inserisci Ordine">
+    </form>
+</body>
+<style>
+    .insert {
+        padding: 2em;
+        background-color: rgb(41, 37, 37);
+        text-align: center;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    .container_box {
+        display: flex;
+        width: 100%;
+        text-align: center;
+    }
+
+    input {
+        padding: 0.9em;
+        border-radius: 5px;
+
+    }
+
+    .button {
+        display: block;
+        background-color: blue;
+        color: white;
+        padding: 0.5em;
+        margin: 0.8em;
+        cursor: pointer;
+    }
+
+    .box {
+        flex: 1;
+        margin: 1em;
+        padding: 0.5em;
+        border-radius: 5px;
+    }
+
+    * {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .back {
+        flex: 1;
+        background-color: white;
+        padding: 0.5em;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .title {
+        flex: 3;
+        font-weight: bold;
+        font-size: 1.4em;
+        color: white;
+    }
+
+    .contnt {
+        display: flex;
+        width: 50%;
+        margin: auto;
+    }
+
+    header {
+        display: flex;
+        padding: 2em;
+        background-color: rgb(51, 16, 145);
+    }
+</style>
+
+</html>
