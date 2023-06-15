@@ -1,4 +1,4 @@
-package net.bcsoft.bcvinaino.dto;
+package net.bcsoft.bcvinaino.entity;
 
 import java.time.LocalDate;
 
