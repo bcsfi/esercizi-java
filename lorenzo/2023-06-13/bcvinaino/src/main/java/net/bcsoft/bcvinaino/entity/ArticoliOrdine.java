@@ -1,6 +1,6 @@
 package net.bcsoft.bcvinaino.entity;
 
-public class ArticoliOrdineDto {
+public class ArticoliOrdine {
     private Long idArticoliOrdine;
     private Long idOrdine;
     private Long idMenu;
