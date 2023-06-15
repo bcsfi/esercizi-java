@@ -1,17 +1,17 @@
-package net.bcsoft.bcvinaino.model;
+package net.bcsoft.bcvinaino.entity;
 
 public class ArticoliOrdini {
-    private Long id;
+    private Long idArticoliOrdine;
     private Long idMenu;
     private Long idOrdine;
-    private Integer quantita;
+    private Integer qta;
 
-    public Long getId() {
-        return id;
+    public Long getIdArticoliOrdine() {
+        return idArticoliOrdine;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdArticoliOrdine(Long idArticoliOrdine) {
+        this.idArticoliOrdine = idArticoliOrdine;
     }
 
     public Long getIdMenu() {
@@ -30,11 +30,11 @@ public class ArticoliOrdini {
         this.idOrdine = idOrdine;
     }
 
-    public Integer getQuantita() {
-        return quantita;
+    public Integer getQta() {
+        return qta;
     }
 
-    public void setQuantita(Integer quantita) {
-        this.quantita = quantita;
+    public void setQta(Integer qta) {
+        this.qta = qta;
     }
 }
