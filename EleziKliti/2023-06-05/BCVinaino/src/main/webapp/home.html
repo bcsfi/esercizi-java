@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 54%, rgba(3,137,164,1) 100%);">
     <header>
         <div class="contnt">
             <a class="title">
@@ -22,6 +22,8 @@
             </a>
         </div>
     </header>
+
+
     <div class="container_box">
         <div class="box">
             <h1> Controlla i tuoi guadagni Mensili.</h1>
@@ -33,10 +35,18 @@
             <a class="descrizione"> Controllo quanti ordini sono stati fatti per ogni focaccia..</a>
             <a class="button" href="./foccacie"> Controlla </a>
         </div>
+    </div>
+    <div class="container_box">
+    <div class="box">
+        <h1> Inserisci un nuovo ordine </h1>
+        <a class="descrizione" > Crea e inserisci un nuovo ordine.</a>
+        <a class="button" href="./insert.html"> Inserisci </a>
+    </div>
+
         <div class="box">
-            <h1> Inserisci un nuovo ordine </h1>
-            <a class="descrizione" > Crea e inserisci un nuovo ordine.</a>
-            <a class="button" href="./insert.html"> Controlla </a>
+            <h1> Cerca nei Ordini per prezzo</h1>
+            <a class="descrizione" > Qua dentro puoi cercare i ordini per prezzo, e tenere d'occhio quali ordini sono stati fatti.e.</a>
+            <a class="button" href="./insert.html"> Cerca </a>
         </div>
     </div>
 </body>
@@ -49,24 +59,29 @@
         text-align: center;
 
     }
+    body {
+        height: 1080px;
+    }
 
     .button {
-        display: block;
+        display: inline-block;
         background-color: blue;
         color: white;
-        padding: 0.5em;
+        padding: 0.8em;
         margin: 0.8em;
         cursor: pointer;
         margin-top: 3em;
+        text-decoration: none;
+        border-radius: 5px;
 
     }
 
 .descrizione {
     display: block;
-    height: 130px;
+    height: auto;
     width: 80%;
     margin: auto;
-    margin-top: 0.3em;
+    margin-top: 1.4em;
 }
     .box {
         flex: 1;
@@ -74,12 +89,19 @@
         padding: 0.5em;
         border: 2px solid rgba(128, 128, 128, 0.233);
         border-radius: 5px;
-
+        background-color: white;
+        margin-top: 3em;
     }
 
     * {
         margin: 0;
         font-family: 'Roboto', sans-serif;
+    }
+
+    .contnt {
+        display: flex;
+        width: 80%;
+        margin: auto;
     }
 
     .back {
@@ -91,22 +113,19 @@
     }
 
     .title {
-        flex: 3;
+        flex: 1;
         font-weight: bold;
         font-size: 1.4em;
-        color: white;
+        color: black;
     }
 
-    .contnt {
-        display: flex;
-        width: 50%;
-        margin: auto;
-    }
+
 
     header {
         display: flex;
         padding: 2em;
-        background-color: rgb(51, 16, 145);
+        background-color: white;
+        text-align: center;
     }
 </style>
 

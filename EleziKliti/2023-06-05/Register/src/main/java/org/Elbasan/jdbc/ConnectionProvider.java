@@ -1,4 +1,4 @@
-package org.example.jdbc;
+package org.Elbasan.jdbc;
 import java.sql.*;
 
 public class ConnectionProvider {

@@ -8,14 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name="This is a home ", urlPatterns="/")
-public class home extends HttpServlet {
+@WebServlet(name="This is a home ", urlPatterns="")
+public class Home extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-
-        req.getRequestDispatcher("src/main/webapp/index.html").forward(req, resp);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
 
 
     }
