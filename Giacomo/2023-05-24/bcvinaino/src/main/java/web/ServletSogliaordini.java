@@ -4,7 +4,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Focaccia;
+import model.Ordine;
 import util.GestoreConnessione;
 import util.Repository;
 
@@ -14,18 +14,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ReportFocacce", urlPatterns = "/focacce")
-public class ServletFocacce extends HttpServlet
+@WebServlet(name = "ReportSogliaordini", urlPatterns = "/sogliaordini")
+
+public class ServletSogliaordini extends HttpServlet
 {
-    public ServletFocacce(){}
+    public ServletSogliaordini() {}
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        List<Focaccia> focacce = null;
+        List<Ordine> ordini = null;
         try
         {
             Connection connessione = GestoreConnessione.creaConnessione();
-            focacce = Repository.eseguiQueryFocacce(connessione);
+            ordini = Repository.eseguiQuerySogliaordini(connessione);
         }
         catch (SQLException | ClassNotFoundException e)
         {
@@ -34,17 +35,17 @@ public class ServletFocacce extends HttpServlet
 
         String text = "";
 
-        if (focacce.isEmpty())
+        if (ordini.isEmpty())
         {
             text += "Non ci sono risultati da mostrare";
         }
         else
         {
             text +=
-                            "<!DOCTYPE html>\n" +
+                    "<!DOCTYPE html>\n" +
                             "<html>\n" +
                             "<head>\n" +
-                            "    <title>Servlet Focacce</title>\n" +
+                            "    <title>Servlet Soglia Ordini</title>\n" +
                             "    <style>\n" +
                             "        body {\n" +
                             "            font-family: Arial, sans-serif;\n" +
@@ -85,13 +86,13 @@ public class ServletFocacce extends HttpServlet
                             "            color: #FFF;\n" +
                             "        }\n" +
                             "\n" +
-                            "        .passa-focacce {\n" +
+                            "        .passa-ordini {\n" +
                             "            margin-top: 40px;\n" +
                             "            font-size: 18px;\n" +
                             "            color: #FFF;\n" +
                             "        }\n" +
                             "\n" +
-                            "        .passa-focacce a {\n" +
+                            "        .passa-ordini a {\n" +
                             "            display: inline-block;\n" +
                             "            margin-top: 10px;\n" +
                             "            padding: 12px 24px;\n" +
@@ -103,29 +104,31 @@ public class ServletFocacce extends HttpServlet
                             "    </style>\n" +
                             "</head>\n" +
                             "<body>\n" +
-                            "    <h1>Focacce</h1>\n" +
+                            "    <h1>Soglia Ordini</h1>\n" +
                             "    <table>\n" +
                             "        <thead>\n" +
                             "            <tr>\n" +
-                            "                <th>Nome</th>\n" +
-                            "                <th>Quantità</th>\n" +
+                            "                <th>ID</th>\n" +
+                            "                <th>Data</th>\n" +
+                            "                <th>Importo</th>\n" +
                             "            </tr>\n" +
                             "        </thead>\n" +
                             "        <tbody>";
 
-            for (Focaccia focaccia : focacce)
+            for (Ordine ordine : ordini)
             {
                 text +=
-                            "            <tr>\n" +
-                            "                <td>" + focaccia.getNome() + "</td>\n" +
-                            "                <td>" + focaccia.getQuantita() + "</td>\n" +
-                            "            </tr>";
+                        "           <tr>\n" +
+                                "                <td>" + ordine.getIdOrdine() + "</td>\n" +
+                                "                <td>" + ordine.getData().getMonth() + " / " + ordine.getData().getDay() + "</td>\n" +
+                                "                <td>" + ordine.getImportoTotale() + "</td>\n" +
+                                "           </tr>";
             }
 
             text +=
-                            "       </tbody>\n" +
+                    "       </tbody>\n" +
                             "    </table>\n" +
-                            "    <div class=\"passa-focacce\">\n" +
+                            "    <div class=\"passa-ordini\">\n" +
                             "        <a href=http://localhost:8080/bcvinaino/incassi>Passa a Incassi</a>\n" +
                             "    </div>\n" +
                             "</body>\n" +
