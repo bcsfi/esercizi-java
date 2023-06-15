@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class OrdiniController {
-    @RequestMapping(value = "/ordine/insert", method = RequestMethod.POST)
-    public String insertOrdine(@RequestParam InsertDto insertDto) {
-        return "Get some Foos";
-    }
+    @RequestMapping(value = "/ordine/insertordine", method = RequestMethod.POST)
+    public void insertOrdine(@RequestParam InsertDto insertDto) {}
 }

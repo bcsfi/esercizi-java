@@ -1,8 +1,8 @@
 package net.bcsoft.bcvinaino.dto;
 
 public class InsertDto {
-    private int idMenu;
-    private int quantita;
+    private Integer idMenu;
+    private Integer quantita;
 
     public int getIdMenu() {
         return idMenu;
