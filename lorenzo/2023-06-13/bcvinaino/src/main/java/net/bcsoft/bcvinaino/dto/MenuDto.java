@@ -1,15 +1,15 @@
 package net.bcsoft.bcvinaino.dto;
 
 public class MenuDto {
-    private Integer idMenu;
+    private Long idMenu;
     private String focaccia;
     private double prezzo;
 
-    public Integer getIdMenu() {
+    public Long getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(Integer idMenu) {
+    public void setIdMenu(Long idMenu) {
         this.idMenu = idMenu;
     }
 

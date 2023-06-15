@@ -3,14 +3,14 @@ package net.bcsoft.bcvinaino.dto;
 import java.time.LocalDate;
 
 public class OrdiniDto {
-    private Integer idOrdini;
+    private Long idOrdini;
     private LocalDate dataOrdine;
 
-    public int getIdOrdini() {
+    public Long getIdOrdini() {
         return idOrdini;
     }
 
-    public void setIdOrdini(int idOrdini) {
+    public void setIdOrdini(Long idOrdini) {
         this.idOrdini = idOrdini;
     }
 

@@ -1,14 +1,14 @@
 package net.bcsoft.bcvinaino.dto;
 
 public class InsertDto {
-    private Integer idMenu;
+    private Long idMenu;
     private Integer quantita;
 
-    public int getIdMenu() {
+    public Long getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(int idMenu) {
+    public void setIdMenu(Long idMenu) {
         this.idMenu = idMenu;
     }
 

@@ -1,32 +1,32 @@
 package net.bcsoft.bcvinaino.dto;
 
 public class ArticoliOrdineDto {
-    private Integer idArticoliOrdine;
-    private Integer idOrdine;
-    private Integer idMenu;
+    private Long idArticoliOrdine;
+    private Long idOrdine;
+    private Long idMenu;
     private Integer qta;
 
-    public Integer getIdArticoliOrdine() {
+    public Long getIdArticoliOrdine() {
         return idArticoliOrdine;
     }
 
-    public void setIdArticoliOrdine(Integer idArticoliOrdine) {
+    public void setIdArticoliOrdine(Long idArticoliOrdine) {
         this.idArticoliOrdine = idArticoliOrdine;
     }
 
-    public Integer getIdOrdine() {
+    public Long getIdOrdine() {
         return idOrdine;
     }
 
-    public void setIdOrdine(Integer idOrdine) {
+    public void setIdOrdine(Long idOrdine) {
         this.idOrdine = idOrdine;
     }
 
-    public Integer getIdMenu() {
+    public Long getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(Integer idMenu) {
+    public void setIdMenu(Long idMenu) {
         this.idMenu = idMenu;
     }
 
