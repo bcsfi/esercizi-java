@@ -1,17 +1,30 @@
 package net.bcsoft.BcVinaino.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReportController {
-    //n metodi, dove n è ilnumero di servlet + annotazioni per ciuscun metodo adotta la sua funzione
-    @RequestMapping(value= "/Gino", method = RequestMethod.GET)
 
-    @RequestBody
-    public String get() {
-        return "viva la pizza";
+    @RequestMapping(value= "Report/Incassi", method = RequestMethod.GET)
+    public String incassi (){
+        return "incassi ";
     }
-}
+
+    @RequestMapping(value= "Report/ordini", method = RequestMethod.GET)
+    public String ordini (){
+        return "ordini ";
+    }
+
+
+    @RequestMapping(value= "Report/sogliaordini", method = RequestMethod.GET)
+    public String sogliaOrdini (){
+        return "soglia ordini";
+    }
+
+
+    @RequestMapping(value= "Report/focacce", method = RequestMethod.GET)
+    public String focacce (){
+        return "focacce";
+    }
+    }
+
