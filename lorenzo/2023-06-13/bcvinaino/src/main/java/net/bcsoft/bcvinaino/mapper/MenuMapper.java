@@ -21,7 +21,7 @@ public interface MenuMapper {
     @Options(useGeneratedKeys = true, keyProperty = "idMenu", keyColumn = "id_menu")
     public Long insert(Menu menu);
 
-    @Update("UPDATE menu SET focaccia = #{focaccia}, prezzo = #{prezzo} WHERE id_menu = #{id}")
+    @Update("UPDATE menu SET focaccia = #{focaccia}, prezzo = #{prezzo} WHERE id_menu = #{idMenu}")
     public int update(Menu menu); //è int perchè Mybatis restituisce il numero di righe aggiornate
 
     @Select({
@@ -29,14 +29,14 @@ public interface MenuMapper {
             "ORDER BY id_menu"
     })
     @Results(id = "menu", value = { // Mappatura select, deve esistere da qualche parte prima di usarlo
-            @Result(column = "id_menu", property = "id", id = true),
+            @Result(column = "id_menu", property = "idMenu", id = true),
             @Result(column = "focaccia", property = "focaccia"),
             @Result(column = "prezzo", property = "prezzo")
     })
     public List <Menu> selectAll();
 
     @Select({
-            "SELECT id_menu,focaccia, prezzo FROM menu WHERE id_menu = #{menuId, jdbcType = NUMERIC}"
+            "SELECT id_menu,focaccia, prezzo FROM menu WHERE id_menu = #{idMenu, jdbcType = NUMERIC}"
     })
     @ResultMap("menu") // Fai riferimento alla mappatura "menu" (riga 21)
     public Menu selectByPrimaryKey(Long menuId);

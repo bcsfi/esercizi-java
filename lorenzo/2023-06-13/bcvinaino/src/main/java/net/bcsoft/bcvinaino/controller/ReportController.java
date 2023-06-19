@@ -1,25 +1,33 @@
 package net.bcsoft.bcvinaino.controller;
 
+import net.bcsoft.bcvinaino.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+//TODO Far andare la stringa del ReportService
 @RestController
 public class ReportController {
+    @Autowired
+    ReportService reportService;
 
-    @RequestMapping(value = "/report/incassi", method = RequestMethod.GET)
-    public void incassi() {
+    @GetMapping("/report/incassi")
+    public String incassi() {
+        return reportService.calcolaIncassiMensili();
     }
 
-    @RequestMapping(value = "/report/focacce", method = RequestMethod.GET)
+    @GetMapping("/report/focacce")
     public void focacce() {
     }
 
-    @RequestMapping(value = "/report/ordini", method = RequestMethod.GET)
+    @GetMapping("/report/ordini")
     public void ordini() {
     }
 
-    @RequestMapping(value = "/report/soglia", method = RequestMethod.GET)
+    @GetMapping("/report/soglia")
     public void soglia() {
     }
 }

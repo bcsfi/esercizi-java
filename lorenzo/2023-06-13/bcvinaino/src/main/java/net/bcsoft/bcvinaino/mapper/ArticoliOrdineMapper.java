@@ -20,13 +20,13 @@ public interface ArticoliOrdineMapper {
     public int update(ArticoliOrdine articoliOrdine); //è int perchè Mybatis restituisce il numero di righe aggiornate
 
     @Select({
-            "SELECT id_articoli_ordine, id_ordine, id_menu,qta FROM articoli_ordini", //Concatenazione MyBatis
-            "ORDER BY id_articoli_ordini"
+            "SELECT id_articoli_ordine, id_ordine, id_menu,qta FROM articoli_ordine", //Concatenazione MyBatis
+            "ORDER BY id_articoli_ordine"
     })
     @Results(id = "articoli_ordine", value = { // Mappatura select, deve esistere da qualche parte prima di usarlo
-            @Result(column = "id_articoli_ordine", property = "id", id = true),
-            @Result(column = "id_menu", property = "id_menu"),
-            @Result(column = "id_ordine", property = "id_ordine"),
+            @Result(column = "id_articoli_ordine", property = "idArticoliOrdine", id = true),
+            @Result(column = "id_menu", property = "idMenu"),
+            @Result(column = "id_ordine", property = "idOrdine"),
             @Result(column = "qta", property = "qta"),
     })
     public List<ArticoliOrdine> selectAll();
