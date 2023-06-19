@@ -1,11 +1,14 @@
 package net.bcsoft.bcvinaino.controller;
 
 
+import net.bcsoft.bcvinaino.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReportController {
-    //TODO creare tanti metodi quante servlet avevamo e mettere l'annotazione che si reputa corretta
+    @Autowired
+    ReportService reportService;
     @RequestMapping(value = "/focacce/{param1}", method = RequestMethod.GET)
     public String focaccia(){
         return "focaccia";
@@ -13,7 +16,7 @@ public class ReportController {
 
     @RequestMapping(value = "/incassi", method = RequestMethod.GET )
     public String incassi(){
-        return "incassi";
+        return reportService.calcolaIncassi();
     }
 
     @RequestMapping(value = "/ordini", method = RequestMethod.GET)

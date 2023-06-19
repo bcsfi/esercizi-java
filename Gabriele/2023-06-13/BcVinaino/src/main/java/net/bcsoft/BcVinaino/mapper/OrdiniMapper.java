@@ -21,7 +21,7 @@ public interface OrdiniMapper {
             "SELECT id_ordine, data_ordine FROM ordini",
             "ORDER BY id_ordine"
     })
-    @Results(id = "ordine", value = {
+    @Results(id = "ordini", value = {
             @Result(column = "id_ordine", property = "idOrdine", id = true),
             @Result(column = "data_ordine", property = "dataOrdine", jdbcType = JdbcType.DATE),
     })
