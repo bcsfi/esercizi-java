@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 public class ReportController {
     @Autowired
     ReportService reportService;
-    @RequestMapping(value = "/focacce/{param1}", method = RequestMethod.GET)
+    @RequestMapping(value = "/focacce", method = RequestMethod.GET)
     public String focaccia(){
-        return "focaccia";
+        return reportService.focacce();
     }
 
     @RequestMapping(value = "/incassi", method = RequestMethod.GET )

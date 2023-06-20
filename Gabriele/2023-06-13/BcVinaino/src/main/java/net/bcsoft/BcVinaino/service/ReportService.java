@@ -31,9 +31,9 @@ public class ReportService {
 
         for(Ordini ordini : ordiniList){
             for(ArticoliOrdini articoliOrdini : articoliOrdiniList){
-                if(articoliOrdini.getIdOrdine() == ordini.getIdOrdine()){
+                if(articoliOrdini.getIdOrdine().equals(ordini.getIdOrdine())){
                     for(Menu menu : menuList){
-                        if(menu.getIdMenu() == articoliOrdini.getIdMenu()){
+                        if(menu.getIdMenu().equals(articoliOrdini.getIdMenu())){
                             if (!incassiMap.containsKey(ordini.getDataOrdine())){
                                 Double prezzo = (menu.getPrezzo() * articoliOrdini.getQta());
                                 incassiMap.put(ordini.getDataOrdine(), prezzo);
@@ -52,13 +52,33 @@ public class ReportService {
         return report.toString();
     }
 
-    public String calcolaFocacce (){
+    public String focacce(){
         StringBuilder report = new StringBuilder();
         List <ArticoliOrdini> articoliOrdiniList= articoliOrdiniMapper.selectAll();
         List <Menu> menuList = menuMapper.selectAll();
         List <Ordini> ordiniList = ordiniMapper.selectAll();
-        Map <Date, Double> incassiMap = new HashMap<>();
+        Map <String, Integer> incassiMap = new HashMap<>();
+        Integer conteggio= 1;
 
-        
+        for (Menu menu : menuList){
+            for(ArticoliOrdini articolo : articoliOrdiniList){
+                if(articolo.getIdMenu().equals(menu.getIdMenu())){
+                    for(Ordini ordine : ordiniList){
+                        if(ordine.getIdOrdine().equals(articolo.getIdOrdine())){
+                            incassiMap.put(menu.getFocaccia(), conteggio);
+                            conteggio ++;
+                        }
+                    }
+                }
+            }
+        }
+
+        for(String focaccia : incassiMap.keySet()){
+            report.append(focaccia).append(" : ").append(incassiMap.get(focaccia)).append("\n");
+        }
+        return report.toString();
     }
+
+
+
 }

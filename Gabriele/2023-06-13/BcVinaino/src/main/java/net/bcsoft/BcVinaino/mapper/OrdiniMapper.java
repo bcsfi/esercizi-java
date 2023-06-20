@@ -5,7 +5,7 @@ import net.bcsoft.bcvinaino.entity.Ordini;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
-import java.util.Date;
+
 import java.util.List;
 
 public interface OrdiniMapper {
