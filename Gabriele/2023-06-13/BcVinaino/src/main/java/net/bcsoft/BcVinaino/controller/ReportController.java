@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.*;
 public class ReportController {
     @Autowired
     ReportService reportService;
-    @Autowired
-    OrdiniDAO ordiniDAO;
+
     @GetMapping("/report/incassi")
-    public String focaccia(){
-        return reportService.calcolaIncassi();
+    public String incassi(){
+        return reportService.creaIncassiQuery();
     }
 
    @GetMapping("/report/focacce")
-    public String incassi(){
+    public String focacce(){
         return reportService.focacce();
     }
 

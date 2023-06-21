@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface MenuDAO {
     List<Menu> selectAll();
+    void insert(Menu menu);
 }

@@ -13,4 +13,8 @@
         <result property="prezzo" column="prezzo"/>
     </resultMap>
 
+    <insert id="insert" parameterType="net.bcsoft.bcvinaino.entity.Menu">
+        INSERT INTO menu (id_menu, focaccia, prezzo)
+        VALUES (#{idMenu}, #{focaccia}, #{prezzo})
+    </insert>
 </mapper>

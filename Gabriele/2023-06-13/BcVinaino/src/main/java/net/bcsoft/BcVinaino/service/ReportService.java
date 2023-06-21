@@ -1,9 +1,11 @@
 package net.bcsoft.bcvinaino.service;
 
 import net.bcsoft.bcvinaino.dao.ArticoliOrdiniDAO;
+import net.bcsoft.bcvinaino.dao.IncassiDAO;
 import net.bcsoft.bcvinaino.dao.MenuDAO;
 import net.bcsoft.bcvinaino.dao.OrdiniDAO;
 import net.bcsoft.bcvinaino.entity.ArticoliOrdini;
+import net.bcsoft.bcvinaino.entity.Incassi;
 import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.entity.Ordini;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ReportService {
 
     @Autowired
     OrdiniDAO ordiniDAO;
+
+    @Autowired
+    IncassiDAO incassiDAO;
 
     public String calcolaIncassi(){
         StringBuilder report = new StringBuilder();
@@ -79,5 +84,17 @@ public class ReportService {
         }
         return report.toString();
     }
+    public String creaIncassiQuery(){
+        List <Incassi> incassiList = incassiDAO.incassiReport();
+        StringBuilder report = new StringBuilder();
 
+        for(Incassi incassi : incassiList){
+            report.append(incassi.getData()).append(":").append(incassi.getIncassi()).append("\n");
+        }
+        return report.toString();
+    }
+
+    public void insertMenu(Menu menu){
+        menuDAO.insert(menu);
+    }
 }

@@ -1,13 +1,18 @@
 package net.bcsoft.bcvinaino.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import net.bcsoft.bcvinaino.entity.Menu;
+import net.bcsoft.bcvinaino.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class OrdiniController {
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert() {
-        return "insert";
+    @Autowired
+    ReportService reportService;
+    @PostMapping("/report/insertMenu")
+    public void insertMenu(@RequestBody Menu menu) {
+        reportService.insertMenu(menu);
     }
 }
