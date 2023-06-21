@@ -1,17 +1,12 @@
-package net.bcsoft.bcvinaino.mapper;
+package net.bcsoft.bcvinaino.dao;
 
 import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-public interface ArticoliOrdineMapper {
+@Mapper
+public interface ArticoliOrdineDAO {
     @Insert({"INSERT INTO articoli_ordine (id_ordine,id_menu,qta) VALUES (#{idOrdine},#{idMenu},#{qta})"})
     @Options(useGeneratedKeys = true, keyProperty = "idArticoliOrdine", keyColumn = "id_articoli_ordine")
     public Long insert(ArticoliOrdine articoliOrdine);

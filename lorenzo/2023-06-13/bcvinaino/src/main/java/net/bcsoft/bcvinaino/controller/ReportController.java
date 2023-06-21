@@ -1,18 +1,22 @@
 package net.bcsoft.bcvinaino.controller;
 
+import net.bcsoft.bcvinaino.dao.OrdiniDAO;
+import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 //TODO Far andare la stringa del ReportService
 @RestController
 public class ReportController {
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    OrdiniDAO ordiniDAO;
 
     @GetMapping("/report/incassi")
     public String incassi() {
@@ -24,7 +28,9 @@ public class ReportController {
     }
 
     @GetMapping("/report/ordini")
-    public void ordini() {
+    public List<Ordine> ordini() {
+        List<Ordine> a = this.ordiniDAO.OrdiniList();
+        return a;
     }
 
     @GetMapping("/report/soglia")

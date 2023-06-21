@@ -2,10 +2,10 @@ package net.bcsoft.bcvinaino.service;
 
 import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
-import net.bcsoft.bcvinaino.entity.Ordini;
-import net.bcsoft.bcvinaino.mapper.ArticoliOrdineMapper;
-import net.bcsoft.bcvinaino.mapper.MenuMapper;
-import net.bcsoft.bcvinaino.mapper.OrdiniMapper;
+import net.bcsoft.bcvinaino.entity.Ordine;
+import net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO;
+import net.bcsoft.bcvinaino.dao.MenuDAO;
+import net.bcsoft.bcvinaino.dao.OrdiniDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +20,13 @@ import java.util.Map;
 public class ReportService {
 
     @Autowired //Quando il Service viene istanziato viene preso MenuMapper
-    MenuMapper menuMapper;
+    MenuDAO menuDao;
 
     @Autowired
-    ArticoliOrdineMapper articoliOrdineMapper;
+    ArticoliOrdineDAO articoliOrdineDao;
 
     @Autowired
-    OrdiniMapper ordiniMapper;
+    OrdiniDAO ordiniDao;
 
     public String calcolaIncassiMensili() {
         StringBuffer output = new StringBuffer();
@@ -35,11 +35,11 @@ public class ReportService {
         Calendar giornoLimite = new GregorianCalendar();
         giornoLimite.add(Calendar.DAY_OF_MONTH, -30);
 
-        List<Ordini> ordiniList = ordiniMapper.selectAll();
-        List<ArticoliOrdine> articoliOrdineList = articoliOrdineMapper.selectAll();
-        List<Menu> menuList = menuMapper.selectAll();
+        List<Ordine> ordineList = ordiniDao.OrdiniList();
+        List<ArticoliOrdine> articoliOrdineList = articoliOrdineDao.selectAll();
+        List<Menu> menuList = menuDao.selectAll();
 
-        for (Ordini ordine : ordiniList) {
+        for (Ordine ordine : ordineList) {
             if (ordine.getDataOrdine().after(giornoLimite.getTime())) {
 
                 for (ArticoliOrdine articoloOrdine : articoliOrdineList) {
