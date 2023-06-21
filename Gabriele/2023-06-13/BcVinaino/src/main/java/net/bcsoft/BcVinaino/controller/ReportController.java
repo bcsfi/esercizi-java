@@ -19,7 +19,7 @@ public class ReportController {
 
    @GetMapping("/report/focacce")
     public String incassi(){
-        return null;
+        return reportService.focacce();
     }
 
     @GetMapping("/report/ordini")

@@ -53,4 +53,31 @@ public class ReportService {
         return report.toString();
     }
 
+    public String focacce(){
+        StringBuilder report = new StringBuilder();
+        List <ArticoliOrdini> articoliOrdiniList= articoliOrdiniDAO.selectAll();
+        List <Menu> menuList = menuDAO.selectAll();
+        List<Ordini> ordiniList = ordiniDAO.selectAll();
+        Map <String, Integer> incassiMap = new HashMap<>();
+        Integer conteggio= 1;
+
+        for (Menu menu : menuList){
+            for(ArticoliOrdini articolo : articoliOrdiniList){
+                if(articolo.getIdMenu().equals(menu.getIdMenu())){
+                    for(Ordini ordine : ordiniList){
+                        if(ordine.getIdOrdine().equals(articolo.getIdOrdine())){
+                            incassiMap.put(menu.getFocaccia(), conteggio);
+                            conteggio ++;
+                        }
+                    }
+                }
+            }
+        }
+
+        for(String focaccia : incassiMap.keySet()){
+            report.append(focaccia).append(" : ").append(incassiMap.get(focaccia)).append("\n");
+        }
+        return report.toString();
+    }
+
 }
