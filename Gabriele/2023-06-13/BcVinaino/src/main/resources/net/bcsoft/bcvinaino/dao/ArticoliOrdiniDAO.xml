@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bcsoft.bcvinaino.dao.ArticoliOrdiniDAO">
+
+    <select id="selectAll" resultMap="articoliOrdiniResultMap">
+        SELECT * FROM articoli_ordine
+    </select>
+
+    <resultMap id="articoliOrdiniResultMap" type="net.bcsoft.bcvinaino.entity.ArticoliOrdini">
+        <id property="idArticoliOrdine" column="id_articoli_ordine"/>
+        <result property="idMenu" column="id_menu"/>
+        <result property="idOrdine" column="id_ordine"/>
+        <result property="qta" column="qta"/>
+    </resultMap>
+
+</mapper>

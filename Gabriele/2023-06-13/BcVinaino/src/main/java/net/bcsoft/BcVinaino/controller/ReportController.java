@@ -2,6 +2,7 @@ package net.bcsoft.bcvinaino.controller;
 
 
 import net.bcsoft.bcvinaino.service.ReportService;
+import net.bcsoft.bcvinaino.dao.OrdiniDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,22 +10,24 @@ import org.springframework.web.bind.annotation.*;
 public class ReportController {
     @Autowired
     ReportService reportService;
-    @RequestMapping(value = "/focacce", method = RequestMethod.GET)
+    @Autowired
+    OrdiniDAO ordiniDAO;
+    @GetMapping("/report/incassi")
     public String focaccia(){
-        return reportService.focacce();
-    }
-
-    @RequestMapping(value = "/incassi", method = RequestMethod.GET )
-    public String incassi(){
         return reportService.calcolaIncassi();
     }
 
-    @RequestMapping(value = "/ordini", method = RequestMethod.GET)
+   @GetMapping("/report/focacce")
+    public String incassi(){
+        return null;
+    }
+
+    @GetMapping("/report/ordini")
     public String ordini(){
         return "ordini";
     }
 
-    @RequestMapping(value = "/ordinisoglia", method = RequestMethod.GET)
+    @GetMapping("/report/soglia")
     public String ordiniSoglia(){
         return "ordiniSoglia";
     }
