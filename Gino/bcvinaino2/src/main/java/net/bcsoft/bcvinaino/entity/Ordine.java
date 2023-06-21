@@ -1,14 +1,15 @@
 package net.bcsoft.bcvinaino.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Ordini
-{
+public class Ordine {
     private int idOrdine;
     private LocalDate dataOrdine;
 
-    public Ordini() {}
+    public Ordine(int idOrdine, LocalDate dataOrdine) {
+        this.idOrdine = idOrdine;
+        this.dataOrdine = dataOrdine;
+    }
 
     public int getIdOrdine() {
         return idOrdine;

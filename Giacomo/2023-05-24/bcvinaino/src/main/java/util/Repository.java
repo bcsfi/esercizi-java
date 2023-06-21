@@ -54,7 +54,7 @@ public class Repository
                 "   JOIN ordini ON scontrini.idordini = ordini.id " +
                 "WHERE ordini.dataora >= ? " +
                 "GROUP BY menu.nome");
-    // sono gey
+
         Calendar cal = new GregorianCalendar();
         cal.add(Calendar.DAY_OF_MONTH, -15);
         Date sqlDate = new Date(cal.getTimeInMillis());
