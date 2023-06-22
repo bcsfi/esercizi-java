@@ -1,4 +1,4 @@
-package net.bcsoft.bcvinaino.dao.config;
+package net.bcsoft.bcvinaino.dao;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
