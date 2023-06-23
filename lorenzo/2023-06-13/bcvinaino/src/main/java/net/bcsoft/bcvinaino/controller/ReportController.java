@@ -2,15 +2,11 @@ package net.bcsoft.bcvinaino.controller;
 
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 //TODO Far andare la stringa del ReportService
 @RestController
 public class ReportController {
-
     @Autowired
     ReportService reportService;
 
@@ -20,6 +16,17 @@ public class ReportController {
     }
 
     @GetMapping("/report/focacce")
-    public void focacce() {
+    public String focacce() {
+        return reportService.focacce();
+    }
+
+    @GetMapping("/report/ordini")
+    public String ordini() {
+        return reportService.ordini();
+    }
+
+    @GetMapping("/report/soglia/{input_min_soglia}")
+    public String soglia(@PathVariable("input_min_soglia") Double inputMinSoglia) {
+        return this.reportService.sogliaOrdini(inputMinSoglia);
     }
 }

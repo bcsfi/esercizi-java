@@ -1,7 +1,6 @@
 package net.bcsoft.bcvinaino.dao;
 
 import net.bcsoft.bcvinaino.entity.Focaccia;
-import net.bcsoft.bcvinaino.entity.Incasso;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
