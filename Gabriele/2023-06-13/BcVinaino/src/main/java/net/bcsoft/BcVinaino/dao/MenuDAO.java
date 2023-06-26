@@ -9,4 +9,6 @@ import java.util.List;
 public interface MenuDAO {
     List<Menu> selectAll();
     void insert(Menu menu);
+
+    void updateFocaccia(Menu menu);
 }

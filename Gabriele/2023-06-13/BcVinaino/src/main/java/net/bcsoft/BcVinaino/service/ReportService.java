@@ -97,4 +97,8 @@ public class ReportService {
     public void insertMenu(Menu menu){
         menuDAO.insert(menu);
     }
+
+    public void updateFocaccia(Menu menu){
+        menuDAO.updateFocaccia(menu);
+    }
 }
