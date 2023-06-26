@@ -1,25 +1,32 @@
 package net.bcsoft.bcvinaino.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import net.bcsoft.bcvinaino.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 public class ReportController {
-    @RequestMapping(value= "/focacce", method = RequestMethod.GET )
-    public String focaccia() {
-        return "focaccia";
-    }
-    @RequestMapping(value= "/incassi", method = RequestMethod.GET )
+    @Autowired
+    ReportService reportService;
+
+    @GetMapping("/report/incassi")
     public String incassi() {
-        return "incassi";
+        return reportService.incassi();
     }
-    @RequestMapping(value= "/ordini", method = RequestMethod.GET )
+
+    @GetMapping("/report/focacce")
+    public String focacce() {
+        return reportService.focacce();
+    }
+
+    @GetMapping("/report/ordini")
     public String ordini() {
-        return "ordini";
+        return reportService.ordini();
     }
-    @RequestMapping(value= "/ordiniThreshold", method = RequestMethod.GET )
-    public String ordiniThreshold() {
-        return "ordiniThreshold";
+
+    @GetMapping("/report/threshold/input_min_soglia")
+    public String soglia(@PathVariable("input_min_soglia") Double sogliaMin) {
+        return this.reportService.ordiniThreshold(sogliaMin);
     }
 }
