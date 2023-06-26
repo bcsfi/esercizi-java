@@ -1,24 +1,21 @@
 package net.bcsoft.bcvinaino.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Ordini {
-    private Long idOrdine;
-    private Date dataOrdine;
+    Long idOrdine;
+    LocalDate dataOrdine;
+    Double incassoOrdine;
 
-    public Long getId_ordine() {
+    public Long getIdOrdine() {
         return idOrdine;
     }
 
-    public void setId_ordine(Long id_ordine) {
-        this.idOrdine = id_ordine;
-    }
-
-    public Date getData_ordine() {
+    public LocalDate getDataOrdine() {
         return dataOrdine;
     }
 
-    public void setData_ordine(Date data_ordine) {
-        this.dataOrdine = data_ordine;
+    public Double getIncassoOrdine() {
+        return incassoOrdine;
     }
 }
