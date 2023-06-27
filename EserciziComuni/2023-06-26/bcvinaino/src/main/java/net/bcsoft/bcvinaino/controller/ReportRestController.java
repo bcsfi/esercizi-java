@@ -1,6 +1,7 @@
 package net.bcsoft.bcvinaino.controller;
 
 import net.bcsoft.bcvinaino.entity.IncassoGiornaliero;
+import net.bcsoft.bcvinaino.entity.QuantitaFocaccia;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +24,7 @@ public class ReportRestController {
     }
 
     @GetMapping("/bcvinaino/report/tipoFocaccia")
-    public String calcolaTipoFocaccia(){
-        return reportService.calcolaTipoFocaccia();
-    }
+    public List<QuantitaFocaccia> calcolaTipoFocaccia(){ return reportService.calcolaTipoFocaccia();}
 
     @GetMapping("/bcvinaino/report/soglia")
     public String calcolaSoglia(){

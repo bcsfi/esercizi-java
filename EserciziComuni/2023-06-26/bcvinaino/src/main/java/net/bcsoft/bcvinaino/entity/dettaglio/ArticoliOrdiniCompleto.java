@@ -1,9 +1,9 @@
 package net.bcsoft.bcvinaino.entity.dettaglio;
 
-import net.bcsoft.bcvinaino.entity.ArticoliOrdini;
+import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
 
-public class ArticoliOrdiniCompleto extends ArticoliOrdini {
+public class ArticoliOrdiniCompleto extends ArticoliOrdine {
     private Menu menu;
     private Double quantita;
 

@@ -1,17 +1,17 @@
 package net.bcsoft.bcvinaino.entity;
 
-public class ArticoliOrdini {
-    private Long idArticoliOrdine;
+public class ArticoliOrdine {
+    private Long id;
     private Long idMenu;
     private Long idOrdine;
     private Integer qta;
 
-    public Long getIdArticoliOrdine() {
-        return idArticoliOrdine;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdArticoliOrdine(Long idArticoliOrdine) {
-        this.idArticoliOrdine = idArticoliOrdine;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getIdMenu() {
