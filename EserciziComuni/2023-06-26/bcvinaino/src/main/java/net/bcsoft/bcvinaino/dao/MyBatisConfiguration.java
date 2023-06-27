@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "net.bcsoft.bcvinaino", sqlSessionFactoryRef = "VINAINO_SESSION_FACTORY")
-@ComponentScan(basePackages = {"net.bcsoft.bcvinaino"})
+@MapperScan(basePackages = "net.bcsoft.bcvinaino.dao", sqlSessionFactoryRef = "VINAINO_SESSION_FACTORY")
+@ComponentScan(basePackages = {"net.bcsoft.bcvinaino.dao"})
 public class MyBatisConfiguration {
 
     @Bean

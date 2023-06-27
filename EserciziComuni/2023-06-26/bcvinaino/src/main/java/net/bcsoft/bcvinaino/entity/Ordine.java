@@ -3,7 +3,7 @@ package net.bcsoft.bcvinaino.entity;
 
 import java.util.Date;
 
-public class Ordini {
+public class Ordine {
     private Long idOrdine;
     private Date dataOrdine;
 
