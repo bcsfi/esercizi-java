@@ -47,9 +47,9 @@ public class ReportServiceImpl implements ReportService {
             quantita = 0;
 
             for (ArticoliOrdine articoliOrdine : articoliOrdineList) {
-                if (menu.getIdMenu() == articoliOrdine.getIdMenu()) {
+                if (menu.getIdMenu().equals(articoliOrdine.getIdMenu())) {
                     for (Ordine ordine : ordiniList) {
-                        if (articoliOrdine.getIdOrdine() == ordine.getIdOrdine() && data.before(ordine.getDataOrdine())) {
+                        if (articoliOrdine.getIdOrdine().equals(ordine.getIdOrdine()) && data.after(ordine.getDataOrdine())) {
                             quantita += articoliOrdine.getQta();
                         }
                     }
@@ -76,19 +76,19 @@ public class ReportServiceImpl implements ReportService {
         calendar.add(Calendar.DAY_OF_MONTH, -7);
         Date data = calendar.getTime();
 
-        double entrataOrdine;
+        double guadagnoSettimanale;
 
         for (Ordine ordine : ordineList) {
             IncassoOrdine incassoOrdine = new IncassoOrdine();
-            entrataOrdine = 0;
+            guadagnoSettimanale = 0;
             for (ArticoliOrdine articoloOrdine : articoliOrdineList) {
-                if (articoloOrdine.getIdOrdine() == ordine.getIdOrdine() && ordine.getDataOrdine().after(data)) {
+                if (articoloOrdine.getIdOrdine().equals(ordine.getIdOrdine()) && ordine.getDataOrdine().after(data)) {
                     for (Menu menu : menuList) {
-                        if (menu.getIdMenu() == articoloOrdine.getIdMenu()) {
+                        if (menu.getIdMenu().equals(articoloOrdine.getIdMenu())) {
                             incassoOrdine.setIdOrdine(articoloOrdine.getIdOrdine());
                             incassoOrdine.setDataOrdine(ordine.getDataOrdine());
-                            entrataOrdine += menu.getPrezzo() * articoloOrdine.getQta();
-                            incassoOrdine.setIncasso(entrataOrdine);
+                            guadagnoSettimanale += menu.getPrezzo() * articoloOrdine.getQta();
+                            incassoOrdine.setIncasso(guadagnoSettimanale);
                             incassoOrdineList.add(incassoOrdine);
                         }
                     }
