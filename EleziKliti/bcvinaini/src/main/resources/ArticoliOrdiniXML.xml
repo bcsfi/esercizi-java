@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.1//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bcvinaini.bcvinaini.dao.ArticoliOrdiniDAO">
+
+    <select id="selectAll">
+        select id_articoli_ordine, id_ordine, id_menu, qta from articoli_ordine
+    </select>
+
+    <insert id="Insert" useGeneratedKeys="true">
+        INSERT INTO ordini (id_menu, id_ordine, id_menu, qta) VALUES (#{idMenu}, #{idOrdine}, #{idMenu}, #{qta})
+    </insert>
+
+    <update id="Update">
+        UPDATE ordini SET
+        id_articoli_ordine = #{idArticoliOrdine},
+        id_ordine = #{idOrdine}, id_menu = #{idMenu}
+        WHERE id_articoli_ordine = #{idArticoliOrdine}")
+    </update>
+
+</mapper>

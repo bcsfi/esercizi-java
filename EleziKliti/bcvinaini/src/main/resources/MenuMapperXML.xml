@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.1//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bcvinaini.bcvinaini.dao.ManuMapperDAO">
+
+    <select id="selectAll">
+        select id_menu, focaccia, prezzo from menu
+    </select>
+
+    <insert id="Insert" useGeneratedKeys="true">
+        INSERT INTO menu (id_menu, focaccia, prezzo)
+        VALUES (#{id}, #{focaccia}, #{prezzo})
+    </insert>
+
+    <update id="Update">
+        UPDATE menu SET focaccia = #{focaccia}, prezzo = #{prezzo}
+        WHERE id_menu = #{id}
+    </update>
+
+</mapper>
