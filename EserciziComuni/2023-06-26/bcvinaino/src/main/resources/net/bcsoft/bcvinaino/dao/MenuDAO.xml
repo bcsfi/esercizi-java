@@ -12,4 +12,9 @@
         <result property="prezzo" column="prezzo"/>
     </resultMap>
 
+    <update id="updateFocaccia" parameterType="net.bcsoft.bcvinaino.entity.Menu">
+        UPDATE menu
+        SET focaccia = #{focaccia}, prezzo = #{prezzo}
+        WHERE id_menu = #{idMenu}
+    </update>
 </mapper>

@@ -36,4 +36,6 @@ public class ReportRestController {
     public String calcolaSoglia(){
         return reportService.calcolaSoglia();
     }
+
+
 }
