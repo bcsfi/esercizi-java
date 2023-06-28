@@ -77,8 +77,9 @@ public class ReportServiceImpl implements ReportService {
         Date data = calendar.getTime();
 
         double entrataOrdine;
-        IncassoOrdine incassoOrdine = new IncassoOrdine();
+
         for (Ordine ordine : ordineList) {
+            IncassoOrdine incassoOrdine = new IncassoOrdine();
             entrataOrdine = 0;
             for (ArticoliOrdine articoloOrdine : articoliOrdineList) {
                 if (articoloOrdine.getIdOrdine() == ordine.getIdOrdine() && ordine.getDataOrdine().after(data)) {
@@ -88,12 +89,12 @@ public class ReportServiceImpl implements ReportService {
                             incassoOrdine.setDataOrdine(ordine.getDataOrdine());
                             entrataOrdine += menu.getPrezzo() * articoloOrdine.getQta();
                             incassoOrdine.setIncasso(entrataOrdine);
+                            incassoOrdineList.add(incassoOrdine);
                         }
                     }
                 }
             }
         }
-        incassoOrdineList.add(incassoOrdine);
         return incassoOrdineList;
     }
 
