@@ -64,6 +64,40 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public List<IncassoOrdine> calcolaOrdini7Giorni() {
+
+        List<ArticoliOrdine> articoliOrdineList = articoliOrdineDAO.selectAll();
+        List<Ordine> ordineList = ordineDAO.selectAll();
+        List<Menu> menuList = menuDAO.selectAll();
+
+        List<IncassoOrdine> incassoOrdineList = new ArrayList<>();
+
+        Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.DAY_OF_MONTH, -7);
+        Date data = calendar.getTime();
+
+        double entrataOrdine;
+        IncassoOrdine incassoOrdine = new IncassoOrdine();
+        for (Ordine ordine : ordineList) {
+            entrataOrdine = 0;
+            for (ArticoliOrdine articoloOrdine : articoliOrdineList) {
+                if (articoloOrdine.getIdOrdine() == ordine.getIdOrdine() && ordine.getDataOrdine().after(data)) {
+                    for (Menu menu : menuList) {
+                        if (menu.getIdMenu() == articoloOrdine.getIdMenu()) {
+                            incassoOrdine.setIdOrdine(articoloOrdine.getIdOrdine());
+                            incassoOrdine.setDataOrdine(ordine.getDataOrdine());
+                            entrataOrdine += menu.getPrezzo() * articoloOrdine.getQta();
+                            incassoOrdine.setIncasso(entrataOrdine);
+                        }
+                    }
+                }
+            }
+        }
+        incassoOrdineList.add(incassoOrdine);
+        return incassoOrdineList;
+    }
+
+    @Override
     public String calcolaSoglia() {
         return null;
     }
