@@ -2,9 +2,10 @@ package net.bcsoft.bcvinaino.service;
 
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
+import net.bcsoft.bcvinaino.entity.dettaglio.OrdineFinale;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 
 public interface OrdineService {
@@ -12,6 +13,7 @@ public interface OrdineService {
 
     void deleteOrdinePerId(Integer id);
 
+    List<OrdineFinale> getOrdineCompleto(Integer id);
 
     void deleteOrdinePerData(LocalDate data);
 }

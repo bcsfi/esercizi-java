@@ -18,6 +18,11 @@
         WHERE ordini.data_ordine = #{data}
     </select>
 
+    <select id="getOrdiniPerId">
+        SELECT * FROM ordini
+        WHERE oridni.id_ordine = #[id]
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine" >
         INSERT INTO ordini (data_ordine)
         VALUES (#{data})

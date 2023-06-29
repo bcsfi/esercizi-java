@@ -18,4 +18,6 @@ public interface OrdineDAO {
     void deleteOrdinePerData(LocalDate Data);
 
     List<Integer> getOrdiniPerData(LocalDate data);
+
+    void getOrdinePerId(Integer id);
 }
