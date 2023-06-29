@@ -9,5 +9,5 @@ import java.util.List;
 public interface OrdineDAO {
     List<Ordine> selectAll();
 
-    void insert(Ordine ordine);
+    Long insert(Ordine ordine);
 }
