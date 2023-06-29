@@ -18,7 +18,7 @@
         VALUES (#{dataOrdine})
     </insert>
 
-    <delete id="deleteOrdine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+    <delete id="deleteOrdinePerData" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
         DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{id};
         DELETE FROM ordini WHERE ordini.id_ordine = #{id}
     </delete>

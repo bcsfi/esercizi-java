@@ -7,5 +7,5 @@ import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 public interface OrdineService {
     Ordine insert(OrdineCompleto ordineCompleto);
 
-    void deleteOrdine(Integer id);
+    void deleteOrdinePerData(Integer id);
 }

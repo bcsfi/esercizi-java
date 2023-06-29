@@ -18,6 +18,6 @@ public class OrdineRestController {
     }
     @DeleteMapping("/bcvinaino/ordini/cancellaOrdine")
     public void cancellaOrdine(@RequestParam Integer id){
-        ordineService.deleteOrdine(id);
+        ordineService.deleteOrdinePerData(id);
     }
 }

@@ -11,5 +11,5 @@ public interface OrdineDAO {
 
     Long insert(Ordine ordine);
 
-    void deleteOrdine(Integer id);
+    void deleteOrdinePerData(Integer id);
 }
