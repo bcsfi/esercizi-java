@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface OrdineDAO {
     List<Ordine> selectAll();
+
+    void insert(Ordine ordine);
 }

@@ -13,4 +13,9 @@
         <result property="dataOrdine" column="data_ordine"/>
     </resultMap>
 
+    <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine" >
+        INSERT INTO ordini (data_ordine)
+        VALUES (#{dataOrdine})
+    </insert>
+
 </mapper>
