@@ -43,4 +43,10 @@ public class OrdineServiceImplement implements OrdineService {
         }
         return ordine;
     }
+
+    @Override
+    public void deleteOrdine(Integer id) {
+        ordineDAO.deleteOrdine(id);
+
+    }
 }

@@ -10,4 +10,6 @@ public interface OrdineDAO {
     List<Ordine> selectAll();
 
     Long insert(Ordine ordine);
+
+    void deleteOrdine(Integer id);
 }
