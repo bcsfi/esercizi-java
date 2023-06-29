@@ -9,7 +9,6 @@ import com.bcvinaini.bcvinaini.entity.Ordini;
 import com.bcvinaini.bcvinaini.mapper.MapperNoXML.ArticoliOrdiniMapper;
 import com.bcvinaini.bcvinaini.mapper.MapperNoXML.MenuMapper;
 import com.bcvinaini.bcvinaini.mapper.MapperNoXML.OrdiniMapper;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ import java.util.List;
 
 
 @Service
-public class ServizioOrdini {
+public class OrderService {
 
     @Autowired
     MenuMapper menuMapper;
@@ -59,17 +58,28 @@ public class ServizioOrdini {
         return ordiniMapper.deleteAllOrderById(OrderIdToDelate);
     }
 
-    public int deleteOrderByData(Date data) {
-        int res = ordiniMapper.deleteOrderByData(data);
-        int idOrdineEliminato = ordiniMapper.getIdOrderByData(data);
-        ordiniMapper.deleteArticoliById(idOrdineEliminato);
+    public String deleteOrderByData(Date data) {
+        String status = "";
 
-        return idOrdineEliminato;
-    }
+        List<Integer> idOrdineEliminato = ordiniMapper.getIdOrderByData(data);
+
+        for(Integer i : idOrdineEliminato){
+            ordiniMapper.deleteArticoliById(i);
+        }
+
+        int res = ordiniMapper.deleteOrderByData(data);
+
+        if(res > 0){
+            status = "Eliminazione dei dei ordini e dei articoli andata a buon fine.";
+        } else {
+            status = "Errore, eliminazione non possibile";
+        }
+
+        return status;
+}
 
     public List<ResponseOrdineDAO> getOrderListForId(int id){
         return ordiniMapper.recoverOrderListForId(id);
     }
-
 
 }

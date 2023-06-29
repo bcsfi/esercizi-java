@@ -34,7 +34,7 @@ public interface OrdiniMapper {
     public int deleteAllOrderById(int id);
 
     @Select("SELECT id_ordine from ordini WHERE ordini.data_ordine = #{data}")
-    public int getIdOrderByData(Date data);
+    public List<Integer> getIdOrderByData(Date data);
 
     @Delete("DELETE FROM ordini WHERE ordini.data_ordine = #{data}")
     public int deleteOrderByData(Date data);
