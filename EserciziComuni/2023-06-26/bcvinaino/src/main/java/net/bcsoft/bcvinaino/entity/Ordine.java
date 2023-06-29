@@ -4,14 +4,14 @@ package net.bcsoft.bcvinaino.entity;
 import java.util.Date;
 
 public class Ordine {
-    private Long idOrdine;
+    private Integer idOrdine;
     private Date dataOrdine;
 
-    public Long getIdOrdine() {
+    public Integer getIdOrdine() {
         return idOrdine;
     }
 
-    public void setIdOrdine(Long idOrdine) {
+    public void setIdOrdine(Integer idOrdine) {
         this.idOrdine = idOrdine;
     }
 

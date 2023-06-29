@@ -2,7 +2,6 @@ package net.bcsoft.bcvinaino.service.implement;
 
 import net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO;
 import net.bcsoft.bcvinaino.dao.OrdineDAO;
-import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
@@ -10,6 +9,7 @@ import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,7 +30,7 @@ public class OrdineServiceImplement implements OrdineService {
 
         ordine.setDataOrdine(ordineCompleto.getDataOrdine());
         ordineDAO.insert(ordine);
-        Long idOrdine = ordine.getIdOrdine();
+        Integer idOrdine = ordine.getIdOrdine();
 
         for(ArticoliOrdiniCompleto articoliNuovi : articoliOrdineList){
             ArticoliOrdiniCompleto articolo = new ArticoliOrdiniCompleto();
@@ -45,8 +45,19 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public void deleteOrdinePerData(Integer id) {
-        ordineDAO.deleteOrdinePerData(id);
+    public void deleteOrdinePerId(Integer id) {
+        ordineDAO.deleteOrdinePerId(id);
 
+    }
+
+
+    @Override
+    public void deleteOrdinePerData(LocalDate data) {
+        List <Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
+
+        for(Integer i : idOrdineEliminato){
+            articoliOrdineDAO.deletePerId(i);
+        }
+        ordineDAO.deleteOrdinePerData(data);
     }
 }

@@ -10,4 +10,5 @@ public interface ArticoliOrdineDAO {
     List<ArticoliOrdine> selectAll();
 
     void insert(ArticoliOrdine articoliOrdine);
+    void deletePerId(Integer id);
 }

@@ -1,15 +1,15 @@
 package net.bcsoft.bcvinaino.entity;
 
 public class Menu {
-    private Long idMenu;
+    private Integer idMenu;
     private String focaccia;
     private Double prezzo;
 
-    public Long getIdMenu() {
+    public Integer getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(Long idMenu) {
+    public void setIdMenu(Integer idMenu) {
         this.idMenu = idMenu;
     }
 

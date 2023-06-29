@@ -13,14 +13,23 @@
         <result property="dataOrdine" column="data_ordine"/>
     </resultMap>
 
+    <select id="getOrdiniPerData">
+        SELECT id_ordine FROM ordini
+        WHERE ordini.data_ordine = #{data}
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine" >
         INSERT INTO ordini (data_ordine)
-        VALUES (#{dataOrdine})
+        VALUES (#{data})
     </insert>
 
-    <delete id="deleteOrdinePerData" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+    <delete id="deleteOrdinePerId" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
         DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{id};
         DELETE FROM ordini WHERE ordini.id_ordine = #{id}
+    </delete>
+
+    <delete id="deleteOrdinePerData" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+        DELETE FROM ordini WHERE ordini.data_ordine = #{data}
     </delete>
 
 </mapper>
