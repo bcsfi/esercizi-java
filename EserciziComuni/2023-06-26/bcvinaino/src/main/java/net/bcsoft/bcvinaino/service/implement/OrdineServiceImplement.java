@@ -57,7 +57,7 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public List <OrdineFinale> getOrdineCompleto(Integer id) {
+    public List <OrdineFinale> getOrdineFinale(Integer id) {
        List <Ordine> ordineList= ordineDAO.selectAll();
        List <Menu> menuList = menuDAO.selectAll();
        List <ArticoliOrdine> articoliOrdineList = articoliOrdineDAO.selectAll();

@@ -6,7 +6,6 @@ import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,8 +20,8 @@ public class OrdineRestController {
     public void insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
         ordineService.insert(ordineCompleto);
     }
-    @DeleteMapping("/bcvinaino/ordini/cancellaOrdine")
-    public void cancellaOrdine(@RequestParam Integer id){
+    @DeleteMapping("/bcvinaino/ordini/cancellaOrdinePerID")
+    public void cancellaOrdinePerId(@RequestParam Integer id){
         ordineService.deleteOrdinePerId(id);
     }
     @DeleteMapping("/bcvinaino/ordini/cancellaOrdinePerData")
@@ -32,6 +31,6 @@ public class OrdineRestController {
 
     @GetMapping("/bcvinaino/ordini/ottieniOrdineCompleto")
     public List<OrdineFinale> ottieniOrdineCompleto(@RequestParam Integer id){
-        return ordineService.getOrdineCompleto(id);
+        return ordineService.getOrdineFinale(id);
     }
 }

@@ -13,7 +13,7 @@ public interface OrdineService {
 
     void deleteOrdinePerId(Integer id);
 
-    List<OrdineFinale> getOrdineCompleto(Integer id);
+    List<OrdineFinale> getOrdineFinale(Integer id);
 
     void deleteOrdinePerData(LocalDate data);
 }
