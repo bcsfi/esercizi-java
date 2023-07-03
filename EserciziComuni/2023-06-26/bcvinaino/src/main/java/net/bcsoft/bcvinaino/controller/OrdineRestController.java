@@ -16,15 +16,15 @@ public class OrdineRestController {
         this.ordineService = ordineService;
     }
 
-    @PostMapping("/bcvinaino/ordini/insertOrdine")
+    @PostMapping("/bcvinaino/ordini/ordine")
     public void insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
         ordineService.insert(ordineCompleto);
     }
-    @DeleteMapping("/bcvinaino/ordini/cancellaOrdinePerID")
+    @DeleteMapping("/bcvinaino/ordini/id")
     public void cancellaOrdinePerId(@RequestParam Integer id){
         ordineService.deleteOrdinePerId(id);
     }
-    @DeleteMapping("/bcvinaino/ordini/cancellaOrdinePerData")
+    @DeleteMapping("/bcvinaino/ordini/data")
     public void cancellaOrdinePerData(@RequestParam LocalDate data){
         ordineService.deleteOrdinePerData(data);
     }
