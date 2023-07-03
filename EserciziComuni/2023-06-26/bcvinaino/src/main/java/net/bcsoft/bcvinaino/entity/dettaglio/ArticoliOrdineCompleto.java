@@ -5,7 +5,7 @@ import net.bcsoft.bcvinaino.entity.Menu;
 
 public class ArticoliOrdineCompleto extends ArticoliOrdine {
     private Menu menu;
-    private Double quantita;
+
 
     public Menu getMenu() {
         return menu;
@@ -15,11 +15,4 @@ public class ArticoliOrdineCompleto extends ArticoliOrdine {
         this.menu = menu;
     }
 
-    public Double getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(Double quantita) {
-        this.quantita = quantita;
-    }
 }

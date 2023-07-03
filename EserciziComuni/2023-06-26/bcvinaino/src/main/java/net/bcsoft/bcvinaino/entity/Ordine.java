@@ -1,6 +1,7 @@
 package net.bcsoft.bcvinaino.entity;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Ordine {

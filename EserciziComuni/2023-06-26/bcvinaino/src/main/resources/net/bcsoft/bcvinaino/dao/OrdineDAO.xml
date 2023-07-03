@@ -25,9 +25,14 @@
         WHERE ordini.id_ordine = #{id}
     </select>
 
+    <resultMap id="ordineCompletoResultMap" type="net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto" extends="ordineResultMap">
+        <collection property="articoliOrdineCompletoList" resultMap="net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO.articoliOrdineCompletoResultMap" javaType="java.util.List"/>
+    </resultMap>
+
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine" >
         INSERT INTO ordini (data_ordine)
-        VALUES (#{data})
+        VALUES (#{dataOrdine})
     </insert>
 
     <delete id="deleteOrdinePerId" parameterType="net.bcsoft.bcvinaino.entity.Ordine">

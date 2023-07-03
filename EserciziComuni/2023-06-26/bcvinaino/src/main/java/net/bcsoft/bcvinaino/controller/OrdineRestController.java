@@ -1,5 +1,6 @@
 package net.bcsoft.bcvinaino.controller;
 
+import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ public class OrdineRestController {
         this.ordineService = ordineService;
     }
 
-    @PostMapping("/bcvinaino/ordini/ordine")
-    public void insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
-        ordineService.insert(ordineCompleto);
+    @PostMapping("/bcvinaino/ordini")
+    public Ordine insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
+        return ordineService.insert(ordineCompleto);
     }
     @DeleteMapping("/bcvinaino/ordini/id")
     public void cancellaOrdinePerId(@RequestParam Integer id){
@@ -29,7 +30,7 @@ public class OrdineRestController {
     }
 
     @GetMapping("/bcvinaino/ordini/{id}")
-    public OrdineCompleto ottieniOrdineCompleto(@RequestParam Integer id){
+    public OrdineCompleto ottieniOrdineCompleto(@PathVariable Integer id){
         return ordineService.getById(id);
     }
 }

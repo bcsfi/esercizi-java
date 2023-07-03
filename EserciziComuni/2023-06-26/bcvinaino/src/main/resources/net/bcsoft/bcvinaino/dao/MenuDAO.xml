@@ -17,4 +17,5 @@
         SET focaccia = #{focaccia}, prezzo = #{prezzo}
         WHERE id_menu = #{idMenu}
     </update>
+
 </mapper>
