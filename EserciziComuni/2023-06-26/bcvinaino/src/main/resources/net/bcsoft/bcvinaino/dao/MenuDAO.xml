@@ -2,19 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.bcsoft.bcvinaino.dao.MenuDAO">
+
+    <resultMap id="menuResultMap" type="net.bcsoft.bcvinaino.entity.Menu">
+        <id property="id" column="id_menu"/>
+        <result property="nome" column="focaccia"/>
+        <result property="prezzo" column="prezzo"/>
+    </resultMap>
+
     <select id="selectAll" resultMap="menuResultMap">
         SELECT * FROM menu
     </select>
 
-    <resultMap id="menuResultMap" type="net.bcsoft.bcvinaino.entity.Menu">
-        <id property="idMenu" column="id_menu"/>
-        <result property="focaccia" column="focaccia"/>
-        <result property="prezzo" column="prezzo"/>
-    </resultMap>
-
-    <update id="updateFocaccia" parameterType="net.bcsoft.bcvinaino.entity.Menu">
+    <update id="update" parameterType="net.bcsoft.bcvinaino.entity.Menu">
         UPDATE menu
-        SET focaccia = #{focaccia}, prezzo = #{prezzo}
-        WHERE id_menu = #{idMenu}
+        SET focaccia = #{nome},
+            prezzo = #{prezzo}
+        WHERE id_menu = #{id}
     </update>
 </mapper>

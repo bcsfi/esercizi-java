@@ -1,46 +1,50 @@
 package net.bcsoft.bcvinaino.service.implement;
 
-import net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO;
 import net.bcsoft.bcvinaino.dao.OrdineDAO;
-import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
+import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class OrdineServiceImplement implements OrdineService {
     private final OrdineDAO ordineDAO;
-    private final ArticoliOrdineDAO articoliOrdineDAO;
+    private final ArticoliOrdineService articoliOrdineService;
 
-    public OrdineServiceImplement(OrdineDAO ordineDAO, ArticoliOrdineDAO articoliOrdineDAO) {
+    public OrdineServiceImplement(OrdineDAO ordineDAO, ArticoliOrdineService articoliOrdineService) {
         this.ordineDAO = ordineDAO;
-        this.articoliOrdineDAO = articoliOrdineDAO;
+        this.articoliOrdineService = articoliOrdineService;
     }
 
 
+//    @Override
+//    public List<Ordine> insert(OrdineCompleto ordineCompleto) {
+//        ordineDAO.insert(ordineCompleto);
+//        Long idOrdine = ordineCompleto.getIdOrdine();
+//
+//        for(ArticoliOrdiniCompleto articolo : ordineCompleto.getArticoliOrdiniList()){
+//
+//            long id_ordine;
+//            articoliOrdineService.insert(articolo, idOrdine);
+//        }
+//        return ordine;
+//    }
+
     @Override
-    public Ordine insert(OrdineCompleto ordineCompleto) {
-        List<ArticoliOrdiniCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdiniList();
-        Ordine ordine = new Ordine();
+    public void deleteOrdineByID(Long id){
+        ordineDAO.deleteByID(id);
+    }
 
-        ordine.setDataOrdine(ordineCompleto.getDataOrdine());
-        ordineDAO.insert(ordine);
-        Long idOrdine = ordine.getIdOrdine();
-
-        for(ArticoliOrdiniCompleto articoliNuovi : articoliOrdineList){
-            ArticoliOrdiniCompleto articolo = new ArticoliOrdiniCompleto();
-            articolo.setIdOrdine(idOrdine);
-
-            Menu menu = articoliNuovi.getMenu();
-            articolo.setIdMenu(menu.getIdMenu());
-
-            articoliOrdineDAO.insert(articolo);
-        }
-        return ordine;
+    @Override
+    public void deleteOrdineByData(LocalDate data){
+        ordineDAO.deleteByData(data);
     }
 }

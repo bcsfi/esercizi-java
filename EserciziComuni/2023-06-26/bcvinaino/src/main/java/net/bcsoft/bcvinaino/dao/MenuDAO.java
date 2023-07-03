@@ -9,5 +9,5 @@ import java.util.List;
 public interface MenuDAO {
     List<Menu> selectAll();
 
-    void updateFocaccia(Menu menu);
+    void update(Menu menu);
 }

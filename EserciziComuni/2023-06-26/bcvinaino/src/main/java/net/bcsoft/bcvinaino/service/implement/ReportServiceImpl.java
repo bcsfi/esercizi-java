@@ -47,7 +47,7 @@ public class ReportServiceImpl implements ReportService {
             quantita = 0;
 
             for (ArticoliOrdine articoliOrdine : articoliOrdineList) {
-                if (menu.getIdMenu().equals(articoliOrdine.getIdMenu())) {
+                if (menu.getId().equals(articoliOrdine.getIdMenu())) {
                     for (Ordine ordine : ordiniList) {
                         if (articoliOrdine.getIdOrdine().equals(ordine.getIdOrdine()) && data.after(ordine.getDataOrdine())) {
                             quantita += articoliOrdine.getQta();
@@ -56,7 +56,7 @@ public class ReportServiceImpl implements ReportService {
                 }
             }
 
-            quantitaFocacciaList.add(new QuantitaFocaccia(menu.getFocaccia(), quantita));
+            quantitaFocacciaList.add(new QuantitaFocaccia(menu.getNome(), quantita));
 
         }
 
@@ -84,7 +84,7 @@ public class ReportServiceImpl implements ReportService {
             for (ArticoliOrdine articoloOrdine : articoliOrdineList) {
                 if (articoloOrdine.getIdOrdine().equals(ordine.getIdOrdine()) && ordine.getDataOrdine().after(data)) {
                     for (Menu menu : menuList) {
-                        if (menu.getIdMenu().equals(articoloOrdine.getIdMenu())) {
+                        if (menu.getId().equals(articoloOrdine.getIdMenu())) {
                             incassoOrdine.setIdOrdine(articoloOrdine.getIdOrdine());
                             incassoOrdine.setDataOrdine(ordine.getDataOrdine());
                             guadagnoSettimanale += menu.getPrezzo() * articoloOrdine.getQta();
