@@ -18,9 +18,11 @@
         WHERE ordini.data_ordine = #{data}
     </select>
 
-    <select id="getOrdiniPerId">
-        SELECT * FROM ordini
-        WHERE oridni.id_ordine = #[id]
+    <select id="getById" resultMap="ordineCompletoResultMap">
+        SELECT ordini.id_ordine, ordini.data_ordine, menu.*, articoli_ordine.qta FROM ordini JOIN articoli_ordine
+        ON ordini.id_ordine = articoli_ordine.id_ordine
+        JOIN menu ON menu.id_Menu = articoli_ordine.id_menu
+        WHERE ordini.id_ordine = #{id}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine" >
@@ -29,12 +31,8 @@
     </insert>
 
     <delete id="deleteOrdinePerId" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
-        DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{id};
         DELETE FROM ordini WHERE ordini.id_ordine = #{id}
     </delete>
 
-    <delete id="deleteOrdinePerData" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
-        DELETE FROM ordini WHERE ordini.data_ordine = #{data}
-    </delete>
 
 </mapper>

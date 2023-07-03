@@ -1,99 +1,64 @@
 package net.bcsoft.bcvinaino.service.implement;
 
-import net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO;
-import net.bcsoft.bcvinaino.dao.MenuDAO;
 import net.bcsoft.bcvinaino.dao.OrdineDAO;
 import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.entity.Ordine;
-import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
+import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdineCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
-import net.bcsoft.bcvinaino.entity.dettaglio.OrdineFinale;
+import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class OrdineServiceImplement implements OrdineService {
     private final OrdineDAO ordineDAO;
-    private final ArticoliOrdineDAO articoliOrdineDAO;
-    private final MenuDAO menuDAO;
+    private final ArticoliOrdineService articoliOrdineService;
 
-    public OrdineServiceImplement(OrdineDAO ordineDAO, ArticoliOrdineDAO articoliOrdineDAO, MenuDAO menuDAO) {
+    public OrdineServiceImplement(OrdineDAO ordineDAO, ArticoliOrdineService articoliOrdineService) {
         this.ordineDAO = ordineDAO;
-        this.articoliOrdineDAO = articoliOrdineDAO;
-        this.menuDAO = menuDAO;
+        this.articoliOrdineService = articoliOrdineService;
     }
 
 
     @Override
     public Ordine insert(OrdineCompleto ordineCompleto) {
-        List<ArticoliOrdiniCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdiniList();
-        Ordine ordine = new Ordine();
+        List<ArticoliOrdineCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdiniList();
 
-        ordine.setDataOrdine(ordineCompleto.getDataOrdine());
-        ordineDAO.insert(ordine);
-        Integer idOrdine = ordine.getIdOrdine();
+        ordineDAO.insert(ordineCompleto);
+        Integer idOrdine = ordineCompleto.getIdOrdine();
 
-        for(ArticoliOrdiniCompleto articoliNuovi : articoliOrdineList){
-            ArticoliOrdiniCompleto articolo = new ArticoliOrdiniCompleto();
-            articolo.setIdOrdine(idOrdine);
+        for (ArticoliOrdineCompleto articolo : articoliOrdineList) {
 
-            Menu menu = articoliNuovi.getMenu();
-            articolo.setIdMenu(menu.getIdMenu());
-
-            articoliOrdineDAO.insert(articolo);
+            articoliOrdineService.insert(articolo, idOrdine);
         }
-        return ordine;
+        return ordineCompleto;
     }
 
     @Override
     public void deleteOrdinePerId(Integer id) {
-        ordineDAO.deleteOrdinePerId(id);
-
+        this.articoliOrdineService.deletePerIdOrdine(id);
+        this.ordineDAO.deletePerId(id);
     }
 
     @Override
-    public List <OrdineFinale> getOrdineFinale(Integer id) {
-       List <Ordine> ordineList= ordineDAO.selectAll();
-       List <Menu> menuList = menuDAO.selectAll();
-       List <ArticoliOrdine> articoliOrdineList = articoliOrdineDAO.selectAll();
-       List <OrdineFinale> ordineFinaleList= new ArrayList<>();
-
-       for (Ordine ordine : ordineList){
-           if(ordine.getIdOrdine().equals(id)){
-               for (ArticoliOrdine articoliOrdine : articoliOrdineList){
-                   if(articoliOrdine.getIdOrdine().equals(ordine.getIdOrdine())){
-                       for(Menu menu : menuList){
-                           if(menu.getIdMenu().equals(articoliOrdine.getIdMenu())){
-                               OrdineFinale ordineFinale = new OrdineFinale();
-                               ordineFinale.setIdOrdine(id);
-                               ordineFinale.setDataOrdine(ordine.getDataOrdine());
-                               ordineFinale.setNome(menu.getFocaccia());
-                               ordineFinale.setPrezzo(menu.getPrezzo());
-                               ordineFinale.setQta(articoliOrdine.getQta());
-                               ordineFinaleList.add(ordineFinale);
-                           }
-                       }
-                   }
-               }
-           }
-
-       }
-       return ordineFinaleList;
+    public OrdineCompleto getById(Integer id) {
+        return this.ordineDAO.getById(id);
     }
-
 
     @Override
     public void deleteOrdinePerData(LocalDate data) {
         List <Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
 
-        for(Integer i : idOrdineEliminato){
-            articoliOrdineDAO.deletePerId(i);
+        for(Integer idOrdine : idOrdineEliminato){
+            articoliOrdineService.deletePerIdOrdine(idOrdine);
+            ordineDAO.deletePerId(idOrdine);
         }
-        ordineDAO.deleteOrdinePerData(data);
     }
 }

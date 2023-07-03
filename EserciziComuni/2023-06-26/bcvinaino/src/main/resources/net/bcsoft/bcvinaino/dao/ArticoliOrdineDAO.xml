@@ -14,12 +14,12 @@
         <result property="qta" column="qta"/>
     </resultMap>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id_articoli_ordine" parameterType="net.bcsoft.bcvinaino.entity.ArticoliOrdine">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id_articoli_ordine">
         INSERT INTO articoli_ordine (id_ordine, id_menu, qta)
-        VALUES (#{id_ordine}, #{id_menu}, #{qta})
+        VALUES (#{idOrdine}, #{articolo.menu.idMenu}, #{articolo.menu.qta})
     </insert>
 
-    <delete id="deletePerId" parameterType="net.bcsoft.bcvinaino.entity.ArticoliOrdine">
+    <delete id="deletePerIdOrdine" parameterType="net.bcsoft.bcvinaino.entity.ArticoliOrdine">
         DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{idOrdine}
     </delete>
 </mapper>

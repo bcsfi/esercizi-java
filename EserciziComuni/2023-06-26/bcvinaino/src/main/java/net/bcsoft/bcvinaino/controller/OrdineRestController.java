@@ -1,7 +1,6 @@
 package net.bcsoft.bcvinaino.controller;
 
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
-import net.bcsoft.bcvinaino.entity.dettaglio.OrdineFinale;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +28,8 @@ public class OrdineRestController {
         ordineService.deleteOrdinePerData(data);
     }
 
-    @GetMapping("/bcvinaino/ordini/ottieniOrdineCompleto")
-    public List<OrdineFinale> ottieniOrdineCompleto(@RequestParam Integer id){
-        return ordineService.getOrdineFinale(id);
+    @GetMapping("/bcvinaino/ordini/{id}")
+    public OrdineCompleto ottieniOrdineCompleto(@RequestParam Integer id){
+        return ordineService.getById(id);
     }
 }

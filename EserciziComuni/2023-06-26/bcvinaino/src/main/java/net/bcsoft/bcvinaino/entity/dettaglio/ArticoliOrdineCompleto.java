@@ -3,7 +3,7 @@ package net.bcsoft.bcvinaino.entity.dettaglio;
 import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
 
-public class ArticoliOrdiniCompleto extends ArticoliOrdine {
+public class ArticoliOrdineCompleto extends ArticoliOrdine {
     private Menu menu;
     private Double quantita;
 

@@ -1,12 +1,13 @@
 package net.bcsoft.bcvinaino.service.implement;
 
 import net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO;
-import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
-import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
+import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdineCompleto;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ArticoliOrdineServiceImplement implements ArticoliOrdineService {
     ArticoliOrdineDAO articoliOrdineDAO;
 
@@ -15,12 +16,12 @@ public class ArticoliOrdineServiceImplement implements ArticoliOrdineService {
     }
 
     @Override
-    public void insert(ArticoliOrdiniCompleto articoliOrdineCompleto) {
-        articoliOrdineDAO.insert(articoliOrdineCompleto);
+    public void insert(ArticoliOrdineCompleto articoliOrdineCompleto, Integer idOrdine) {
+        articoliOrdineDAO.insert(articoliOrdineCompleto, idOrdine);
     }
 
     @Override
-    public void deletePerId(Integer id) {
+    public void deletePerIdOrdine(Integer id) {
         articoliOrdineDAO.deletePerId(id);
     }
 }

@@ -1,11 +1,9 @@
 package net.bcsoft.bcvinaino.service;
 
-import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
-import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
-import org.springframework.stereotype.Service;
+import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdineCompleto;
 
 
 public interface ArticoliOrdineService {
-    void insert(ArticoliOrdiniCompleto articoliOrdine);
-    void deletePerId(Integer id);
+    void insert(ArticoliOrdineCompleto articoliOrdine, Integer idOrdine);
+    void deletePerIdOrdine(Integer id);
 }

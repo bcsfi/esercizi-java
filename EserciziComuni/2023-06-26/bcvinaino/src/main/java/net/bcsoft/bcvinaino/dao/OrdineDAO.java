@@ -1,11 +1,10 @@
 package net.bcsoft.bcvinaino.dao;
 
 import net.bcsoft.bcvinaino.entity.Ordine;
+import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import org.apache.ibatis.annotations.Mapper;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -14,10 +13,10 @@ public interface OrdineDAO {
 
     Long insert(Ordine ordine);
 
-    void deleteOrdinePerId(Integer id);
-    void deleteOrdinePerData(LocalDate Data);
+    void deletePerId(Integer id);
 
     List<Integer> getOrdiniPerData(LocalDate data);
 
-    void getOrdinePerId(Integer id);
+
+    OrdineCompleto getById(Integer id);
 }
