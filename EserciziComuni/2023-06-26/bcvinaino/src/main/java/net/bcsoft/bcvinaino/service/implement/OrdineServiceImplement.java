@@ -1,8 +1,6 @@
 package net.bcsoft.bcvinaino.service.implement;
 
 import net.bcsoft.bcvinaino.dao.OrdineDAO;
-import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
-import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdineCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
