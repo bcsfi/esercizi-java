@@ -3,6 +3,7 @@ package net.bcsoft.bcvinaino.dao;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
@@ -11,5 +12,6 @@ public interface OrdineDAO {
 
     Long insert(Ordine ordine);
 
-    void deleteOrdinePerData(Integer id);
+    void deleteOrdinePerId(int id);
+    void deleteOrdinePerData(LocalDate data);
 }

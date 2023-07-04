@@ -4,6 +4,8 @@ import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 public class OrdineRestController {
     private final OrdineService ordineService;
@@ -16,8 +18,8 @@ public class OrdineRestController {
     public void insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
         ordineService.insert(ordineCompleto);
     }
-    @DeleteMapping("/bcvinaino/ordini/cancellaOrdine")
-    public void cancellaOrdine(@RequestParam Integer id){
-        ordineService.deleteOrdinePerData(id);
+    @DeleteMapping("/bcvinaino/ordini/{data}")
+    public void cancellaOrdineData(@PathVariable(value = "data") LocalDate data){
+        ordineService.deleteOrdinePerData(data);
     }
 }

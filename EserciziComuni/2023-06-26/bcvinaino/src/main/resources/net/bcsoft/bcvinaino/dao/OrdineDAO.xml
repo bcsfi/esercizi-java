@@ -18,8 +18,13 @@
         VALUES (#{dataOrdine})
     </insert>
 
-    <delete id="deleteOrdinePerData" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+    <delete id="deleteOrdinePerId" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
         DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{id};
+        DELETE FROM ordini WHERE ordini.id_ordine = #{id}
+    </delete>
+
+    <delete id="deleteOrdinePerData" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+        DELETE FROM articoli_ordine JOIN ordini ON articoli_ordine.id_ordine = ordini.id_ordine WHERE ordine.data_ordine = #{data};
         DELETE FROM ordini WHERE ordini.id_ordine = #{id}
     </delete>
 
