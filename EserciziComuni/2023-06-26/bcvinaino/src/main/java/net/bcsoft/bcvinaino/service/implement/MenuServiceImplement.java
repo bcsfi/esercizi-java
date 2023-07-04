@@ -5,6 +5,8 @@ import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.service.MenuService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MenuServiceImplement implements MenuService {
 
@@ -16,5 +18,10 @@ public class MenuServiceImplement implements MenuService {
     @Override
     public void updateFocaccia(Menu menu){
         menuDAO.updateFocaccia(menu);
+    }
+
+    @Override
+    public List<Menu> selectAll() {
+        return menuDAO.selectAll();
     }
 }

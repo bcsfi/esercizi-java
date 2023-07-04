@@ -42,6 +42,11 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
+    public List<Ordine> selectAll() {
+        return ordineDAO.selectAll();
+    }
+
+    @Override
     public void deleteOrdinePerId(Integer id) {
         this.articoliOrdineService.deletePerIdOrdine(id);
         this.ordineDAO.deletePerId(id);

@@ -1,10 +1,10 @@
 package net.bcsoft.bcvinaino.service.implement;
 
-import net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO;
-import net.bcsoft.bcvinaino.dao.IncassoDAO;
-import net.bcsoft.bcvinaino.dao.MenuDAO;
-import net.bcsoft.bcvinaino.dao.OrdineDAO;
+import net.bcsoft.bcvinaino.dao.ReportDAO;
 import net.bcsoft.bcvinaino.entity.*;
+import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
+import net.bcsoft.bcvinaino.service.MenuService;
+import net.bcsoft.bcvinaino.service.OrdineService;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.stereotype.Service;
 
@@ -13,62 +13,53 @@ import java.util.*;
 @Service
 public class ReportServiceImpl implements ReportService {
 
-    private final IncassoDAO incassoDAO;
-    private final MenuDAO menuDAO;
-    private final ArticoliOrdineDAO articoliOrdineDAO;
-    private final OrdineDAO ordineDAO;
+    private final ReportDAO reportDAO;
+    private final MenuService menuService;
+    private final ArticoliOrdineService articoliOrdineService;
+    private final OrdineService ordineService;
 
-    public ReportServiceImpl(IncassoDAO incassoDAO, MenuDAO menuDAO, ArticoliOrdineDAO articoliOrdineDAO, OrdineDAO ordineDAO) {
-        this.incassoDAO = incassoDAO;
-        this.menuDAO = menuDAO;
-        this.articoliOrdineDAO = articoliOrdineDAO;
-        this.ordineDAO = ordineDAO;
+    public ReportServiceImpl(ReportDAO reportDAO, MenuService menuService, ArticoliOrdineService articoliOrdineService, OrdineService ordineService) {
+        this.reportDAO = reportDAO;
+        this.menuService = menuService;
+        this.articoliOrdineService = articoliOrdineService;
+        this.ordineService = ordineService;
     }
 
     @Override
     public List<IncassoGiornaliero> calcolaIncassi() {
-        return incassoDAO.calcolaIncassi();
+        return reportDAO.calcolaIncassi();
     }
 
     @Override
-    public List<QuantitaFocaccia> calcolaTipoFocaccia() {
+    public Map <String, Integer> calcolaTipoFocaccia() {
 
-        List<Menu> menuList = menuDAO.selectAll();
-        List<ArticoliOrdine> articoliOrdineList = articoliOrdineDAO.selectAll();
-        List<Ordine> ordiniList = ordineDAO.selectAll();
+        List<Menu> menuList = menuService.selectAll();
+        List<ArticoliOrdine> articoliOrdineList = articoliOrdineService.selectAll();
+        List<Ordine> ordiniList = ordineService.selectAll();
+        Map <String, Integer> focacceMap = new HashMap<>();
 
-        List<QuantitaFocaccia> quantitaFocacciaList = new ArrayList<>();
-        int quantita;
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_MONTH, -30);
-        Date data = calendar.getTime();
 
-        for (Menu menu : menuList) {
-            quantita = 0;
-
-            for (ArticoliOrdine articoliOrdine : articoliOrdineList) {
-                if (menu.getIdMenu().equals(articoliOrdine.getIdMenu())) {
-                    for (Ordine ordine : ordiniList) {
-                        if (articoliOrdine.getIdOrdine().equals(ordine.getIdOrdine()) && data.after(ordine.getDataOrdine())) {
-                            quantita += articoliOrdine.getQta();
+        for(Menu menu : menuList){
+            Integer quantita = 0;
+            for(ArticoliOrdine articoliOrdine : articoliOrdineList){
+                if(articoliOrdine.getIdMenu().equals(menu.getIdMenu())){
+                    for(Ordine ordine : ordiniList){
+                        if(ordine.getIdOrdine().equals(articoliOrdine.getIdOrdine())){
+                            focacceMap.put(menu.getFocaccia(), quantita++);
                         }
                     }
                 }
             }
-
-            quantitaFocacciaList.add(new QuantitaFocaccia(menu.getFocaccia(), quantita));
-
         }
-
-        return quantitaFocacciaList;
+        return focacceMap;
     }
 
     @Override
     public List<IncassoOrdine> calcolaOrdini7Giorni() {
 
-        List<ArticoliOrdine> articoliOrdineList = articoliOrdineDAO.selectAll();
-        List<Ordine> ordineList = ordineDAO.selectAll();
-        List<Menu> menuList = menuDAO.selectAll();
+        List<ArticoliOrdine> articoliOrdineList = articoliOrdineService.selectAll();
+        List<Ordine> ordineList = ordineService.selectAll();
+        List<Menu> menuList = menuService.selectAll();
 
         List<IncassoOrdine> incassoOrdineList = new ArrayList<>();
 
@@ -98,9 +89,5 @@ public class ReportServiceImpl implements ReportService {
         return incassoOrdineList;
     }
 
-    @Override
-    public String calcolaSoglia() {
-        return null;
-    }
 
 }
