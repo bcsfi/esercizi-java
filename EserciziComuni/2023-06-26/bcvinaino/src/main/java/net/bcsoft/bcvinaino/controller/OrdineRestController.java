@@ -21,13 +21,21 @@ public class OrdineRestController {
     public Ordine insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
         return ordineService.insert(ordineCompleto);
     }
-    @DeleteMapping("/bcvinaino/ordini/id")
-    public void cancellaOrdinePerId(@RequestParam Integer id){
-        ordineService.deleteOrdinePerId(id);
+    @DeleteMapping("/bcvinaino/ordini/id/{id}")
+    public void cancellaOrdinePerId(@PathVariable Integer id){
+        try{
+            ordineService.deleteOrdinePerId(id);
+        }catch(NotFoundException e){
+            e.printStackTrace();
+        }
     }
-    @DeleteMapping("/bcvinaino/ordini/data")
-    public void cancellaOrdinePerData(@RequestParam LocalDate data){
-        ordineService.deleteOrdinePerData(data);
+    @DeleteMapping("/bcvinaino/ordini/data/{data}")
+    public void cancellaOrdinePerData(@PathVariable LocalDate data){
+        try{
+            ordineService.deleteOrdinePerData(data);
+        }catch(NotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     @GetMapping("/bcvinaino/ordini/{id}")

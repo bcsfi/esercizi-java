@@ -18,15 +18,15 @@
         WHERE ordini.data_ordine = #{data}
     </select>
 
+    <select id="getIdOrdine">
+        SELECT id_ordine FROM ordini
+        WHERE id_ordine = #{idOrdine}
+    </select>
     <select id="getById" resultMap="ordineCompletoResultMap">
         SELECT ordini.id_ordine, ordini.data_ordine, menu.*, articoli_ordine.qta FROM ordini JOIN articoli_ordine
         ON ordini.id_ordine = articoli_ordine.id_ordine
         JOIN menu ON menu.id_Menu = articoli_ordine.id_menu
         WHERE ordini.id_ordine = #{id}
-    </select>
-
-    <select id="getIdOrdini">
-        SELECT id_ordine FROM ordini
     </select>
 
     <resultMap id="ordineCompletoResultMap" type="net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto" extends="ordineResultMap">

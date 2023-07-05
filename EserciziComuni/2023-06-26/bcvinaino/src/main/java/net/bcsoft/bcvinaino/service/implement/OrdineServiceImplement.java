@@ -10,6 +10,7 @@ import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.NoRouteToHostException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,13 +31,13 @@ public class OrdineServiceImplement implements OrdineService {
     @Override
     public Ordine insert(OrdineCompleto ordineCompleto) {
         List<ArticoliOrdineCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdineCompletoList();
-            ordineDAO.insert(ordineCompleto);
-            Integer idOrdine = ordineCompleto.getIdOrdine();
+        ordineDAO.insert(ordineCompleto);
+        Integer idOrdine = ordineCompleto.getIdOrdine();
 
-            for (ArticoliOrdineCompleto articolo : articoliOrdineList) {
+        for (ArticoliOrdineCompleto articolo : articoliOrdineList) {
 
-                articoliOrdineService.insert(articolo, idOrdine);
-            }
+            articoliOrdineService.insert(articolo, idOrdine);
+        }
         return ordineCompleto;
     }
 
@@ -46,18 +47,12 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public void deleteOrdinePerId(Integer id) {
-        this.articoliOrdineService.deletePerIdOrdine(id);
-        this.ordineDAO.deletePerId(id);
-    }
-
-    @Override
     public OrdineCompleto getById(Integer id) throws NotFoundException {
         if (id == null) {
-            throw new IllegalArgumentException("id nullo");
+            throw new IllegalArgumentException("ID NULLO");
         } else {
             if (this.ordineDAO.getById(id) == null) {
-                throw new NotFoundException("Oggetto non Trovato");
+                throw new NotFoundException("ORDINE NON TROVATO");
             } else {
                 return this.ordineDAO.getById(id);
             }
@@ -65,12 +60,23 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public void deleteOrdinePerData(LocalDate data) {
-        List <Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
+    public void deleteOrdinePerId(Integer id) throws NotFoundException {
+        if (this.ordineDAO.getIdOrdine(id) == null) {
+            throw new NotFoundException("ORDINE NON TROVATO");
+        } else {
+            this.articoliOrdineService.deletePerIdOrdine(id);
+            this.ordineDAO.deletePerId(id);
+        }
+    }
 
-        for(Integer idOrdine : idOrdineEliminato){
-            articoliOrdineService.deletePerIdOrdine(idOrdine);
-            ordineDAO.deletePerId(idOrdine);
+    @Override
+    public void deleteOrdinePerData(LocalDate data) throws NotFoundException {
+        List<Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
+
+            for (Integer idOrdine : idOrdineEliminato) {
+                articoliOrdineService.deletePerIdOrdine(idOrdine);
+                ordineDAO.deletePerId(idOrdine);
+            }
         }
     }
 }
