@@ -73,10 +73,9 @@ public class OrdineServiceImplement implements OrdineService {
     public void deleteOrdinePerData(LocalDate data) throws NotFoundException {
         List<Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
 
-            for (Integer idOrdine : idOrdineEliminato) {
-                articoliOrdineService.deletePerIdOrdine(idOrdine);
-                ordineDAO.deletePerId(idOrdine);
-            }
+        for (Integer idOrdine : idOrdineEliminato) {
+            articoliOrdineService.deletePerIdOrdine(idOrdine);
+            ordineDAO.deletePerId(idOrdine);
         }
     }
 }
