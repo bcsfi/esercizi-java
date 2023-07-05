@@ -3,10 +3,6 @@
 
 <mapper namespace="net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO">
 
-    <select id="selectAll" resultMap="articoliOrdineResultMap">
-        SELECT * FROM articoli_ordine
-    </select>
-
     <resultMap id="articoliOrdineResultMap" type="net.bcsoft.bcvinaino.entity.ArticoliOrdine">
         <id property="id" column="id_articoli_ordine"/>
         <result property="idMenu" column="id_menu"/>
@@ -14,8 +10,21 @@
         <result property="qta" column="qta"/>
     </resultMap>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id_articoli_ordine" parameterType="net.bcsoft.bcvinaino.entity.ArticoliOrdine">
+    <select id="selectAll" resultMap="articoliOrdineResultMap">
+        SELECT * FROM articoli_ordine
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true">
         INSERT INTO articoli_ordine (id_ordine, id_menu, qta)
-        VALUES (#{id_ordine}, #{id_menu}, #{qta})
+        VALUES (#{idOrdine}, #{articolo.menu.id}, #{articolo.quantita})
     </insert>
+
+    <delete id="deleteByIdOrdine" parameterType="Long">
+        DELETE FROM articoli_ordine WHERE id_ordine = #{idOrdine}
+    </delete>
+
+    <delete id="deleteByDataOrdine" parameterType="Date">
+        DELETE FROM articoli_ordine WHERE id_ordine IN
+        (SELECT id_ordine FROM ordini WHERE data_ordine = #{dataOrdine});
+    </delete>
 </mapper>

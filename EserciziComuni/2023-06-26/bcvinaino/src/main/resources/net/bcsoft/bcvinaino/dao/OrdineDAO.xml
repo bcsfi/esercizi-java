@@ -4,27 +4,25 @@
 <mapper namespace="net.bcsoft.bcvinaino.dao.OrdineDAO">
 
     <resultMap id="ordineResultMap" type="net.bcsoft.bcvinaino.entity.Ordine">
-        <id property="idOrdine" column="id_ordine"/>
-        <result property="dataOrdine" column="data_ordine"/>
+        <id property="id" column="id_ordine"/>
+        <result property="data" column="data_ordine"/>
     </resultMap>
 
     <select id="selectAll" resultMap="ordineResultMap">
         SELECT * FROM ordini
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+    <insert id="insert" useGeneratedKeys="true"
+            keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
         INSERT INTO ordini (data_ordine)
         VALUES (#{dataOrdine})
     </insert>
 
     <delete id="deleteByID" parameterType="Long">
-        DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{id};
         DELETE FROM ordini WHERE ordini.id_ordine = #{id}
     </delete>
 
-    <delete id="deleteByData" parameterType="java.time.LocalDate">
-        DELETE FROM articoli_ordine AS ao WHERE ao.id_ordine IN (
-        SELECT o.id_ordine FROM ordini AS o WHERE data_ordine = #{data});
+    <delete id="deleteByData" parameterType="Date">
         DELETE FROM ordini AS o WHERE data_ordine = #{data}
     </delete>
 </mapper>

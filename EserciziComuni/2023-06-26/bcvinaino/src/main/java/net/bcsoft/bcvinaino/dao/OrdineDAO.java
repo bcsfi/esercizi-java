@@ -2,9 +2,8 @@ package net.bcsoft.bcvinaino.dao;
 
 import net.bcsoft.bcvinaino.entity.Ordine;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 @Mapper
@@ -15,5 +14,5 @@ public interface OrdineDAO {
 
     Long deleteByID(Long id);
 
-    LocalDate deleteByData(LocalDate data);
+    void deleteByData(Date data);
 }

@@ -1,16 +1,15 @@
 package net.bcsoft.bcvinaino.service.implement;
 
 import net.bcsoft.bcvinaino.dao.OrdineDAO;
-import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.entity.Ordine;
-import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
+import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -24,27 +23,38 @@ public class OrdineServiceImplement implements OrdineService {
         this.articoliOrdineService = articoliOrdineService;
     }
 
-
-//    @Override
-//    public List<Ordine> insert(OrdineCompleto ordineCompleto) {
-//        ordineDAO.insert(ordineCompleto);
-//        Long idOrdine = ordineCompleto.getIdOrdine();
-//
-//        for(ArticoliOrdiniCompleto articolo : ordineCompleto.getArticoliOrdiniList()){
-//
-//            long id_ordine;
-//            articoliOrdineService.insert(articolo, idOrdine);
-//        }
-//        return ordine;
-//    }
+    @Override
+    public List<Ordine> selectAll() {
+        return doSelectAll();
+    }
 
     @Override
-    public void deleteOrdineByID(Long id){
+    public List<Ordine> insert(OrdineCompleto ordineCompleto) {
+        ordineDAO.insert(ordineCompleto);
+        Long idOrdine = ordineCompleto.getId();
+
+        for (ArticoliOrdiniCompleto articolo : ordineCompleto.getArticoliOrdiniList()) {
+            articoliOrdineService.insert(articolo, idOrdine);
+        }
+        return doSelectAll();
+    }
+
+    @Override
+    public List<Ordine> deleteByID(Long id) {
+        articoliOrdineService.deleteByIdOrdine(id);
         ordineDAO.deleteByID(id);
+        return doSelectAll();
     }
 
     @Override
-    public void deleteOrdineByData(LocalDate data){
+    public List<Ordine> deleteByData(Date data) {
+        articoliOrdineService.deleteByDataOrdine(data);
         ordineDAO.deleteByData(data);
+        return doSelectAll();
     }
+
+    private List<Ordine> doSelectAll() {
+        return ordineDAO.selectAll();
+    }
+
 }

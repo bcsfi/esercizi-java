@@ -5,11 +5,13 @@ import net.bcsoft.bcvinaino.entity.IncassoOrdine;
 import net.bcsoft.bcvinaino.entity.QuantitaFocaccia;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/bcvinaino/report")
 public class ReportRestController {
     private final ReportService reportService;
 
@@ -17,22 +19,22 @@ public class ReportRestController {
         this.reportService = reportService;
     }
 
-    @GetMapping("/bcvinaino/report/incassi")
+    @GetMapping("/incassi")
     public List<IncassoGiornaliero> calcolaIncassi() {
         //select All degli ordini (OrdineCompleto)
         //elaborazione per calcolare gli incassi (vedi Stream() e Collectors.groupingBy)
         return reportService.calcolaIncassi();
     }
 
-    @GetMapping("/bcvinaino/report/tipoFocaccia")
+    @GetMapping("/tipoFocaccia")
     public List<QuantitaFocaccia> calcolaTipoFocaccia(){ return reportService.calcolaTipoFocaccia();}
 
-    @GetMapping("/bcvinaino/report/ordini")
+    @GetMapping("/ordini")
     public List<IncassoOrdine> calcolaOrdini7Giorni(){
         return reportService.calcolaOrdini7Giorni();
     }
 
-    @GetMapping("/bcvinaino/report/soglia")
+    @GetMapping("/soglia")
     public String calcolaSoglia(){
         return reportService.calcolaSoglia();
     }
