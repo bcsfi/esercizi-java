@@ -70,7 +70,7 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public void deleteOrdinePerData(LocalDate data) throws NotFoundException {
+    public void deleteOrdinePerData(LocalDate data){
         List<Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
 
         for (Integer idOrdine : idOrdineEliminato) {

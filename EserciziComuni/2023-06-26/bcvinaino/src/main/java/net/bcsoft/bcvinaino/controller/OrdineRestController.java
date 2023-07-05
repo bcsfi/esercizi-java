@@ -31,11 +31,7 @@ public class OrdineRestController {
     }
     @DeleteMapping("/bcvinaino/ordini/data/{data}")
     public void cancellaOrdinePerData(@PathVariable LocalDate data){
-        try{
             ordineService.deleteOrdinePerData(data);
-        }catch(NotFoundException e){
-            e.printStackTrace();
-        }
     }
 
     @GetMapping("/bcvinaino/ordini/{id}")
