@@ -4,7 +4,6 @@ import net.bcsoft.bcvinaino.dao.MenuDAO;
 import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.service.MenuService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

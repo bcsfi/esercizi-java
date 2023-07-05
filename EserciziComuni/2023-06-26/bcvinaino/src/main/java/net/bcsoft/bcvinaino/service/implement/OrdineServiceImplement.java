@@ -9,11 +9,7 @@ import net.bcsoft.bcvinaino.service.OrdineService;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.net.NoRouteToHostException;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -70,12 +66,17 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public void deleteOrdinePerData(LocalDate data){
+    public void deleteOrdinePerData(LocalDate data) throws NotFoundException {
         List<Integer> idOrdineEliminato = ordineDAO.getOrdiniPerData(data);
-
-        for (Integer idOrdine : idOrdineEliminato) {
-            articoliOrdineService.deletePerIdOrdine(idOrdine);
-            ordineDAO.deletePerId(idOrdine);
+        if(idOrdineEliminato.isEmpty()){
+            throw new NotFoundException("ORDINE NON TROVATO");
+        }
+        else{
+            for (Integer idOrdine : idOrdineEliminato) {
+                articoliOrdineService.deletePerIdOrdine(idOrdine);
+                ordineDAO.deletePerId(idOrdine);
+            }
         }
     }
+
 }

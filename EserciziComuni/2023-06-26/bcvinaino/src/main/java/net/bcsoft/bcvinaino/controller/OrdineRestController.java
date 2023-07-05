@@ -5,9 +5,8 @@ import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.OrdineService;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
-import java.util.List;
+
 
 @RestController
 public class OrdineRestController {
@@ -31,7 +30,11 @@ public class OrdineRestController {
     }
     @DeleteMapping("/bcvinaino/ordini/data/{data}")
     public void cancellaOrdinePerData(@PathVariable LocalDate data){
+        try{
             ordineService.deleteOrdinePerData(data);
+        }catch(NotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     @GetMapping("/bcvinaino/ordini/{id}")

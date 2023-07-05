@@ -6,7 +6,6 @@ import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdineCompleto;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service

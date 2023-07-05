@@ -1,7 +1,6 @@
 package net.bcsoft.bcvinaino.entity.dettaglio;
 
 import net.bcsoft.bcvinaino.entity.Ordine;
-
 import java.util.ArrayList;
 import java.util.List;
 

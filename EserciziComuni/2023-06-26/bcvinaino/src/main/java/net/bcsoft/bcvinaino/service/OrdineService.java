@@ -15,5 +15,5 @@ public interface OrdineService {
    // List<OrdineFinale> getOrdineFinale(Integer id);
     OrdineCompleto getById(Integer id) throws NotFoundException;
 
-    void deleteOrdinePerData(LocalDate data);
+    void deleteOrdinePerData(LocalDate data) throws NotFoundException;
 }
