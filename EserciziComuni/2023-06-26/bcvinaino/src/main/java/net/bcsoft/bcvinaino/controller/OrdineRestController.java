@@ -3,6 +3,7 @@ package net.bcsoft.bcvinaino.controller;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.OrdineService;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -30,7 +31,13 @@ public class OrdineRestController {
     }
 
     @GetMapping("/bcvinaino/ordini/{id}")
-    public OrdineCompleto ottieniOrdineCompleto(@PathVariable Integer id){
-        return ordineService.getById(id);
+    public OrdineCompleto ottieniOrdineCompleto(@PathVariable Integer id) {
+        OrdineCompleto ordineCompletoTemp = new OrdineCompleto();
+        try {
+            ordineCompletoTemp = ordineService.getById(id);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        return ordineCompletoTemp;
     }
 }

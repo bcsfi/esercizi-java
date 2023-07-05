@@ -6,9 +6,11 @@ import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdineCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import net.bcsoft.bcvinaino.service.OrdineService;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +30,13 @@ public class OrdineServiceImplement implements OrdineService {
     @Override
     public Ordine insert(OrdineCompleto ordineCompleto) {
         List<ArticoliOrdineCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdineCompletoList();
+            ordineDAO.insert(ordineCompleto);
+            Integer idOrdine = ordineCompleto.getIdOrdine();
 
-        ordineDAO.insert(ordineCompleto);
-        Integer idOrdine = ordineCompleto.getIdOrdine();
+            for (ArticoliOrdineCompleto articolo : articoliOrdineList) {
 
-        for (ArticoliOrdineCompleto articolo : articoliOrdineList) {
-
-            articoliOrdineService.insert(articolo, idOrdine);
-        }
+                articoliOrdineService.insert(articolo, idOrdine);
+            }
         return ordineCompleto;
     }
 
@@ -51,8 +52,16 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public OrdineCompleto getById(Integer id) {
-        return this.ordineDAO.getById(id);
+    public OrdineCompleto getById(Integer id) throws NotFoundException {
+        if (id == null) {
+            throw new IllegalArgumentException("id nullo");
+        } else {
+            if (this.ordineDAO.getById(id) == null) {
+                throw new NotFoundException("Oggetto non Trovato");
+            } else {
+                return this.ordineDAO.getById(id);
+            }
+        }
     }
 
     @Override

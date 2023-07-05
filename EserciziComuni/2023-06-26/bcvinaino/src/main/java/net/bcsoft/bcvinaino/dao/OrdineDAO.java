@@ -11,12 +11,13 @@ import java.util.List;
 public interface OrdineDAO {
     List<Ordine> selectAll();
 
+    List<Integer> getIdOrdini();
+
     Long insert(Ordine ordine);
 
     void deletePerId(Integer id);
 
     List<Integer> getOrdiniPerData(LocalDate data);
-
 
     OrdineCompleto getById(Integer id);
 }
