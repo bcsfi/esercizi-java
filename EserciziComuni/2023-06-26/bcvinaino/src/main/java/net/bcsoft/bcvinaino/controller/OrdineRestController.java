@@ -37,6 +37,7 @@ public class OrdineRestController {
         }
     }
 
+
     @GetMapping("/bcvinaino/ordini/{id}")
     public OrdineCompleto ottieniOrdineCompleto(@PathVariable Integer id) {
         OrdineCompleto ordineCompletoTemp = new OrdineCompleto();
