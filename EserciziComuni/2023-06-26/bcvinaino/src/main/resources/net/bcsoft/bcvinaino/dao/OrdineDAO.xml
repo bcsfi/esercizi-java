@@ -12,7 +12,7 @@
         SELECT * FROM ordini
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto">
         INSERT INTO ordini (data_ordine)
         VALUES (#{dataOrdine})
     </insert>

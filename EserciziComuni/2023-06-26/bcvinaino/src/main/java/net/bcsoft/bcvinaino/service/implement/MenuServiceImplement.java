@@ -22,9 +22,17 @@ public class MenuServiceImplement implements MenuService {
     }
 
     @Override
-    public List<Menu> update(Menu menu) {
-        menuDAO.update(menu);
-        return doSelectAll();
+    public List<Menu> update(Menu menu, Long id) {
+        if (checkId(menu, id)) {
+            menuDAO.update(menu);
+            return doSelectAll();
+        }
+        return null;
+    }
+
+    private Boolean checkId(Menu menu, Long id)
+    {
+        return menu.getId() == id;
     }
 
     private List<Menu> doSelectAll() {

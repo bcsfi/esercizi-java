@@ -1,6 +1,7 @@
 package net.bcsoft.bcvinaino.dao;
 
 import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
+import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,5 +10,5 @@ import java.util.List;
 public interface ArticoliOrdineDAO {
     List<ArticoliOrdine> selectAll();
 
-    void insert(ArticoliOrdine articoliOrdine, long id_ordine);
+    void insert(ArticoliOrdiniCompleto articoliOrdine, long id_ordine);
 }

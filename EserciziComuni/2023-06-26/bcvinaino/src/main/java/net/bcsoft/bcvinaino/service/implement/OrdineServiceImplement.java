@@ -1,8 +1,6 @@
 package net.bcsoft.bcvinaino.service.implement;
 
 import net.bcsoft.bcvinaino.dao.OrdineDAO;
-import net.bcsoft.bcvinaino.entity.Menu;
-import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
@@ -46,5 +44,17 @@ public class OrdineServiceImplement implements OrdineService {
     @Override
     public void deleteOrdineByData(LocalDate data){
         ordineDAO.deleteByData(data);
+    }
+
+    @Override
+    public List<OrdineCompleto> inserisci(OrdineCompleto ordineCompleto) {
+        //inserire l'ordine -> ottieni l'id calcolato a db
+        //inserire OGNI articolo dell'ordine e farlo riferire all'ordine appena creato:
+        ordineDAO.insert(ordineCompleto);
+        long idOrdine = ordineCompleto.getIdOrdine();
+        for (ArticoliOrdiniCompleto articolo : ordineCompleto.getArticoliOrdiniList()) {
+            articoliOrdineService.insert(articolo, idOrdine);
+        }
+        return null;
     }
 }

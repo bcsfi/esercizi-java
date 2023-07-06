@@ -3,9 +3,9 @@ package net.bcsoft.bcvinaino.entity.dettaglio;
 import net.bcsoft.bcvinaino.entity.ArticoliOrdine;
 import net.bcsoft.bcvinaino.entity.Menu;
 
-public class ArticoliOrdiniCompleto extends ArticoliOrdine {
+public class ArticoliOrdiniCompleto {
     private Menu menu;
-    private Double quantita;
+    private Short quantita;
 
     public Menu getMenu() {
         return menu;
@@ -15,11 +15,11 @@ public class ArticoliOrdiniCompleto extends ArticoliOrdine {
         this.menu = menu;
     }
 
-    public Double getQuantita() {
+    public Short getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(Double quantita) {
+    public void setQuantita(Short quantita) {
         this.quantita = quantita;
     }
 }
