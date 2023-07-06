@@ -5,15 +5,15 @@ import net.bcsoft.bcvinaino.entity.Menu;
 
 public class ArticoliOrdiniCompleto {
 
-    private Menu menu;
+    private Long IdMenu;
     private Integer quantita;
 
-    public Menu getMenu() {
-        return menu;
+    public Long getMenu() {
+        return IdMenu;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setIdMenu(Long idMenu) {
+        IdMenu = idMenu;
     }
 
     public Integer getQuantita() {

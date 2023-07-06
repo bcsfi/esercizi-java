@@ -13,9 +13,9 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true"
-            keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+            keyProperty="id" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
         INSERT INTO ordini (data_ordine)
-        VALUES (#{dataOrdine})
+        VALUES (#{data})
     </insert>
 
     <delete id="deleteByID" parameterType="Long">
