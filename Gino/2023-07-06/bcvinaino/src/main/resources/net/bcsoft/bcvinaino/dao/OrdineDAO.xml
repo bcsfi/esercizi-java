@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bcsoft.bcvinaino.dao.OrdineDAO">
+
+    <resultMap id="ordineResultMap" type="net.bcsoft.bcvinaino.entity.Ordine">
+        <id property="id" column="id_ordine"/>
+        <result property="data" column="data_ordine"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="ordineResultMap">
+        SELECT * FROM ordini
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true"
+            keyProperty="id" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+        INSERT INTO ordini (data_ordine)
+        VALUES (#{data})
+    </insert>
+
+    <delete id="deleteByID" parameterType="Long">
+        DELETE FROM ordini WHERE ordini.id_ordine = #{id}
+    </delete>
+
+    <delete id="deleteByData" parameterType="Date">
+        DELETE FROM ordini AS o WHERE data_ordine = #{data}
+    </delete>
+</mapper>
