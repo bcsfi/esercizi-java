@@ -21,6 +21,9 @@ public class MenuServiceImplement implements MenuService {
         return doSelectAll();
     }
 
+    private List<Menu> doSelectAll() {
+        return menuDAO.selectAll();
+    }
 
     @Override
     public List<Menu> update(Menu menu, Long id) {

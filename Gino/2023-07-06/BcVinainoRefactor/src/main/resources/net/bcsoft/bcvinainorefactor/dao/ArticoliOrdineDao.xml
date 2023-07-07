@@ -1,0 +1,20 @@
+<mapper namespace="net.bcsoft.bcvinainorefactor.dao.ArticoliOrdineDao">
+
+    <resultMap id="articoliOrdineResultMap" type="net.bcsoft.bcvinainorefactor.entity.ArticoliOrdine">
+        <id property="id" column="id_articoli_ordine"/>
+        <result property="idMenu" column="id_menu"/>
+        <result property="idOrdine" column="id_ordine"/>
+        <result property="qta" column="qta"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="articoliOrdineResultMap">
+        SELECT *
+        FROM articoli_ordine
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true">
+        INSERT INTO articoli_ordine (id_ordine, id_menu, qta)
+        VALUES (#{idOrdine}, #{articolo.menu.id}, #{articolo.quantita})
+    </insert>
+
+</mapper>
