@@ -30,8 +30,8 @@ public class OrdineRestController {
     }
 
     @PostMapping()
-    public void insert(@RequestBody OrdineCompleto ordineCompleto) {
-        ordineService.insert(ordineCompleto);
+    public List<Ordine> insert(@RequestBody OrdineCompleto ordineCompleto) {
+        return ordineService.insert(ordineCompleto);
     }
 
     @DeleteMapping("/{id}")

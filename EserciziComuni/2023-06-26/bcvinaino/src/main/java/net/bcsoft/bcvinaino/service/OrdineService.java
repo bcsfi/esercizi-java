@@ -9,7 +9,7 @@ import java.util.List;
 public interface OrdineService {
     List<Ordine> selectAll();
 
-    Ordine insert(OrdineCompleto ordineCompleto);
+    List<Ordine> insert(OrdineCompleto ordineCompleto);
 
     List<Ordine> deleteByID(Long id);
 

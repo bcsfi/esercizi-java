@@ -29,7 +29,7 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public Ordine insert(OrdineCompleto ordineCompleto) {
+    public List<Ordine> insert(OrdineCompleto ordineCompleto) {
         List<ArticoliOrdiniCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdineList();
         ordineDAO.insert(ordineCompleto);
         Long idOrdine = ordineCompleto.getId();
@@ -37,7 +37,7 @@ public class OrdineServiceImplement implements OrdineService {
         for (ArticoliOrdiniCompleto articolo : ordineCompleto.getArticoliOrdineList()) {
             articoliOrdineService.insert(articolo, idOrdine);
         }
-        return ordineCompleto;
+        return doSelectAll();
     }
 
     @Override
