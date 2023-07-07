@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO">
+
+    <resultMap id="articoliOrdineResultMap" type="net.bcsoft.bcvinaino.entity.ArticoliOrdine">
+        <id property="id" column="id_articoli_ordine"/>
+        <result property="idMenu" column="id_menu"/>
+        <result property="idOrdine" column="id_ordine"/>
+        <result property="quantita" column="qta"/>
+    </resultMap>
+
+    <resultMap id="articoliOrdineCompletoResultMap" type="net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto">
+        <id property="id" column="id_articoli_ordine"/>
+        <result property="quantita" column="qta"/>
+        <association property="menu" resultMap="net.bcsoft.bcvinaino.dao.MenuDAO.menuResultMap"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="articoliOrdineResultMap">
+        SELECT * FROM articoli_ordine
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true">
+        INSERT INTO articoli_ordine (id_ordine, id_menu, qta)
+        VALUES (#{idOrdine}, #{articolo.menu.id}, #{articolo.quantita})
+    </insert>
+
+    <delete id="deleteByIdOrdine" parameterType="Long">
+        DELETE FROM articoli_ordine WHERE id_ordine = #{idOrdine}
+    </delete>
+
+    <delete id="deleteByDataOrdine" parameterType="Date">
+        DELETE FROM articoli_ordine WHERE id_ordine IN
+        (SELECT id_ordine FROM ordini WHERE data_ordine = #{dataOrdine});
+    </delete>
+</mapper>
