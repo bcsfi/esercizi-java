@@ -7,7 +7,13 @@
         <id property="id" column="id_articoli_ordine"/>
         <result property="idMenu" column="id_menu"/>
         <result property="idOrdine" column="id_ordine"/>
-        <result property="qta" column="qta"/>
+        <result property="quantita" column="qta"/>
+    </resultMap>
+
+    <resultMap id="articoliOrdineCompletoResultMap" type="net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto">
+        <id property="id" column="id_articoli_ordine"/>
+        <result property="quantita" column="qta"/>
+        <association property="menu" resultMap="net.bcsoft.bcvinaino.dao.MenuDAO.menuResultMap"/>
     </resultMap>
 
     <select id="selectAll" resultMap="articoliOrdineResultMap">

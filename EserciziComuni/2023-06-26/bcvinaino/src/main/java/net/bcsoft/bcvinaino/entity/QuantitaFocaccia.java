@@ -1,14 +1,13 @@
 package net.bcsoft.bcvinaino.entity;
 
 public class QuantitaFocaccia {
-
     private String nome;
-    private Integer qta;
+    private Integer quantita;
 
-    public  QuantitaFocaccia(String nome, Integer qta)
+    public  QuantitaFocaccia(String nome, Integer quantita)
     {
         this.nome = nome;
-        this.qta = qta;
+        this.quantita = quantita;
     }
 
     public String getNome() {
@@ -19,11 +18,11 @@ public class QuantitaFocaccia {
         this.nome = nome;
     }
 
-    public Integer getQta() {
-        return qta;
+    public Integer getQuantita() {
+        return quantita;
     }
 
-    public void setQta(Integer qta) {
-        this.qta = qta;
+    public void setQuantita(Integer quantita) {
+        this.quantita = quantita;
     }
 }

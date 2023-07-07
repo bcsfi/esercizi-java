@@ -4,7 +4,7 @@ public class ArticoliOrdine {
     private Long id;
     private Long idMenu;
     private Long idOrdine;
-    private Integer qta;
+    private Integer quantita;
 
     public Long getId() {
         return id;
@@ -30,11 +30,11 @@ public class ArticoliOrdine {
         this.idOrdine = idOrdine;
     }
 
-    public Integer getQta() {
-        return qta;
+    public Integer getQuantita() {
+        return quantita;
     }
 
-    public void setQta(Integer qta) {
-        this.qta = qta;
+    public void setQuantita(Integer quantita) {
+        this.quantita = quantita;
     }
 }

@@ -8,11 +8,11 @@ import java.util.List;
 public class OrdineCompleto extends Ordine {
     private List<ArticoliOrdiniCompleto> articoliOrdineList = new ArrayList<>();
 
-    public List<ArticoliOrdiniCompleto> getArticoliOrdiniList() {
+    public List<ArticoliOrdiniCompleto> getArticoliOrdineList() {
         return articoliOrdineList;
     }
 
-    public void setArticoliOrdiniList(List<ArticoliOrdiniCompleto> articoliOrdineList) {
+    public void setArticoliOrdineList(List<ArticoliOrdiniCompleto> articoliOrdineList) {
         this.articoliOrdineList = articoliOrdineList;
     }
 }
