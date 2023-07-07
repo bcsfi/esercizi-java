@@ -21,6 +21,7 @@ public class MenuServiceImplement implements MenuService {
         return doSelectAll();
     }
 
+
     @Override
     public List<Menu> update(Menu menu, Long id) {
         if (doCheckID(menu, id)) { //TODO Gestione errori
@@ -31,9 +32,9 @@ public class MenuServiceImplement implements MenuService {
         }
     }
 
-    private List<Menu> doSelectAll() {
-        return menuDAO.selectAll();
-    }
+
+
+
 
     private Boolean doCheckID(Menu bodyMenu, Long urlID) {
         return bodyMenu.getId() == urlID;

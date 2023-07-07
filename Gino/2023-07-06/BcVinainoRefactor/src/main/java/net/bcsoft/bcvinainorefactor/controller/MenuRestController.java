@@ -1,7 +1,7 @@
 package net.bcsoft.bcvinainorefactor.controller;
 
 import net.bcsoft.bcvinainorefactor.entity.Menu;
-import net.bcsoft.bcvinainorefactor.service.interface_service.MenuService;
+import net.bcsoft.bcvinainorefactor.service.interface_service.MenuServiceInterface;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,16 +10,15 @@ import java.util.List;
 @RequestMapping("/bcvinainorefactor/menu")
 public class MenuRestController
 {
-    private final MenuService menuService;
+    private final MenuServiceInterface menuService;
 
-    public MenuRestController(final MenuService menuService)
+    public MenuRestController (final MenuServiceInterface menuService)
     {
         this.menuService = menuService;
     }
 
-    //TODO /menu/{id}: Update un item di menu (Nota. Può far comodo un MenuRestController)
-
     @PutMapping("/{id}")
+    // TODO /menu/{id}: Update un item di menu (Nota. Può far comodo un MenuRestController)
     public List<Menu> update (@RequestBody Menu menu, @PathVariable(value = "id") Long idMenu)
     {
         return this.menuService.update(menu, idMenu);

@@ -2,16 +2,16 @@ package net.bcsoft.bcvinainorefactor.entity;
 
 public class Menu
 {
-    private Long id;
+    private Long idMenu;
     private String nome;
     private Double prezzo;
 
-    public Long getId() {
-        return id;
+    public Long getIdMenu() {
+        return idMenu;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdMenu(Long id) {
+        this.idMenu = id;
     }
 
     public String getNome() {

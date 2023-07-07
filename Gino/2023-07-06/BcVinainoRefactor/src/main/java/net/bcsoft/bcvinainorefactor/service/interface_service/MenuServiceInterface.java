@@ -4,7 +4,7 @@ import net.bcsoft.bcvinainorefactor.entity.Menu;
 
 import java.util.List;
 
-public interface MenuService
+public interface MenuServiceInterface
 {
     List<Menu> update (Menu menu, Long idMenu);
 }

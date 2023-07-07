@@ -15,10 +15,13 @@ public class MenuRestController {
         this.menuService = menuService;
     }
 
+
     @GetMapping()
     public List<Menu> selectAll(){
         return menuService.selectAll();
     }
+
+
     @PutMapping("/{id}" )
     public List<Menu> update(@RequestBody Menu menu, @PathVariable(value = "id") Long id){
         return menuService.update(menu, id);
