@@ -9,6 +9,8 @@ import java.util.List;
 public interface OrdineService {
     List<Ordine> selectAll();
 
+    OrdineCompleto select(Long id);
+
     List<Ordine> insert(OrdineCompleto ordineCompleto);
 
     List<Ordine> deleteByID(Long id);

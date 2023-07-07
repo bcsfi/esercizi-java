@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.bcsoft.bcvinaino.dao.IncassoDAO">
+    <resultMap id="incassiReportMap" type="net.bcsoft.bcvinaino.entity.IncassoGiornaliero">
+        <result property="data" column="data_ordine"/>
+        <result property="incasso" column="sum"/>
+    </resultMap>
 
     <select id="calcolaIncassi" resultMap="incassiReportMap">
         SELECT ordini.data_ordine, SUM(menu.prezzo * articoli_ordine.qta)
@@ -10,10 +14,4 @@
         GROUP BY ordini.data_ordine
         ORDER BY ordini.data_ordine DESC
     </select>
-
-    <resultMap id="incassiReportMap" type="net.bcsoft.bcvinaino.entity.IncassoGiornaliero">
-        <result property="data" column="data_ordine"/>
-        <result property="incasso" column="sum"/>
-    </resultMap>
-
 </mapper>

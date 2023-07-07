@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface IncassoDAO {
-    List <IncassoGiornaliero> calcolaIncassi();
+    List<IncassoGiornaliero> calcolaIncassi();
 }

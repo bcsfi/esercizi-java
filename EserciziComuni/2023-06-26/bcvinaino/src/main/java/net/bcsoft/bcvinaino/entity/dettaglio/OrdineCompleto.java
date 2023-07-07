@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrdineCompleto extends Ordine {
-    private List<ArticoliOrdiniCompleto> articoliOrdineList = new ArrayList<>();
+    private List<ArticoliOrdiniCompleto> articoliOrdineCompletoList = new ArrayList<>();
 
-    public List<ArticoliOrdiniCompleto> getArticoliOrdineList() {
-        return articoliOrdineList;
+    public List<ArticoliOrdiniCompleto> getArticoliOrdineCompletoList() {
+        return articoliOrdineCompletoList;
     }
 
-    public void setArticoliOrdineList(List<ArticoliOrdiniCompleto> articoliOrdineList) {
-        this.articoliOrdineList = articoliOrdineList;
+
+    public void setArticoliOrdineCompletoList(List<ArticoliOrdiniCompleto> articoliOrdineCompletoList) {
+        this.articoliOrdineCompletoList = articoliOrdineCompletoList;
     }
 }

@@ -29,6 +29,11 @@ public class OrdineRestController {
         return ordineService.selectAll();
     }
 
+    @GetMapping("/{id}")
+    public OrdineCompleto select(@PathVariable(value = "id") Long id) {
+        return ordineService.select(id);
+    }
+
     @PostMapping()
     public List<Ordine> insert(@RequestBody OrdineCompleto ordineCompleto) {
         return ordineService.insert(ordineCompleto);

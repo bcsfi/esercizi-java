@@ -21,21 +21,21 @@ public class ReportRestController {
 
     @GetMapping("/incassi")
     public List<IncassoGiornaliero> calcolaIncassi() {
-        //select All degli ordini (OrdineCompleto)
-        //elaborazione per calcolare gli incassi (vedi Stream() e Collectors.groupingBy)
         return reportService.calcolaIncassi();
     }
 
     @GetMapping("/tipoFocaccia")
-    public List<QuantitaFocaccia> calcolaTipoFocaccia(){ return reportService.calcolaTipoFocaccia();}
+    public List<QuantitaFocaccia> calcolaTipoFocaccia() {
+        return reportService.calcolaTipoFocaccia();
+    }
 
     @GetMapping("/ordini")
-    public List<IncassoOrdine> calcolaOrdini7Giorni(){
+    public List<IncassoOrdine> calcolaOrdini7Giorni() {
         return reportService.calcolaOrdini7Giorni();
     }
 
     @GetMapping("/soglia")
-    public String calcolaSoglia(){
+    public String calcolaSoglia() {
         return reportService.calcolaSoglia();
     }
 

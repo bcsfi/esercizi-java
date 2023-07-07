@@ -8,8 +8,23 @@
         <result property="data" column="data_ordine"/>
     </resultMap>
 
+    <resultMap id="ordineCompletoResultMap"
+               type="net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto"
+               extends="ordineResultMap">
+        <collection property="articoliOrdineCompletoList"
+                    resultMap="net.bcsoft.bcvinaino.dao.ArticoliOrdineDAO.articoliOrdineCompletoResultMap"
+                    javaType="java.util.List"/>
+    </resultMap>
+
     <select id="selectAll" resultMap="ordineResultMap">
         SELECT * FROM ordini
+    </select>
+
+    <select id="select" resultMap="ordineCompletoResultMap">
+        SELECT ordini.id_ordine, ordini.data_ordine, menu.*, articoli_ordine.qta FROM ordini JOIN articoli_ordine
+        ON ordini.id_ordine = articoli_ordine.id_ordine
+        JOIN menu ON menu.id_Menu = articoli_ordine.id_menu
+        WHERE ordini.id_ordine = #{id}
     </select>
 
     <insert id="insert" useGeneratedKeys="true"

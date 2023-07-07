@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface ReportService {
     List<IncassoGiornaliero> calcolaIncassi();
+
     List<QuantitaFocaccia> calcolaTipoFocaccia();
+
     List<IncassoOrdine> calcolaOrdini7Giorni();
+
     String calcolaSoglia();
 }

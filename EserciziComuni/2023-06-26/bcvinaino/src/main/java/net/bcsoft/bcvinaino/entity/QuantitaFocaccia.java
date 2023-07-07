@@ -4,8 +4,7 @@ public class QuantitaFocaccia {
     private String nome;
     private Integer quantita;
 
-    public  QuantitaFocaccia(String nome, Integer quantita)
-    {
+    public QuantitaFocaccia(String nome, Integer quantita) {
         this.nome = nome;
         this.quantita = quantita;
     }

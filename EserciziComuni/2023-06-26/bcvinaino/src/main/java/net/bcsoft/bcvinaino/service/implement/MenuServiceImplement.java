@@ -23,7 +23,7 @@ public class MenuServiceImplement implements MenuService {
 
     @Override
     public List<Menu> update(Menu menu, Long id) {
-        if (doCheckID(menu, id)) { //TODO Gestione errori
+        if (doCheckID(menu, id)) {
             menuDAO.update(menu);
             return doSelectAll();
         } else {
