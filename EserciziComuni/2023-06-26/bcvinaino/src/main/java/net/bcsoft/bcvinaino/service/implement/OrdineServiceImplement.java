@@ -43,7 +43,7 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public OrdineCompleto getById(Integer id) throws NotFoundException {
+    public OrdineCompleto getById(Integer id) throws IllegalArgumentException, NotFoundException {
         if (id == null) {
             throw new IllegalArgumentException("ID NULLO");
         } else {
@@ -56,7 +56,7 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public void deleteOrdinePerId(Integer id) throws NotFoundException {
+    public void deleteOrdinePerId(Integer id) throws IllegalArgumentException, NotFoundException {
         if (this.ordineDAO.getIdOrdine(id) == null) {
             throw new NotFoundException("ORDINE NON TROVATO");
         } else {
