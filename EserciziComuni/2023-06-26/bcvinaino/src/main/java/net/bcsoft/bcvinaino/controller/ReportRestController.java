@@ -1,6 +1,6 @@
 package net.bcsoft.bcvinaino.controller;
 
-import net.bcsoft.bcvinaino.entity.IncassoGiornaliero;
+
 import net.bcsoft.bcvinaino.entity.IncassoOrdine;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.web.bind.annotation.GetMapping;
