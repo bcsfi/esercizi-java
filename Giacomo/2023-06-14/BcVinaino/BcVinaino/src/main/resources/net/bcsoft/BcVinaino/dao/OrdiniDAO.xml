@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bcsoft.BcVinaino.dao.OrdiniDAO">
+
+
+    <select id="selectAll" resultMap="ordineResultMap">
+        SELECT * FROM ordini
+    </select>
+
+    <resultMap id="ordineResultMap" type="net.bcsoft.BcVinaino.entity.Ordine">
+        <id property="idOrdine" column="id_ordine"/>
+        <result property="dataOrdine" column="data_ordine"/>
+    </resultMap>
+
+    <select id="getOrdiniPerData">
+        SELECT id_ordine FROM ordini
+        WHERE ordini.data_ordine = #{data}
+    </select>
+
+    <select id="getIdOrdine">
+        SELECT id_ordine FROM ordini
+        WHERE id_ordine = #{idOrdine}
+    </select>
+    <select id="getById" resultMap="ordineCompletoResultMap">
+        SELECT ordini.id_ordine, ordini.data_ordine, menu.*, articoli_ordine.qta FROM ordini JOIN articoli_ordine
+        ON ordini.id_ordine = articoli_ordine.id_ordine
+        JOIN menu ON menu.id_Menu = articoli_ordine.id_menu
+        WHERE ordini.id_ordine = #{id}
+    </select>
+
+    <resultMap id="ordineCompletoResultMap" type="net.bcsoft.BcVinaino.entity.dettaglio.OrdineCompleto" extends="ordineResultMap">
+        <collection property="articoliOrdineCompletoList" resultMap="net.bcsoft.BcVinaino.dao.ArticoliOrdineDAO.articoliOrdineCompletoResultMap" javaType="java.util.List"/>
+    </resultMap>
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="idOrdine" keyColumn="id_ordine" parameterType="net.bcsoft.BcVinaino.entity.Ordine" >
+        INSERT INTO ordini (data_ordine)
+        VALUES (#{dataOrdine})
+    </insert>
+
+    <delete id="deleteOrdinePerId" parameterType="net.bcsoft.BcVinaino.entity.Ordine">
+        DELETE FROM ordini WHERE ordini.id_ordine = #{id}
+    </delete>
+
+
+</mapper>

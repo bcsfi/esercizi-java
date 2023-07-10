@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bcsoft.BcVinaino.dao.MenuDAO">
+    <select id="selectAll" resultMap="menuResultMap">
+        SELECT * FROM menu
+    </select>
+
+    <resultMap id="menuResultMap" type="net.bcsoft.BcVinaino.entity.Menu">
+        <id property="idMenu" column="id_menu"/>
+        <result property="focaccia" column="focaccia"/>
+        <result property="prezzo" column="prezzo"/>
+    </resultMap>
+
+    <update id="updateFocaccia" parameterType="net.bcsoft.BcVinaino.entity.Menu">
+        UPDATE menu
+        SET focaccia = #{focaccia}, prezzo = #{prezzo}
+        WHERE id_menu = #{idMenu}
+    </update>
+
+</mapper>

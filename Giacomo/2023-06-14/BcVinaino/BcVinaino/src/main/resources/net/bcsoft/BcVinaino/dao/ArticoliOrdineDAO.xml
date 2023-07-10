@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bcsoft.BcVinaino.dao.ArticoliOrdineDAO">
+
+    <select id="selectAll" resultMap="articoliOrdineResultMap">
+        SELECT * FROM articoli_ordine
+    </select>
+
+    <resultMap id="articoliOrdineResultMap" type="net.bcsoft.BcVinaino.entity.ArticoliOrdine">
+        <id property="id" column="id_articoli_ordine"/>
+        <result property="idMenu" column="id_menu"/>
+        <result property="idOrdine" column="id_ordine"/>
+        <result property="qta" column="qta"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="articolo.id" keyColumn="id_articoli_ordine">
+        INSERT INTO articoli_ordine (id_ordine, id_menu, qta)
+        VALUES (#{idOrdine}, #{articolo.menu.idMenu}, #{articolo.qta})
+    </insert>
+
+
+    <delete id="deletePerIdOrdine" parameterType="net.bcsoft.BcVinaino.entity.ArticoliOrdine">
+        DELETE FROM articoli_ordine WHERE articoli_ordine.id_ordine = #{idOrdine}
+    </delete>
+
+    <resultMap id="articoliOrdineCompletoResultMap" type="net.bcsoft.BcVinaino.entity.dettaglio.ArticoliOrdineCompleto">
+        <id property="id" column="id_articoli_ordine"/>
+        <result property="qta" column="qta"/>
+        <association property="menu" resultMap="net.bcsoft.BcVinaino.dao.MenuDAO.menuResultMap"/>
+    </resultMap>
+</mapper>
