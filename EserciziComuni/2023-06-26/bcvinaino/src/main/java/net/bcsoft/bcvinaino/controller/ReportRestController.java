@@ -5,6 +5,8 @@ import net.bcsoft.bcvinaino.entity.IncassoOrdine;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +19,7 @@ public class ReportRestController {
     }
 
     @GetMapping("/bcvinaino/report/incassi")
-    public List<IncassoGiornaliero> calcolaIncassi() {
-        //select All degli ordini (OrdineCompleto)
-        //elaborazione per calcolare gli incassi (vedi Stream() e Collectors.groupingBy)
+    public Map <Date, Double> calcolaIncassi() {
         return reportService.calcolaIncassi();
     }
 

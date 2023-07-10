@@ -1,6 +1,5 @@
 package net.bcsoft.bcvinaino.service.implement;
 
-import net.bcsoft.bcvinaino.dao.ReportDAO;
 import net.bcsoft.bcvinaino.entity.*;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import net.bcsoft.bcvinaino.service.MenuService;
@@ -12,21 +11,37 @@ import java.util.*;
 @Service
 public class ReportServiceImpl implements ReportService {
 
-    private final ReportDAO reportDAO;
     private final MenuService menuService;
     private final ArticoliOrdineService articoliOrdineService;
     private final OrdineService ordineService;
 
-    public ReportServiceImpl(ReportDAO reportDAO, MenuService menuService, ArticoliOrdineService articoliOrdineService, OrdineService ordineService) {
-        this.reportDAO = reportDAO;
+    public ReportServiceImpl(MenuService menuService, ArticoliOrdineService articoliOrdineService, OrdineService ordineService) {
         this.menuService = menuService;
         this.articoliOrdineService = articoliOrdineService;
         this.ordineService = ordineService;
     }
 
     @Override
-    public List<IncassoGiornaliero> calcolaIncassi() {
-        return reportDAO.calcolaIncassi();
+    public  Map <Date, Double> calcolaIncassi() {
+        List <Menu> menuList = menuService.selectAll();
+        List <ArticoliOrdine> articoliOrdineList = articoliOrdineService.selectAll();
+        List <Ordine> ordineList = ordineService.selectAll();
+        Map <Date, Double> incassiMap = new HashMap<>();
+
+        for (Ordine ordine : ordineList){
+            for(ArticoliOrdine articoliOrdine : articoliOrdineList){
+                if(ordine.getIdOrdine().equals(articoliOrdine.getIdOrdine())){
+                    for(Menu menu : menuList){
+                        if(articoliOrdine.getIdMenu().equals(menu.getIdMenu())){
+                            incassiMap.put(ordine.getDataOrdine(), (articoliOrdine.getQta() * menu.getPrezzo()));
+                        }
+                    }
+                }
+            }
+        }
+
+
+        return incassiMap;
     }
 
     @Override
