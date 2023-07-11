@@ -7,10 +7,12 @@ import net.bcsoft.bcvinaino.dao.OrdineDAO;
 import net.bcsoft.bcvinaino.entity.*;
 import net.bcsoft.bcvinaino.service.ReportService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 @Service
+@Transactional
 public class ReportServiceImpl implements ReportService {
 
     private final IncassoDAO incassoDAO;

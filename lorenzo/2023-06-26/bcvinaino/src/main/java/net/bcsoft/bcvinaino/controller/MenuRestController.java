@@ -1,7 +1,9 @@
 package net.bcsoft.bcvinaino.controller;
 
 import net.bcsoft.bcvinaino.entity.Menu;
+import net.bcsoft.bcvinaino.exception.IdNotValidException;
 import net.bcsoft.bcvinaino.service.MenuService;
+import net.bcsoft.bcvinaino.validation.InputValidation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +18,14 @@ public class MenuRestController {
     }
 
     @GetMapping()
-    public List<Menu> selectAll() {
-        return menuService.selectAll();
+    public List<Menu> getAll() {
+        return menuService.getAll();
     }
 
     @PutMapping("/{id}")
     public List<Menu> update(@RequestBody Menu menu, @PathVariable(value = "id") Long id) {
-        return menuService.update(menu, id);
+        Long validId = InputValidation.idIsValid(id);
+        if (menu.getId() != id) { throw new IdNotValidException("Body ID and Path ID is different"); };
+        return menuService.update(menu, validId);
     }
-
 }

@@ -4,10 +4,12 @@ import net.bcsoft.bcvinaino.dao.MenuDAO;
 import net.bcsoft.bcvinaino.entity.Menu;
 import net.bcsoft.bcvinaino.service.MenuService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class MenuServiceImplement implements MenuService {
 
     private final MenuDAO menuDAO;
@@ -17,12 +19,12 @@ public class MenuServiceImplement implements MenuService {
     }
 
     @Override
-    public List<Menu> selectAll() {
+    public List<Menu> getAll() {
         return doSelectAll();
     }
 
     @Override
-    public List<Menu> update(Menu menu, Long id) {
+    public List<Menu> update(Menu menu, Long id) { //TODO Exception Input
         if (doCheckID(menu, id)) {
             menuDAO.update(menu);
             return doSelectAll();

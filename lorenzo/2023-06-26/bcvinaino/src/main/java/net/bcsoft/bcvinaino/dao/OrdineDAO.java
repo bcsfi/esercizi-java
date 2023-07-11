@@ -13,9 +13,9 @@ public interface OrdineDAO {
 
     OrdineCompleto select(Long id);
 
-    Long insert(Ordine ordine);
+    void insert(Ordine ordine);
 
-    Long deleteByID(Long id);
+    void deleteByID(Long id);
 
     void deleteByData(Date data);
 }

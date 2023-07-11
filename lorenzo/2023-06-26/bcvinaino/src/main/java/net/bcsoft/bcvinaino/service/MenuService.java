@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface MenuService {
-    List<Menu> selectAll();
+    List<Menu> getAll();
 
     List<Menu> update(Menu menu, Long id);
 }

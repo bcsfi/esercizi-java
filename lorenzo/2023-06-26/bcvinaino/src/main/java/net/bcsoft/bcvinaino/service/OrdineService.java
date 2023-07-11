@@ -7,11 +7,11 @@ import java.sql.Date;
 import java.util.List;
 
 public interface OrdineService {
-    List<Ordine> selectAll();
+    List<Ordine> getAll();
 
-    OrdineCompleto select(Long id);
+    OrdineCompleto get(Long id);
 
-    List<Ordine> insert(OrdineCompleto ordineCompleto);
+    List<Ordine> create(OrdineCompleto ordineCompleto);
 
     List<Ordine> deleteByID(Long id);
 

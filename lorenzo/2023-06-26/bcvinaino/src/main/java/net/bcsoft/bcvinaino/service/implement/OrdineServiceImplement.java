@@ -4,6 +4,7 @@ import net.bcsoft.bcvinaino.dao.OrdineDAO;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.ArticoliOrdiniCompleto;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
+import net.bcsoft.bcvinaino.exception.IdNotValidException;
 import net.bcsoft.bcvinaino.service.ArticoliOrdineService;
 import net.bcsoft.bcvinaino.service.MenuService;
 import net.bcsoft.bcvinaino.service.OrdineService;
@@ -29,17 +30,21 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public List<Ordine> selectAll() {
+    public List<Ordine> getAll() {
         return doSelectAll();
     }
 
     @Override
-    public OrdineCompleto select(Long id) {
-        return ordineDAO.select(id);
+    public OrdineCompleto get(Long id) {
+        if (ordineDAO.select(id) == null) {
+            throw new IdNotValidException("Ordine not found");
+        } else {
+            return ordineDAO.select(id);
+        }
     }
 
     @Override
-    public List<Ordine> insert(OrdineCompleto ordineCompleto) {
+    public List<Ordine> create(OrdineCompleto ordineCompleto) {
         List<ArticoliOrdiniCompleto> articoliOrdineList = ordineCompleto.getArticoliOrdineCompletoList();
         ordineDAO.insert(ordineCompleto);
         Long idOrdine = ordineCompleto.getId();
@@ -51,17 +56,17 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public List<Ordine> deleteByID(Long id) {
+    public List<Ordine> deleteByID(Long id) { //TODO Exception Input
         articoliOrdineService.deleteByIdOrdine(id);
         ordineDAO.deleteByID(id);
         return doSelectAll();
     }
 
     @Override
-    public List<Ordine> deleteByData(Date data) {
-        articoliOrdineService.deleteByDataOrdine(data);
-        ordineDAO.deleteByData(data);
-        return doSelectAll();
+    public List<Ordine> deleteByData(Date data) { //TODO Exception Input
+            articoliOrdineService.deleteByDataOrdine(data);
+            ordineDAO.deleteByData(data);
+            return doSelectAll();
     }
 
     private List<Ordine> doSelectAll() {
