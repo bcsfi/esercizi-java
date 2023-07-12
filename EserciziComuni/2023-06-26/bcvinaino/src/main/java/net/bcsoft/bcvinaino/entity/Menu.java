@@ -1,5 +1,6 @@
 package net.bcsoft.bcvinaino.entity;
 
+
 public class Menu {
     private Integer idMenu;
     private String focaccia;
