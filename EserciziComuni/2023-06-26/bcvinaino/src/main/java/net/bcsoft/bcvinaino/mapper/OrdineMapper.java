@@ -3,10 +3,12 @@ package net.bcsoft.bcvinaino.mapper;
 import net.bcsoft.bcvinaino.dto.OrdineDTO;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Mapper
+@Component
 public class OrdineMapper {
     private OrdineDTO toDTO(Ordine ordine) {
         OrdineDTO dto = new OrdineDTO();
