@@ -13,10 +13,6 @@ public class OrdineDTO {
     private Integer idOrdine;
     private Date dataOrdine;
 
-    public OrdineDTO(Ordine entity){
-        this.idOrdine = entity.getIdOrdine();
-        this.dataOrdine = entity.getDataOrdine();
-    }
     public OrdineDTO(){
 
     }
