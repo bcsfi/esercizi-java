@@ -1,4 +1,4 @@
-package net.bcsoft.bcvinaino.dao;
+package net.bcsoft.bcvinaino.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 @Configuration
 @MapperScan(basePackages = "net.bcsoft.bcvinaino.dao", sqlSessionFactoryRef = "VINAINO_SESSION_FACTORY")
 @ComponentScan(basePackages = {"net.bcsoft.bcvinaino.dao"})
-public class MyBatisConfiguration {
+public class MyBatisConfig {
 
     @Bean
     @Primary
