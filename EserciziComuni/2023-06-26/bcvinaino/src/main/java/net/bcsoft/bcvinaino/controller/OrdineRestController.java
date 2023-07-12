@@ -4,7 +4,7 @@ import net.bcsoft.bcvinaino.dto.OrdineDTO;
 import net.bcsoft.bcvinaino.entity.Ordine;
 import net.bcsoft.bcvinaino.entity.dettaglio.OrdineCompleto;
 import net.bcsoft.bcvinaino.service.OrdineService;
-import net.bcsoft.bcvinaino.toDTO.ToOrdineDTO;
+import net.bcsoft.bcvinaino.mapper.OrdineMapper;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
@@ -14,18 +14,18 @@ import java.util.List;
 @RestController
 public class OrdineRestController {
     private final OrdineService ordineService;
-    private final ToOrdineDTO toOrdineDTO;
+    private final OrdineMapper ordineMapper;
 
-    public OrdineRestController(OrdineService ordineService, ToOrdineDTO toOrdineDTO) {
+    public OrdineRestController(OrdineService ordineService, OrdineMapper ordineMapper) {
         this.ordineService = ordineService;
-        this.toOrdineDTO = toOrdineDTO;
+        this.ordineMapper = ordineMapper;
     }
 
     @GetMapping("/bcvinaino/ordini/selectAll")
-    public List<OrdineDTO> getAllOrdini(){
-        return toOrdineDTO.selectAllDTO();
+    public List<OrdineDTO> getAll(){
+        return this.ordineMapper.toDTOs(this.ordineService.selectAll());
     }
-    @PostMapping("/bcvinaino/ordini")
+    @PostMapping("/bcvinaino/ordini/insert")
     public Ordine insertOrdine(@RequestBody OrdineCompleto ordineCompleto){
         return ordineService.insert(ordineCompleto);
     }
