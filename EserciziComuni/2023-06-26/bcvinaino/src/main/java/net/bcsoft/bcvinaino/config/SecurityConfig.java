@@ -22,8 +22,10 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth ->{
                     auth.requestMatchers("/bcvinaino/report/incassi").permitAll();
+                    auth.requestMatchers("/login").permitAll();
                     auth.anyRequest().authenticated();
                 })
+
                 .oauth2Login(withDefaults())
                 .formLogin(withDefaults())
                 .build();
