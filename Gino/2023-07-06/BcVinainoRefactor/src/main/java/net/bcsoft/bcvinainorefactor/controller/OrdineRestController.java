@@ -1,55 +1,52 @@
 package net.bcsoft.bcvinainorefactor.controller;
 
-import net.bcsoft.bcvinainorefactor.entity.ArticoliOrdine;
+import net.bcsoft.bcvinainorefactor.dto.OrdineCompletoDTO;
+import net.bcsoft.bcvinainorefactor.dto.OrdineDTO;
 import net.bcsoft.bcvinainorefactor.entity.Ordine;
-import net.bcsoft.bcvinainorefactor.dto.ArticoliOrdineDto;
+import net.bcsoft.bcvinainorefactor.entity.dettaglio.OrdineCompleto;
+import net.bcsoft.bcvinainorefactor.exception.FormatoSbagliatoEccezione;
+import net.bcsoft.bcvinainorefactor.mapper.OrdineMapper;
 import net.bcsoft.bcvinainorefactor.service.ArticoliOrdineService;
 import net.bcsoft.bcvinainorefactor.service.OrdineService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/bcvinainorefactor/ordini")
-public class OrdineRestController
-{
-    /// TODO ordini: Creazione di un nuovo ordine costituito da N item di menu con ID = X, M item di menu con ID = Y.
-
+public class OrdineRestController {
     private final OrdineService ordineService;
     private final ArticoliOrdineService articoliOrdineService;
+    private final OrdineMapper ordineMapper;
 
-    @Autowired
-    public OrdineRestController (OrdineService ordineService, ArticoliOrdineService articoliOrdineService)
-    {
+    public OrdineRestController(OrdineService ordineService, ArticoliOrdineService articoliOrdineService, OrdineMapper ordineMapper) {
         this.ordineService = ordineService;
         this.articoliOrdineService = articoliOrdineService;
+        this.ordineMapper = ordineMapper;
     }
 
     @GetMapping()
-    public List<Ordine> selectAll () {
+    public List<Ordine> selectAll() {
         return ordineService.selectAll();
     }
 
     @PostMapping()
-    public void insert (@RequestBody List<ArticoliOrdineDto> articoliOrdineDtoList)
-    {
-        Ordine ordine = new Ordine();
-        ordine.setData(new Date());
-        ordineService.insert(ordine);
-
-        for (ArticoliOrdineDto articoliOrdineDto : articoliOrdineDtoList)
-        {
-            ArticoliOrdine articoliOrdine = new ArticoliOrdine();
-            articoliOrdine.setIdOrdine(ordine.getId());
-            articoliOrdine.setQuantita(articoliOrdineDto.getQuantita());
-            articoliOrdine.setIdMenu(articoliOrdineDto.getIdMenu());
-            articoliOrdineService.insert(articoliOrdine);
+    public List<OrdineDTO> insert(@RequestBody OrdineCompletoDTO ordineCompletoDTO) {
+        try {
+            return this.ordineMapper.toDTOLista(ordineService.insert(this.ordineMapper.toOrdineCompleto(ordineCompletoDTO)));
+        } catch (FormatoSbagliatoEccezione e) {
+            throw e;
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable(value = "id") Integer id) {
+        ordineService.deleteById(id);
+    }
+
+    @GetMapping("{id}")
+    public OrdineCompleto ordineCompleto(@PathVariable(value = "id") Integer id) {
+        return ordineService.selectOrdineCompleto(id);
     }
 }

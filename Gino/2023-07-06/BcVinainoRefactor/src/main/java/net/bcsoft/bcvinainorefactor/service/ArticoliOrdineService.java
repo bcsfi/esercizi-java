@@ -1,30 +1,30 @@
 package net.bcsoft.bcvinainorefactor.service;
 
-import net.bcsoft.bcvinainorefactor.dao.ArticoliOrdineDao;
+import net.bcsoft.bcvinainorefactor.dao.ArticoliOrdineDAO;
 import net.bcsoft.bcvinainorefactor.entity.ArticoliOrdine;
-import net.bcsoft.bcvinainorefactor.dto.ArticoliOrdineDto;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class ArticoliOrdineService
-{
-    private final ArticoliOrdineDao articoliOrdineDao;
+public class ArticoliOrdineService {
+    private final ArticoliOrdineDAO articoliOrdineDao;
 
-    public ArticoliOrdineService(ArticoliOrdineDao articoliOrdineDao)
-    {
+    public ArticoliOrdineService(ArticoliOrdineDAO articoliOrdineDao) {
         this.articoliOrdineDao = articoliOrdineDao;
     }
 
-    public List<ArticoliOrdine> selectAll ()
-    {
+    public List<ArticoliOrdine> selectAll() {
         return articoliOrdineDao.selectAll();
     }
 
-    public void insert (ArticoliOrdineDto articoliOrdineDto)
-    {
-        articoliOrdineDao.insert(articoliOrdineDto);
+    @Transactional
+    public void insert(List<ArticoliOrdine> articoli, long idOrdine) {
+            articoli.forEach(articolo -> articoliOrdineDao.insert(articolo, idOrdine));
+    }
+
+    public void delete(Integer id) {
+        articoliOrdineDao.delete(id);
     }
 }

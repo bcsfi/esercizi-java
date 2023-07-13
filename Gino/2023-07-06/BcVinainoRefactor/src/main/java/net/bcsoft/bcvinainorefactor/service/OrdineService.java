@@ -1,30 +1,43 @@
 package net.bcsoft.bcvinainorefactor.service;
 
-import net.bcsoft.bcvinainorefactor.dao.OrdineDao;
+import net.bcsoft.bcvinainorefactor.dao.OrdineDAO;
 import net.bcsoft.bcvinainorefactor.entity.Ordine;
+import net.bcsoft.bcvinainorefactor.entity.dettaglio.OrdineCompleto;
+import net.bcsoft.bcvinainorefactor.exception.FormatoSbagliatoEccezione;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @Service
-public class OrdineService
-{
-    private final OrdineDao ordineDao;
+public class OrdineService {
+    private final OrdineDAO ordineDao;
+    private final ArticoliOrdineService articoliOrdineService;
 
-    public OrdineService(OrdineDao ordineDao)
-    {
+    public OrdineService(OrdineDAO ordineDao, ArticoliOrdineService articoliOrdineService) {
         this.ordineDao = ordineDao;
+        this.articoliOrdineService = articoliOrdineService;
     }
 
-    public List<Ordine> selectAll ()
-    {
+    private List<Ordine> doGetAll() {
         return ordineDao.selectAll();
     }
 
-    public Long insert (Ordine ordine)
-    {
+    public List<Ordine> selectAll() {
+        return doGetAll();
+    }
+
+    public List<Ordine> insert(OrdineCompleto ordine) {
         ordineDao.insert(ordine);
-        return ordine.getId();
+        this.articoliOrdineService.insert(ordine.getArticoli(), ordine.getId());
+        return this.doGetAll();
+    }
+
+    public void deleteById(Integer id) {
+        articoliOrdineService.delete(id);
+        ordineDao.deleteById(id);
+    }
+
+    public OrdineCompleto selectOrdineCompleto(Integer id){
+        return ordineDao.selectOrdineCompleto(id);
     }
 }

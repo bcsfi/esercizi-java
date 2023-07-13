@@ -2,8 +2,7 @@ package net.bcsoft.bcvinainorefactor.entity;
 
 import java.util.Date;
 
-public class Ordine
-{
+public class Ordine {
     private Long id;
     private Date data;
 

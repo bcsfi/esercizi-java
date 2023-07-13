@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="net.bcsoft.bcvinainorefactor.dao.OrdineDao">
+<mapper namespace="net.bcsoft.bcvinainorefactor.dao.OrdineDAO">
 
     <resultMap id="ordineResultMap" type="net.bcsoft.bcvinainorefactor.entity.Ordine">
         <id property="id" column="id_ordine"/>
         <result property="data" column="data_ordine"/>
+    </resultMap>
+
+    <resultMap id="ordineCompletoResultMap" type="net.bcsoft.bcvinainorefactor.entity.dettaglio.OrdineCompleto" extends="ordineResultMap">
+        <collection property="articoliOrdineCompletoList" resultMap="net.bcsoft.bcvinainorefactor.dao.ArticoliOrdineDAO.articoliOrdineResultMap" javaType="java.util.List"/>
     </resultMap>
 
     <select id="selectAll" resultMap="ordineResultMap">
@@ -13,10 +17,20 @@
         FROM ordini
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinaino.entity.Ordine">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id_ordine" parameterType="net.bcsoft.bcvinainorefactor.entity.Ordine">
         INSERT INTO ordini (data_ordine)
         VALUES (#{data})
-        RETURNING id
     </insert>
+
+    <delete id="deleteById " parameterType="Integer">
+        DELETE FROM ordini
+        WHERE id_ordine = #{id}
+    </delete>
+
+    <select id="selectOrdineCompleto" resultMap="ordineCompletoResultMap">
+        SELECT ordini.id_ordine, data_ordine, id_menu, quantita
+        FROM ordini JOIN articoli_ordine ON ordini.id_ordine = articoli_ordine.id_ordine
+        WHERE ordini.id_ordine = #{id}
+    </select>
 
 </mapper>

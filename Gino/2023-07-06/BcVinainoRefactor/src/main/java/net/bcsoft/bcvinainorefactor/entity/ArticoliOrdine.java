@@ -1,7 +1,6 @@
 package net.bcsoft.bcvinainorefactor.entity;
 
-public class ArticoliOrdine
-{
+public class ArticoliOrdine {
     private Long id;
     private Long idMenu;
     private Long idOrdine;

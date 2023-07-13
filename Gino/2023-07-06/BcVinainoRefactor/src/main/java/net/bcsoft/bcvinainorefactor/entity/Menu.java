@@ -1,7 +1,6 @@
 package net.bcsoft.bcvinainorefactor.entity;
 
-public class Menu
-{
+public class Menu {
     private Long idMenu;
     private String nome;
     private Double prezzo;
