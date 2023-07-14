@@ -1,11 +1,7 @@
 package net.bcsoft.bcvinaino.dto;
 
-import jakarta.annotation.PostConstruct;
-import net.bcsoft.bcvinaino.entity.Ordine;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
