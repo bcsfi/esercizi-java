@@ -56,14 +56,14 @@ public class OrdineServiceImplement implements OrdineService {
     }
 
     @Override
-    public List<Ordine> deleteByID(Long id) { //TODO Exception Input
+    public List<Ordine> deleteByID(Long id) {
         articoliOrdineService.deleteByIdOrdine(id);
         ordineDAO.deleteByID(id);
         return doSelectAll();
     }
 
     @Override
-    public List<Ordine> deleteByData(Date data) { //TODO Exception Input
+    public List<Ordine> deleteByData(Date data) {
             articoliOrdineService.deleteByDataOrdine(data);
             ordineDAO.deleteByData(data);
             return doSelectAll();

@@ -26,17 +26,17 @@ public class ArticoliOrdineServiceImplement implements ArticoliOrdineService {
     }
 
     @Override
-    public void insert(ArticoliOrdiniCompleto articoliOrdine, Long idOrdine) { //TODO Exception Input
+    public void insert(ArticoliOrdiniCompleto articoliOrdine, Long idOrdine) {
         this.articoliOrdineDAO.insert(articoliOrdine, idOrdine);
     }
 
     @Override
-    public void deleteByIdOrdine(Long idOrdine) { //TODO Exception Input
+    public void deleteByIdOrdine(Long idOrdine) {
         this.articoliOrdineDAO.deleteByIdOrdine(idOrdine);
     }
 
     @Override
-    public void deleteByDataOrdine(Date dataOrdine) { //TODO Exception Input
+    public void deleteByDataOrdine(Date dataOrdine) {
         this.articoliOrdineDAO.deleteByDataOrdine(dataOrdine);
     }
 }
