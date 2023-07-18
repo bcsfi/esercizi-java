@@ -2,7 +2,6 @@ package net.bcsoft.bcvinaino.mapper;
 
 import net.bcsoft.bcvinaino.dto.OrdineDTO;
 import net.bcsoft.bcvinaino.entity.Ordine;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

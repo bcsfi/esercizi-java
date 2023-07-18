@@ -1,17 +1,14 @@
 package net.bcsoft.bcvinaino.dto;
 
 
-import org.springframework.stereotype.Component;
 import java.util.Date;
 
-@Component
+
 public class OrdineDTO {
     private Integer idOrdine;
     private Date dataOrdine;
 
-    public OrdineDTO(){
 
-    }
     public Integer getIdOrdine() {
         return idOrdine;
     }
